@@ -16,11 +16,18 @@ return new class extends Migration
                   ->comment('Event identifier number.');
             $table->string('name')
                   ->comment('Event name.');
-            $table->string('owner')
-                  ->unique()
-                  ->comment('Event Agency name.');
+            $table->foreign('owner')
+                  ->references('email')
+                  ->on('users')
+                  ->onDelete('cascade')
+                  ->comment('Event administrator email.');
+            $table->date('date')
+                  ->comment('Event date.');
+            $table->string('address')
+                  ->comment('Event physical address.');
             $table->text('description')
-                  ->comment('Event description.');
+                  ->nullable()
+                  ->comment('Event description and additional information.');
             $table->timestamps();
         });
     }

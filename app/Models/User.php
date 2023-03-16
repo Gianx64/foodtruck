@@ -6,8 +6,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Spatie\Permission\Traits\HasRoles;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
@@ -42,4 +42,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    static $rules = [
+      'email' => 'required|string|unique:users,email',
+      'name' => 'required|string',
+      'password' => 'required|string|confirmed',
+    ];
+
+    static $message = [
+      'name.required' => 'El nombre de usuario es requerido.',
+      'email.required' => 'El email es requerido.',
+      'email.unique' => 'El email ya está registrado.',
+      'password.required' => 'La contraseña es requerida.',
+      'password.confirmed' => 'Las contraseñas no coinciden.'
+    ];
+
+    protected $perPage = 20;
 }
