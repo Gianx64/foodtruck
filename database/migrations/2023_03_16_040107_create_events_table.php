@@ -16,11 +16,12 @@ return new class extends Migration
                   ->comment('Event identifier number.');
             $table->string('name')
                   ->comment('Event name.');
+            $table->string('owner')
+                  ->comment('Event administrator email.');
             $table->foreign('owner')
                   ->references('email')
                   ->on('users')
-                  ->onDelete('cascade')
-                  ->comment('Event administrator email.');
+                  ->onDelete('cascade');
             $table->date('date')
                   ->comment('Event date.');
             $table->string('address')

@@ -38,6 +38,11 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('roles/create', [RoleController::class, 'create'])->name('roles.create');
     Route::get('roles/edit/{role}', [RoleController::class, 'edit'])->name('roles.edit');
 
+    Route::get('events', [EventController::class, 'index'])->name('events.index');
+    Route::get('events/create', [EventController::class, 'create'])->name('events.create');
+    Route::get('events/edit/{role}', [EventController::class, 'edit'])->name('events.edit');
+
     Route::apiResource('users', UserController::class); //->except('show')
     Route::apiResource('roles', RoleController::class);
+    Route::apiResource('events', EventController::class);
 });

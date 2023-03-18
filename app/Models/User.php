@@ -42,7 +42,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
+
     static $rules = [
       'email' => 'required|string|unique:users,email',
       'name' => 'required|string',
@@ -50,11 +50,11 @@ class User extends Authenticatable
     ];
 
     static $message = [
-      'name.required' => 'El nombre de usuario es requerido.',
-      'email.required' => 'El email es requerido.',
-      'email.unique' => 'El email ya está registrado.',
-      'password.required' => 'La contraseña es requerida.',
-      'password.confirmed' => 'Las contraseñas no coinciden.'
+      'name.required' => 'An user name is required.',
+      'email.required' => 'An email is required.',
+      'email.unique' => 'This email is already registered.',
+      'password.required' => 'A password is required.',
+      'password.confirmed' => 'Passwords do not match.'
     ];
 
     protected $perPage = 20;

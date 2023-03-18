@@ -15,61 +15,104 @@ class RoleController extends Controller
         $this->middleware('can:roles.delete')->only('destroy');
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index() {
         $roles = Role::all();
 
         return view('roles.index', compact('roles'));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create () {
         $permissions = Permission::all();
 
         return view('roles.create', compact('permissions'));
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request) {
         $rules = ['name' => 'required|string|unique:roles,name'];
-
         $message = [
-            'name.required' => 'El nombre del rol no puede quedar vacio',
-            'name.string'   => 'El nombre del rol tiene que ser una cadena de caracteres',
-            'name.unique'   => 'El nombre del rol ya existe, intente ingresar otro nombre'
+            'name.required' => 'Role name cannot be empty',
+            'name.string'   => 'Role name has to be a character string',
+            'name.unique'   => 'Role name already exists'
         ];
-
         request()->validate($rules, $message);
 
         $role = Role::create($request->all());
-
         $role->permissions()->sync($request->permissions);
 
         return redirect()->route('roles.edit', compact('role'))
-            ->with('success', 'Rol creado exitosamente.');
+            ->with('success', 'Role created successfully.');
     }
 
-    public function edit(Role $role) {
+    /**
+     * Display the specified resource.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $role = Role::find($id);
 
+        return view('roles.show', compact('role'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Role $role) {
         $permissions = Permission::all();
 
         return view('roles.edit', compact('role', 'permissions'));
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @param  Role $role
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, Role $role) {   
-        $message = ['name.required' => 'El nombre del rol no puede quedar vacio'];
-
+        $message = ['name.required' => 'Role name cannot be empty.'];
         request()->validate(['name' => 'required'], $message);
 
         $role->update($request->all());
-
         $role->permissions()->sync($request->permissions);
 
         return redirect()->route('roles.index', compact('role'))
-            ->with('success', 'Rol actualizado exitosamente.');
+            ->with('success', 'Role updated successfully.');
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @param  Role $role
+     * @return \Illuminate\Http\Response
+     */
     public function destroy(Role $role) {   
         $role->delete();
 
         return redirect()->route('roles.index', compact('role'))
-            ->with('success', 'Rol eliminado exitosamente.');
+            ->with('success', 'Role deleted successfully.');
     }
 }

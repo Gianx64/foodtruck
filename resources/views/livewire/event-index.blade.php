@@ -23,13 +23,13 @@
 								<td>{{$event->created_at}}</td>
 								<td>{{$event->updated_at}}</td>
 
-								@can('events.edit')
+								@can('events.update')
 									<td>
 										<a class="btn btn-success float-left" href="{{route('events.edit', $event)}}">Edit</a>
 									</td>
 								@endcan
 
-								@can('events.destroy')
+								@can('events.delete')
 									<td>
 										<form action="{{route('events.destroy', $event)}}" class="swal-delete" method="POST">
 											@method('DELETE')
@@ -43,11 +43,9 @@
 					</tbody>
 				</table>
 			</div>
-				
 			<div class="card-footer">
 				{{$events->links()}}
 			</div>
-
 		@else
 			<div class="card-body">
 				<strong>There's no events with that name or owner ...</strong>

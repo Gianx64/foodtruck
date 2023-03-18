@@ -22,65 +22,53 @@ class RoleSeeder extends Seeder
 		//---------------------- PERMISOS ---------------------------
 		// ----------------------- Usuarios ---------------------------
 		Permission::create([
-			'name' => 'users.create',
-			'description' => 'Create users'
+			'name' => 'users.create'
 		])->syncRoles([$role1]);
 
 		Permission::create([
-			'name' => 'users.read',
-			'description' => 'Read users'
+			'name' => 'users.read'
 		])->syncRoles([$role1]);
 
 		Permission::create([
-			'name' => 'users.update',
-			'description' => 'Update users'
+			'name' => 'users.update'
 		])->syncRoles([$role1]);
 
 		Permission::create([
-			'name' => 'users.delete',
-			'description' => 'Delete users'
+			'name' => 'users.delete'
 		])->syncRoles([$role1]);
 
 		// ----------------------- Roles ----------------------------
 		Permission::create([
-			'name' => 'roles.create',
-			'description' => 'Create roles'
+			'name' => 'roles.create'
 		])->syncRoles([$role1]);
 
 		Permission::create([
-			'name' => 'roles.read',
-			'description' => 'Read roles'
+			'name' => 'roles.read'
 		])->syncRoles([$role1]);
 
 		Permission::create([
-			'name' => 'roles.update',
-			'description' => 'Edit roles'
+			'name' => 'roles.update'
 		])->syncRoles([$role1]);
 
 		Permission::create([
-			'name' => 'roles.delete',
-			'description' => 'Delete roles'
+			'name' => 'roles.delete'
 		])->syncRoles([$role1]);
 
 		// ----------------------- Events ----------------------------
 		Permission::create([
-			'name' => 'events.create',
-			'description' => 'Create events'
+			'name' => 'events.create'
 		])->syncRoles([$role1, $role2]);
 
 		Permission::create([
-			'name' => 'events.read',
-			'description' => 'Read events'
+			'name' => 'events.read'
 		])->syncRoles([$role1, $role2]);
 
 		Permission::create([
-			'name' => 'events.update',
-			'description' => 'Edit events'
+			'name' => 'events.update'
 		])->syncRoles([$role1, $role2]);
 
 		Permission::create([
-			'name' => 'events.delete',
-			'description' => 'Delete events'
+			'name' => 'events.delete'
 		])->syncRoles([$role1, $role2]);
     }
 }

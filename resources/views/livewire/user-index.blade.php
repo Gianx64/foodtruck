@@ -1,7 +1,7 @@
 <div>
 	<div class="card">			
 		<div class="card-header">
-				<input wire:model="search" class="form-control" placeholder="Ingrese el nombre o correo de un usuario">
+			<input wire:model="search" class="form-control" placeholder="Enter a user name or email">
 		</div>
 		@if ($users->count())		
 			<div class="card-body">
@@ -25,7 +25,7 @@
 								<td>{{$user->created_at}}</td>
 								<td>{{$user->updated_at}}</td>
 
-								@can('users.edit')
+								@can('users.update')
 									<td>
 										<a class="btn btn-primary float-right" href="{{route('users.assign', $user)}}">Give Role</a>
 									</td>
@@ -34,7 +34,7 @@
 									</td>
 								@endcan
 
-								@can('users.destroy')
+								@can('users.delete')
 									<td>
 										<form action="{{route('users.destroy', $user)}}" class="swal-delete" method="POST">
 											@method('DELETE')
@@ -48,11 +48,9 @@
 					</tbody>
 				</table>
 			</div>
-				
 			<div class="card-footer">
 				{{$users->links()}}
 			</div>
-
 		@else
 			<div class="card-body">
 				<strong>There's no user with that name or email ...</strong>

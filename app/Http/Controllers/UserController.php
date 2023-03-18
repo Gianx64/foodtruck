@@ -59,7 +59,7 @@ class UserController extends Controller
         $user = User::create($request->all());
 
         return redirect()->route('users.index')
-            ->with('success', 'Usuario creado exitosamente.');
+            ->with('success', 'User created successfully.');
     }
 
     /**
@@ -111,7 +111,7 @@ class UserController extends Controller
         $user->update($request->all());
 
         return redirect()->route('users.index')
-            ->with('success', 'Usuario actualizado exitosamente.');
+            ->with('success', 'User updated successfully.');
     }
     public function updateSelf(Request $request)
     {
@@ -123,7 +123,7 @@ class UserController extends Controller
         User::find(auth()->user()->id)->update($request->all());
 
         return redirect()->route('home')
-            ->with('success', 'Usuario actualizado exitosamente.');
+            ->with('success', 'User updated successfully.');
     }
 
     /**
@@ -152,7 +152,7 @@ class UserController extends Controller
         $user->roles()->sync($request->roles);
 
         return redirect()->route('users.index')
-            ->with('success', 'Rol asignado exitosamente.');
+            ->with('success', 'Role assigned successfully.');
     }
 
     /**
@@ -165,6 +165,6 @@ class UserController extends Controller
         $user = User::find($id)->delete();
 
         return redirect()->route('users.index')
-            ->with('success', 'Usuario eliminado exitosamente.');
+            ->with('success', 'User deleted successfully.');
     }
 }

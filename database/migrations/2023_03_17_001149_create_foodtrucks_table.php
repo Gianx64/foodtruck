@@ -15,10 +15,17 @@ return new class extends Migration
             $table->id()
                   ->comment('Foodtruck identifier number.');
             $table->string('plate', 8)
-                  ->comment('Foodtruck plate.');
+                  ->comment('Foodtruck vehicle plate.');
             $table->string('owner')
-                  ->unique()
-                  ->comment("Owner's email address.");
+                  ->comment('Foodtruck owner email.');
+            $table->foreign('owner')
+                  ->references('email')
+                  ->on('users')
+                  ->onDelete('cascade');
+                  //->unique();
+            $table->text('description')
+                  ->nullable()
+                  ->comment('Foodtruck description and additional information.');
             $table->timestamps();
         });
     }
