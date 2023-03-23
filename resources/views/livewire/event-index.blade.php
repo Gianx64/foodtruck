@@ -11,7 +11,8 @@
 							<th>ID</th>
 							<th>Name</th>
 							<th>Owner</th>
-							<th></th>
+							<th>Created at</th>
+							<th>Updated at</th>
 						</tr>
 					</thead>
 					<tbody>

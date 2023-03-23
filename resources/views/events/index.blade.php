@@ -6,33 +6,33 @@
 			<p>{{ $message }}</p>
 		</div>
 	@endif
-	@can('roles.create')
-		<a class="btn btn-secondary float-right" href="{{route('roles.create')}}">New Role</a>
+	@can('events.create')
+		<a class="btn btn-secondary float-right" href="{{route('events.create')}}">New Event</a>
 	@endcan
-	<h1>Roles List</h1>
+	<h1>Events List</h1>
 	<div class="card">
 		<div class="card-body">
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th>#</th>
-						<th>Role</th>
+						<th>ID</th>
+						<th>Event name</th>
 						<th colspan="2"></th>
 					</tr>
 				</thead>
 				<tbody>
-					@foreach ($roles as $role)
+					@foreach ($events as $event)
 						<tr>
-							<td>{{$role->id}}</td>
-							<td>{{$role->name}}</td>
-							@can('roles.update')
+							<td>{{$event->id}}</td>
+							<td>{{$event->name}}</td>
+							@can('events.update')
 								<td width="10px">
-									<a href="{{route('roles.edit', $role)}}" class="btn btn-primary">Edit</a>
+									<a href="{{route('events.edit', $event)}}" class="btn btn-primary">Edit</a>
 								</td>
 							@endcan
-							@can('roles.delete')
+							@can('events.delete')
 								<td width="10px">
-									<form action="{{route('roles.destroy', $role)}}" class="swal-delete" method="post">
+									<form action="{{route('events.destroy', $event)}}" class="swal-delete" method="post">
 										@method('delete')
 										@csrf
 										<button type="submit" class="btn btn-danger">Delete</button>

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Permission;
 
 class EventController extends Controller
 {
@@ -32,9 +31,9 @@ class EventController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create () {
-        $permissions = Permission::all();
+        $event = new Event();
 
-        return view('events.create', compact('permissions'));
+        return view('events.create', compact('event'));
     }
 
     /**
@@ -53,9 +52,8 @@ class EventController extends Controller
         request()->validate($rules, $message);
 
         $event = Event::create($request->all());
-        $event->permissions()->sync($request->permissions);
 
-        return redirect()->route('events.edit', compact('event'))
+        return redirect()->route('events.index')
             ->with('success', 'Event created successfully.');
     }
 
@@ -78,10 +76,10 @@ class EventController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Event $event) {
-        $permissions = Permission::all();
+    public function edit($id) {
+        $event = Event::find($id);
 
-        return view('events.edit', compact('event', 'permissions'));
+        return view('events.edit', compact('event'));
     }
 
     /**
@@ -96,7 +94,6 @@ class EventController extends Controller
         request()->validate(['name' => 'required'], $message);
 
         $event->update($request->all());
-        $event->permissions()->sync($request->permissions);
 
         return redirect()->route('events.index', compact('event'))
             ->with('success', 'Event updated successfully.');
