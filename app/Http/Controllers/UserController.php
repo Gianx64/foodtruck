@@ -92,7 +92,7 @@ class UserController extends Controller
     {
         $user = User::find(auth()->user()->id);
 
-        return view('auth.passwords.reset', compact('user'));
+        return view('user.update', compact('user'));
     }
 
     /**

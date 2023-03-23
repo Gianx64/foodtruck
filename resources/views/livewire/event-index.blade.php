@@ -20,9 +20,15 @@
 							<tr>
 								<td>{{$event->id}}</td>
 								<td>{{$event->name}}</td>
-								<td>{{$event->email}}</td>
+								<td>{{$event->owner}}</td>
 								<td>{{$event->created_at}}</td>
 								<td>{{$event->updated_at}}</td>
+
+								@can('events.read')
+									<td>
+										<a class="btn btn-primary float-left" href="{{route('events.show', $event)}}">Show</a>
+									</td>
+								@endcan
 
 								@can('events.update')
 									<td>

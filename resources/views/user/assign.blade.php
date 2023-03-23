@@ -2,7 +2,8 @@
 
 @section('content')
 	<div class="row">
-		<div class="col-8"> 
+		<div class="col-1"></div>
+		<div class="col-9">
 			<h1>Assign Role</h1>
 		</div>
 		<div class="col">
@@ -18,8 +19,8 @@
 					<h4>Roles List:</h4>
 					@foreach ($roles as $role)
 						<div>
-							<input type="checkbox" id={{$role->id}} name="roles[]" value={{null}}>
-							<label>{{$role->name}}</label><br>
+							<input type="checkbox" id="{{$role->id}}" name="roles[]" value={{null}}>
+							<label for="{{$role->id}}" class="h5">{{$role->name}}</label><br>
 						</div>
 					@endforeach
 					<button type="submit" class="btn btn-primary">
