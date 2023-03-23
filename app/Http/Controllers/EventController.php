@@ -43,7 +43,8 @@ class EventController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        $rules = ['name' => 'required|string|unique:events,name'];
+        $rules = ['name' => 'required|string|unique:events,name',
+        'map' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',];
         $message = [
             'name.required' => 'Event name cannot be empty',
             'name.string'   => 'Event name has to be a character string',
@@ -52,6 +53,7 @@ class EventController extends Controller
         request()->validate($rules, $message);
 
         $event = Event::create($request->all());
+        //$request->file('map')->move(public_path('images'), date('YmdHi').$request->name.'.'.$request->image->extension());
 
         return redirect()->route('events.index')
             ->with('success', 'Event created successfully.');

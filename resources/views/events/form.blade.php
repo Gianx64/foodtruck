@@ -30,7 +30,7 @@
 <div class="row">
 	<!--div class="col-md-6">
 		<label for="map">Map (image file):</label>
-		<input id="map" type="file" name="map" value="{{ old('map') }}" required>
+		<input id="map" type="file" name="map" required>
 		@error('map')
 			<span class="invalid-feedback" role="alert">
 				<strong>{{ $message }}</strong>
