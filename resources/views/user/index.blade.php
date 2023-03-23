@@ -17,7 +17,7 @@
 			<p>{{ $message }}</p>
 		</div>
 	@endif
-	@livewire("user-index")
+	@livewire('user-index')
 	@include('swal-delete')
 	@livewireScripts
 @stop
