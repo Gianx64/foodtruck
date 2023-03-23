@@ -28,6 +28,9 @@
 				<h1>Description:</h1>
 				<h3>{{$event->description}}</h3>
 			</div>
+			<div class="col-3">
+				<h1>Foodtrucks:</h1>
+			</div>
 		</div>
 	</div>
 @stop
