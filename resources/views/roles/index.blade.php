@@ -45,9 +45,6 @@
 			</table>
 		</div>
 	</div>
-@stop
-
-@section('js')
 	@include('swal-delete')
 	@livewireScripts
-@endsection
+@stop

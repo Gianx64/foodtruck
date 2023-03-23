@@ -18,9 +18,6 @@
 		</div>
 	@endif
 	@livewire("user-index")
-@stop
-
-@section('js')
 	@include('swal-delete')
 	@livewireScripts
-@endsection
+@stop

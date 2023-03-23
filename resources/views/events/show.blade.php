@@ -14,15 +14,20 @@
 	</div>
 	<div class="card">
 		<div class="card-body">
-			<div class="form-group container-fluid">
-                <h3>{{$event->date}}</h3>
-            </div>
-			<div class="form-group container-fluid">
-                <h3>{{$event->address}}</h3>
-            </div>
-			<div class="form-group container-fluid">
-                <h3>{{$event->description}}</h3>
-            </div>
+			<div class="row">
+				<div class="col-3">
+					<h1>Date:</h1>
+					<h3>{{$event->date}}</h3>
+				</div>
+				<div class="col-3">
+					<h1>Address:</h1>
+					<h3>{{$event->address}}</h3>
+				</div>
+			</div>
+			<div class="col-3">
+				<h1>Description:</h1>
+				<h3>{{$event->description}}</h3>
+			</div>
 		</div>
 	</div>
 @stop
