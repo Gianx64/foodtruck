@@ -9,7 +9,7 @@
 <h1 class="h3 mt-4 mb-4">Permissions List:</h1>
 @foreach ($permissions as $permission)
 	<div>
-		<input type="checkbox" id={{$permission->id}} name={{$permission->name}} value={{$permission->id}} @checked(true)>
-		<label>{{$permission->name}}</label><br>
+		<input type="checkbox" id="{{$permission->id}}" name="{{$permission->name}}" value="{{$permission->id}}" @checked($role->hasPermissionTo($permission->name))>
+		<label for="{{$permission->id}}" class="h5">{{$permission->name}}</label><br>
 	</div>
 @endforeach

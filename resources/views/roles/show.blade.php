@@ -3,7 +3,7 @@
 @section('content')
 	<div class="row">
 		<div class="col-8"> 
-			<h1>Edit Role</h1>
+			<h1>Show Role</h1>
 		</div>
 		<div class="col">
 			<a class="btn btn-primary mr-2 float-right" href="{{ route('roles.index') }}">Go Back</a>
@@ -12,14 +12,11 @@
 	<div class="card">
 		<div class="card-body">
 			<div class="form-group container-fluid">
-                <h3>{{$role->name}}</h3>
+                <h2>{{$role->name}}</h2>
             </div>
-            <h1 class="h3 mt-4 mb-4">Permissions List:</h1>
-            @foreach ($permissions as $permission)
-                <div>
-                    <input type="checkbox" id={{$permission->id}} name="permissions[]" value="{{null}}">
-                    <label>{{$permission->name}}</label><br>
-                </div>
+            <h3 class="h3 mt-4 mb-4">Permissions List:</h3>
+            @foreach ($role->permissions as $permission)
+                <h5>{{$permission->name}}</h5><br>
             @endforeach
 		</div>
 	</div>

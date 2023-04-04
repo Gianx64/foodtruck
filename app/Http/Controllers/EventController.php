@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -44,7 +45,8 @@ class EventController extends Controller
      */
     public function store(Request $request) {
         $rules = ['name' => 'required|string|unique:events,name',
-        'map' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',];
+        //'map' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ];
         $message = [
             'name.required' => 'Event name cannot be empty',
             'name.string'   => 'Event name has to be a character string',
@@ -67,9 +69,11 @@ class EventController extends Controller
      */
     public function show($id)
     {
+        return "update";
         $event = Event::find($id);
+        $foodtrucks = DB::table('foodtrucks_accepted')->where('event_id', $id)->get();
 
-        return view('events.show', compact('event'));
+        return view('events.show', compact('event', 'foodtrucks'));
     }
 
     /**
@@ -91,7 +95,7 @@ class EventController extends Controller
      * @param  Event $event
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Event $event) {   
+    public function update(Request $request, Event $event) {
         $message = ['name.required' => 'Event name cannot be empty.'];
         request()->validate(['name' => 'required'], $message);
 
@@ -108,7 +112,7 @@ class EventController extends Controller
      * @param  Event $event
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Event $event) {   
+    public function destroy(Event $event) {
         $event->delete();
 
         return redirect()->route('events.index', compact('event'))
