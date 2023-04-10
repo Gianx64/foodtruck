@@ -49,6 +49,7 @@
 	</div>
 </div>
 <input type="hidden" id="owner" name="owner" value="{{auth()->user()->email}}" required>
+<input type="hidden" wire:model="id" required>
 <button type="submit" class="btn btn-primary">
 	{{ __('Submit') }}
 </button>

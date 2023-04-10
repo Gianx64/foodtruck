@@ -21,10 +21,11 @@ class Event extends Model
     public $timestamps = true;
 
     static $rules = [
-        'name' => 'required|string',
+        'name' => 'required|string|unique:events,name',
         'owner' => 'required|string',
         'date' => 'required',
         'address' => 'required|string',
+        //'map' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         'description' => 'string'
     ];
 

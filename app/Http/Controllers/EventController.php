@@ -44,15 +44,7 @@ class EventController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        $rules = ['name' => 'required|string|unique:events,name',
-        //'map' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ];
-        $message = [
-            'name.required' => 'Event name cannot be empty',
-            'name.string'   => 'Event name has to be a character string',
-            'name.unique'   => 'Event name already exists'
-        ];
-        request()->validate($rules, $message);
+        request()->validate( Event::$rules, Event::$message);
 
         $event = Event::create($request->all());
         //$request->file('map')->move(public_path('images'), date('YmdHi').$request->name.'.'.$request->image->extension());
@@ -69,7 +61,6 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        return "update";
         $event = Event::find($id);
         $foodtrucks = DB::table('foodtrucks_accepted')->where('event_id', $id)->get();
 

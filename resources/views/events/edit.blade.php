@@ -13,7 +13,8 @@
 	<div class="card">
 		<div class="card-body">
 			<div class="form-group container-fluid">
-				<form method="PUT" action="{{ route('events.update', $event) }}">
+				<!--form method="PUT" action="{{ route('events.update', $event) }}"-->
+				<form wire:submit.prevent="editEvent">
 					@csrf
 					@include('errors')
 					@include('events.form')
