@@ -60,3 +60,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 });
 
 Route::get('events/{event}', [EventController::class, 'show'])->name('events.show');
+//Route Hooks - Do not delete//
+	//Route::view('Users', 'livewire.Users.index')->middleware('auth');
+	//Route::view('events', App\Http\Livewire\Events::class)->middleware('auth');

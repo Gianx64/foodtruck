@@ -18,11 +18,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    protected $fillable = [ 'name', 'email', 'password' ];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -43,6 +39,30 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function events()
+    {
+        return $this->hasMany('App\Models\Event', 'owner', 'email');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function foodtrucks()
+    {
+        return $this->hasMany('App\Models\Foodtruck', 'event_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function foodtrucksAccepteds()
+    {
+        return $this->hasMany('App\Models\FoodtrucksAccepted', 'event_id', 'id');
+    }
+
     static $rules = [
       'email' => 'required|string|unique:users,email',
       'name' => 'required|string',
@@ -57,5 +77,9 @@ class User extends Authenticatable
       'password.confirmed' => 'Passwords do not match.'
     ];
 
+    protected $table = 'users';
+
     protected $perPage = 20;
+
+    public $timestamps = true;
 }

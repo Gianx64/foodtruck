@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 namespace App\Models;
 
@@ -7,18 +7,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
-    use HasFactory;
+	use HasFactory;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name', 'date', 'owner', 'address', 'description'
-    ];
+    protected $fillable = ['name','owner','date','address','description'];
 
-    public $timestamps = true;
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function user()
+    {
+        return $this->hasOne('App\Models\User', 'email', 'owner');
+    }
 
     static $rules = [
         'name' => 'required|string|unique:events,name',
@@ -36,5 +40,7 @@ class Event extends Model
       'address.required' => 'Address is required.'
     ];
 
-    protected $perPage = 20;
+    protected $table = 'events';
+
+    public $timestamps = true;
 }
