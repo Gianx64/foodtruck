@@ -10,23 +10,19 @@
 				<form>
                     <div class="form-group">
                         <label for="name"></label>
-                        <input wire:model="name" type="text" class="form-control" id="name" placeholder="Name">@error('name') <span class="error text-danger">{{ $message }}</span> @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="owner"></label>
-                        <input wire:model="owner" type="text" class="form-control" id="owner" placeholder="Owner">@error('owner') <span class="error text-danger">{{ $message }}</span> @enderror
+                        <input wire:model.defer="name" type="text" class="form-control" id="name" placeholder="Name">@error('name') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
                         <label for="date"></label>
-                        <input wire:model="date" type="date" class="form-control" id="date" placeholder="Date">@error('date') <span class="error text-danger">{{ $message }}</span> @enderror
+                        <input wire:model.defer="date" type="date" class="form-control" id="date" placeholder="Date">@error('date') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
                         <label for="address"></label>
-                        <input wire:model="address" type="text" class="form-control" id="address" placeholder="Address">@error('address') <span class="error text-danger">{{ $message }}</span> @enderror
+                        <input wire:model.defer="address" type="text" class="form-control" id="address" placeholder="Address">@error('address') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
                         <label for="description"></label>
-                        <input wire:model="description" type="text" class="form-control" id="description" placeholder="Description">@error('description') <span class="error text-danger">{{ $message }}</span> @enderror
+                        <input wire:model.defer="description" type="text" class="form-control" id="description" placeholder="Description">@error('description') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
 
                 </form>
@@ -49,26 +45,26 @@
             </div>
             <div class="modal-body">
                 <form>
-					<input type="hidden" wire:model="selected_id">
+					<input type="hidden" wire:model.defer="selected_id">
                     <div class="form-group">
                         <label for="name"></label>
-                        <input wire:model="name" type="text" class="form-control" id="name" placeholder="Name">@error('name') <span class="error text-danger">{{ $message }}</span> @enderror
+                        <input wire:model.defer="name" type="text" class="form-control" id="name" placeholder="Name">@error('name') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
                         <label for="owner"></label>
-                        <input wire:model="owner" type="text" class="form-control" id="owner" placeholder="Owner">@error('owner') <span class="error text-danger">{{ $message }}</span> @enderror
+                        <input wire:model.defer="owner" type="text" class="form-control" id="owner" placeholder="Owner" readonly>@error('owner') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
                         <label for="date"></label>
-                        <input wire:model="date" type="date" class="form-control" id="date" placeholder="Date">@error('date') <span class="error text-danger">{{ $message }}</span> @enderror
+                        <input wire:model.defer="date" type="date" class="form-control" id="date" placeholder="Date">@error('date') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
                         <label for="address"></label>
-                        <input wire:model="address" type="text" class="form-control" id="address" placeholder="Address">@error('address') <span class="error text-danger">{{ $message }}</span> @enderror
+                        <input wire:model.defer="address" type="text" class="form-control" id="address" placeholder="Address">@error('address') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
                         <label for="description"></label>
-                        <input wire:model="description" type="text" class="form-control" id="description" placeholder="Description">@error('description') <span class="error text-danger">{{ $message }}</span> @enderror
+                        <input wire:model.defer="description" type="text" class="form-control" id="description" placeholder="Description">@error('description') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
 
                 </form>

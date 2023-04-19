@@ -43,12 +43,8 @@ class Events extends Component
 
     public function store()
     {
-        $this->validate([
-		'name' => 'required',
-		'owner' => 'required',
-		'date' => 'required',
-		'address' => 'required',
-        ]);
+		$this->owner = auth()->user()->email;
+        $this->validate(Event::$rules, Event::$message);
 
         Event::create([ 
 			'name' => $this-> name,
@@ -76,12 +72,7 @@ class Events extends Component
 
     public function update()
     {
-        $this->validate([
-		'name' => 'required',
-		'owner' => 'required',
-		'date' => 'required',
-		'address' => 'required',
-        ]);
+        $this->validate(Event::$rules, Event::$message);
 
         if ($this->selected_id) {
 			$record = Event::find($this->selected_id);

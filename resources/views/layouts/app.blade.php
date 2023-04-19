@@ -34,10 +34,10 @@
                     <ul class="navbar-nav mr-auto">
 						<!--Nav Bar Hooks - Do not delete!!-->
 						<li class="nav-item">
-                            <a href="{{ url('/Users') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Users</a> 
+                            <a href="{{ url('/users') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Users</a> 
                         </li>
 						<li class="nav-item">
-                            <a href="{{ url('/Events') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Events</a> 
+                            <a href="{{ url('/events') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Events</a> 
                         </li>
                     </ul>
 					@endauth()
