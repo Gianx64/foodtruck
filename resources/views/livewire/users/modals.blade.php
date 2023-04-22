@@ -86,11 +86,10 @@
 					<h4>Roles List:</h4>
 					@foreach ($roles as $role)
 						<div>
-							<input type="checkbox" id="{{$role->id}}" name="{{$role->name}}" >
+							<input type="checkbox" wire:click="checkRole({{$role->id}})" id="{{$role->id}}" name="{{$role->name}}" @if(in_array($role->id, $roles_selected)) checked="checked" @endif>
 							<label for="{{$role->id}}" class="h5">{{$role->name}}</label><br>
 						</div>
 					@endforeach
-                    <p>{{$user}}</p>
 
                 </form>
             </div>
