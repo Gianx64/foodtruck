@@ -13,7 +13,7 @@ class Users extends Component
     use WithPagination;
 
 	protected $paginationTheme = 'bootstrap';
-    public $selected_id, $keyWord, $name, $email, $email_old, $password, $password_confirmation, $user, $roles;
+    public $selected_id, $keyWord, $name, $email, $email_old, $password, $password_confirmation, $roles, $roles_selected = [];
 
     public function render()
     {
@@ -39,8 +39,8 @@ class Users extends Component
 		$this->email_old = null;
 		$this->password = null;
 		$this->password_confirmation = null;
-		$this->user = null;
 		$this->roles = null;
+		$this->roles_selected = [];
     }
 
     public function store()
@@ -72,7 +72,8 @@ class Users extends Component
         $record = User::findOrFail($id);
         $this->roles = Role::all();
         $this->selected_id = $id;
-		$this->user = $record;
+        foreach ($record->roles as $role)
+            array_push($this->roles_selected, $role->id);
     }
 
     public function update()
@@ -96,18 +97,23 @@ class Users extends Component
         }
     }
 
+    public function checkRole($id)
+    {
+        if(in_array($id, $this->roles_selected))
+            array_splice($this->roles_selected, array_search($id, $this->roles_selected), 1);
+            //unset($this->roles_selected, array_search($this->roles_selected, [$id]));
+        else
+            array_push($this->roles_selected, $id);
+    }
+
     public function updateRole()
     {
-        //TODO: fix if
-        if ($this->selected_id) {
-			//$record = User::find($this->selected_id);
-            //$this->user->roles()->sync($this->roles);
-            User::find($this->user);
+        User::find($this->selected_id)->roles()->sync($this->roles_selected);
+        //$record->roles()->sync($this->roles);
 
-            $this->resetInput();
-            $this->dispatchBrowserEvent('closeModal');
-			session()->flash('message', 'User Successfully updated.');
-        }
+        $this->resetInput();
+        $this->dispatchBrowserEvent('closeModal');
+		session()->flash('message', 'User Successfully updated.');
     }
 
     public function destroy($id)
