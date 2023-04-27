@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Event;
+use App\Models\Foodtruck;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $data = [Event::all()->count(), Foodtruck::all()->count()];
+
+        return view('home', compact('data'));
     }
 }
