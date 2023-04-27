@@ -35,6 +35,6 @@ class EventController extends Controller
         $event = Event::find($id);
         $foodtrucks = DB::table('foodtrucks_accepted')->where('event_id', $id)->get();
 
-        return view('events.show', compact('event', 'foodtrucks'));
+        return view('event-show', compact('event', 'foodtrucks'));
     }
 }
