@@ -38,6 +38,11 @@
                                 <a href="{{ url('/users') }}" class="nav-link"><i class="fab fa-laravel text-info"></i>Users</a> 
                             </li>
                         @endcan
+                        @can('roles.read')
+                            <li class="nav-item">
+                                <a href="{{ url('/roles') }}" class="nav-link"><i class="fab fa-laravel text-info"></i>Roles</a> 
+                            </li>
+                        @endcan
                         @can('events.read')
                             <li class="nav-item">
                                 <a href="{{ url('/events') }}" class="nav-link"><i class="fab fa-laravel text-info"></i>Events</a> 
