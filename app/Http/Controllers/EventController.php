@@ -4,15 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
 
+/**
+ * Class EventController
+ * @package App\Http\Controllers
+ */
 class EventController extends Controller
 {
     public function __construct() {
-        //$this->middleware('can:events.create')->only('create', 'store');
         $this->middleware('can:events.read')->only('index');
-        //$this->middleware('can:events.update')->only('edit', 'update');
-        //$this->middleware('can:events.delete')->only('destroy');
     }
 
     /**

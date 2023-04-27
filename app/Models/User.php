@@ -79,7 +79,5 @@ class User extends Authenticatable
 
     protected $table = 'users';
 
-    protected $perPage = 20;
-
     public $timestamps = true;
 }

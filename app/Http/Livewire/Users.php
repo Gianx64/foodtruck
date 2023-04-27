@@ -78,12 +78,11 @@ class Users extends Component
 
     public function update()
     {
-        if ($this->email == $this->email_old)
-            $this->validate(array_slice(User::$rules, 1), User::$message);
-        else
-            $this->validate(User::$rules, User::$message);
-
         if ($this->selected_id) {
+            if ($this->email == $this->email_old)
+                $this->validate(array_slice(User::$rules, 1), User::$message);
+            else
+                $this->validate(User::$rules, User::$message);
 			$record = User::find($this->selected_id);
             $record->update([ 
 			'name' => $this-> name,
@@ -101,7 +100,7 @@ class Users extends Component
     {
         if(in_array($id, $this->roles_selected))
             array_splice($this->roles_selected, array_search($id, $this->roles_selected), 1);
-            //unset($this->roles_selected, array_search($this->roles_selected, [$id]));
+            //unset($this->roles_selected, array_search($id, $this->roles_selected));
         else
             array_push($this->roles_selected, $id);
     }
@@ -109,7 +108,6 @@ class Users extends Component
     public function updateRole()
     {
         User::find($this->selected_id)->roles()->sync($this->roles_selected);
-        //$record->roles()->sync($this->roles);
 
         $this->resetInput();
         $this->dispatchBrowserEvent('closeModal');

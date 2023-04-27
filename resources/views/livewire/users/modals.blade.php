@@ -24,7 +24,6 @@
                         <label for="password_confirmation"></label>
                         <input wire:model="password_confirmation" type="password" class="form-control" id="password_confirmation" placeholder="Password confirmation">@error('password_confirmation') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
-
                 </form>
             </div>
             <div class="modal-footer">
@@ -62,7 +61,6 @@
                         <label for="password_confirmation"></label>
                         <input wire:model="password_confirmation" type="password" class="form-control" id="password_confirmation" placeholder="Password confirmation">@error('password_confirmation') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
-
                 </form>
             </div>
             <div class="modal-footer">
@@ -90,7 +88,6 @@
 							<label for="{{$role->id}}" class="h5">{{$role->name}}</label><br>
 						</div>
 					@endforeach
-
                 </form>
             </div>
             <div class="modal-footer">
