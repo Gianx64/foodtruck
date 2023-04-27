@@ -50,8 +50,8 @@
 	</div-->
 	<div class="col-md-6">
 		<label for="description">Description:</label>
-		<textarea cols=50 type="text" id="description" name="description" value="{{ $foodtruck->description ?? old('description') }}" placeholder="Foodtruck description (extra details, warnings, links, etc.)">
-		</textarea>
+		<textarea cols=50 type="text" id="description" name="description"
+		placeholder="Foodtruck description (extra details, warnings, links, etc.)"></textarea>
 		@error('description')
 			<span class="invalid-feedback" role="alert">
 				<strong>{{ $message }}</strong>
