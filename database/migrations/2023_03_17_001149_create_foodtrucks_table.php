@@ -18,7 +18,7 @@ return new class extends Migration
                   ->comment('Event identifier number.');
             $table->foreign('event_id')
                   ->references('id')
-                  ->on('users')
+                  ->on('events')
                   ->onDelete('cascade');
             $table->string('name')
                   ->comment('Foodtruck name.');
@@ -40,7 +40,7 @@ return new class extends Migration
                   ->comment('Event identifier number.');
             $table->foreign('event_id')
                   ->references('id')
-                  ->on('users')
+                  ->on('events')
                   ->onDelete('cascade');
             $table->string('name')
                   ->comment('Foodtruck name.');
