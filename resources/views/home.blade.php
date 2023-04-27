@@ -6,6 +6,11 @@
 		<div class="col-md-12">
 			<div class="card">
 				<div class="card-header"><h5><span class="text-center fa fa-home"></span> @yield('title')</h5></div>
+				@if ($message = Session::get('success'))
+					<div class="alert alert-success">
+						<p>{{ $message }}</p>
+					</div>
+				@endif
 				<div class="card-body">
 					<h5>Hi <strong>{{ Auth::user()->name }},</strong> {{ __('You are logged in to ') }}{{ config('app.name', 'Laravel') }}</h5></br>
 					<hr>

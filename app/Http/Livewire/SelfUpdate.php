@@ -12,12 +12,15 @@ class SelfUpdate extends Component
 
     public function render()
     {
+        return view('livewire.self-update');
+    }
+
+    public function mount()
+    {
         $record = User::findOrFail(auth()->user()->id);
 		$this->name = $record-> name;
 		$this->email = $record-> email;
 		$this->email_old = $record-> email;
-
-        return view('livewire.self-update');
     }
 
     public function update()
@@ -27,7 +30,7 @@ class SelfUpdate extends Component
                 $this->validate(array_slice(User::$rules, 1), User::$message);
             else
                 $this->validate(User::$rules, User::$message);
-			User::find(auth()->user()->id)->update([ 
+			User::find(auth()->user()->id)->update([
 			'name' => $this-> name,
 			'email' => $this-> email,
 			'password' => Hash::make($this-> password)

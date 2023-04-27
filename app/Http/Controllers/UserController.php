@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-
 /**
  * Class UserController
  * @package App\Http\Controllers
@@ -32,8 +30,6 @@ class UserController extends Controller
      */
     public function edit()
     {
-        $user = User::find(auth()->user()->id);
-
-        return view('livewire.self-update', compact('user'));
+        return view('self-update');
     }
 }

@@ -32,11 +32,7 @@ Route::post('foodtrucks/create', [FoodtruckController::class, 'store'])->name('f
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('profile/user', [UserController::class, 'edit'])->name('users.edit');
     Route::get('users', [UserController::class, 'index'])->name('users.index');
-
-    Route::get('roles/edit/{role}', [RoleController::class, 'edit'])->name('roles.edit');
-    Route::get('roles/create', [RoleController::class, 'create'])->name('roles.create');
     Route::get('roles', [RoleController::class, 'index'])->name('roles.index');
-
     Route::get('events', [EventController::class, 'index'])->name('events.index');
     
     Route::get('foodtrucks/edit/{foodtruck}', [FoodtruckController::class, 'edit'])->name('foodtrucks.edit');

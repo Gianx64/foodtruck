@@ -17,7 +17,6 @@ class Users extends Component
 
     public function render()
     {
-        $this->roles = Role::all();
 		$keyWord = '%'.$this->keyWord .'%';
         return view('livewire.users.view', [
             'users' => User::latest()
@@ -25,6 +24,11 @@ class Users extends Component
 						->orWhere('email', 'LIKE', $keyWord)
 						->paginate(10),
         ]);
+    }
+
+    public function mount()
+    {
+        $this->roles = Role::all();
     }
 	
     public function cancel()
@@ -39,7 +43,6 @@ class Users extends Component
 		$this->email_old = null;
 		$this->password = null;
 		$this->password_confirmation = null;
-		$this->roles = null;
 		$this->roles_selected = [];
     }
 
@@ -70,7 +73,6 @@ class Users extends Component
     public function assign($id)
     {
         $record = User::findOrFail($id);
-        $this->roles = Role::all();
         $this->selected_id = $id;
         foreach ($record->roles as $role)
             array_push($this->roles_selected, $role->id);
