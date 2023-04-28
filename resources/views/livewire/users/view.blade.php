@@ -41,23 +41,25 @@
 									<td>{{ $row->email }}</td>
 									<td width="90">
 										<div class="dropdown">
-											<a class="btn btn-sm btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-												Actions
-											</a>
+											<a class="btn btn-sm btn-secondary dropdown-toggle" href="#" role="button"
+											data-bs-toggle="dropdown"aria-expanded="false">Actions</a>
 											<ul class="dropdown-menu">
 												@can('users.update')
-													<li><a data-bs-toggle="modal" data-bs-target="#assignDataModal" class="dropdown-item" wire:click="assign({{$row->id}})"><i class="fa fa-user-plus"></i> Assign </a></li>
-													<li><a data-bs-toggle="modal" data-bs-target="#updateDataModal" class="dropdown-item" wire:click="edit({{$row->id}})"><i class="fa fa-edit"></i> Edit </a></li>
+													<li><a data-bs-toggle="modal" data-bs-target="#assignDataModal" class="dropdown-item"
+													wire:click="assign({{$row->id}})"><i class="fa fa-user-plus"></i> Assign </a></li>
+													<li><a data-bs-toggle="modal" data-bs-target="#updateDataModal" class="dropdown-item"
+													wire:click="edit({{$row->id}})"><i class="fa fa-edit"></i> Edit </a></li>
 												@endcan
 												@can('users.delete')
-													<li><a class="dropdown-item" onclick="confirm('Confirm Delete User id {{$row->id}}? \nDeleted Users cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$row->id}})"><i class="fa fa-trash"></i> Delete </a></li>  
+													<li><a class="dropdown-item" onclick="confirm('Confirm Delete User id {{$row->id}}? \nDeleted Users cannot be recovered!')||event.stopImmediatePropagation()"
+													wire:click="destroy({{$row->id}})"><i class="fa fa-trash"></i> Delete </a></li>  
 												@endcan
 											</ul>
 										</div>								
 									</td>
 								</tr>
 								@empty
-									<tr><td class="text-center" colspan="100%">No data Found </td></tr>
+									<tr><td class="text-center" colspan="100%">No data found</td></tr>
 								@endforelse
 							</tbody>
 						</table>						
