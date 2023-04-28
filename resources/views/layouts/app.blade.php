@@ -48,6 +48,11 @@
                                 <a href="{{ url('/events') }}" class="nav-link"><i class="fab fa-laravel text-info"></i>Events</a> 
                             </li>
                         @endcan
+                        @can('foodtrucks.read')
+                            <li class="nav-item">
+                                <a href="{{ url('/foodtrucks') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Foodtrucks</a> 
+                            </li>
+                        @endcan
                     </ul>
 					@endauth()
 

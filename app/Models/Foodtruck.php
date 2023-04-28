@@ -14,11 +14,15 @@ class Foodtruck extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'event_id', 'name', 'plate', 'owner', 'food', 'description'
-    ];
+    protected $fillable = ['event_id', 'name', 'plate', 'owner', 'food', 'description'];
 
-    public $timestamps = true;
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function event()
+    {
+        return $this->hasOne('App\Models\Event', 'id', 'event_id');
+    }
 
     static $rules = [
         'name' => 'required|string',
@@ -38,5 +42,7 @@ class Foodtruck extends Model
       'food.required' => 'The food type is required.'
     ];
 
-    protected $perPage = 20;
+    protected $table = 'foodtrucks';
+
+    public $timestamps = true;
 }
