@@ -12,7 +12,7 @@ class Roles extends Component
     use WithPagination;
 
 	protected $paginationTheme = 'bootstrap';
-    public $selected_id, $keyWord, $name, $permissions, $permissions_selected = [];
+    public $keyWord, $selected_id, $name, $permissions, $permissions_selected = [];
 
     public function render()
     {

@@ -17,8 +17,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         return view('livewire.users.index');
     }
 
@@ -28,8 +27,7 @@ class UserController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
-    {
+    public function edit() {
         return view('self-update');
     }
 }
