@@ -53,12 +53,12 @@
 											Actions
 										</a>
 										<ul class="dropdown-menu">
-											<li><a class="dropdown-item" href="{{route('events.show', $row)}}"><i class="fa fa-file-text"></i> Show </a></li>
+											<li><a class="dropdown-item" href="{{route('events.show', $row)}}"><i class="fa fa-file-text"></i>Show</a></li>
 											@can('events.update')
-												<li><a data-bs-toggle="modal" data-bs-target="#updateDataModal" class="dropdown-item" wire:click="edit({{$row->id}})"><i class="fa fa-edit"></i> Edit </a></li>
+												<li><a data-bs-toggle="modal" data-bs-target="#updateDataModal" class="dropdown-item" wire:click="edit({{$row->id}})"><i class="fa fa-edit"></i>Edit</a></li>
 											@endcan
 											@can('events.delete')
-												<li><a class="dropdown-item" onclick="confirm('Confirm Delete Event id {{$row->id}}? \nDeleted Events cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$row->id}})"><i class="fa fa-trash"></i> Delete </a></li>
+												<li><a class="dropdown-item" onclick="confirm('Confirm Delete Event id {{$row->id}}? \nDeleted Events cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$row->id}})"><i class="fa fa-trash"></i>Delete</a></li>
 											@endcan
 										</ul>
 									</div>								
@@ -66,7 +66,7 @@
 							</tr>
 							@empty
 							<tr>
-								<td class="text-center" colspan="100%">No data Found </td>
+								<td class="text-center" colspan="100%">No data found</td>
 							</tr>
 							@endforelse
 						</tbody>
