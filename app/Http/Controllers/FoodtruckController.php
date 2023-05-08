@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Foodtruck;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FoodtruckController extends Controller
 {
@@ -21,6 +22,15 @@ class FoodtruckController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function foodIndex() {
+        return view('foodtypes');
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @param  int $id
@@ -29,8 +39,9 @@ class FoodtruckController extends Controller
     public function create ($id) {
         $foodtruck = new Foodtruck();
         $foodtruck->event_id = $id;
+        $foodtypes = DB::table('foodtypes')->pluck('name');
 
-        return view('foodtruck-apply', compact('foodtruck'));
+        return view('foodtruck-apply', compact('foodtruck', 'foodtypes'));
     }
 
     /**

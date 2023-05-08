@@ -57,11 +57,9 @@
 											<div class="form-group">
 												<label for="food">Food type:</label>
 												<select class="form-control" name="food" id="food" value="{{ $foodtruck->food ?? old('food') ?? 'Burgers' }}">
-													<option value="Burgers">Burgers</option>
-													<option value="Corn">Corn</option>
-													<option value="Hot Dogs">Hot Dogs</option>
-													<option value="Tacos">Tacos</option>
-													<option value="Vegan">Vegan</option>
+													@foreach($foodtypes as $foodtype)
+														<option value="{{$foodtype}}">{{$foodtype}}</option>
+													@endforeach
 												</select>
 											</div>
 										</div>
@@ -75,7 +73,7 @@
 													</span>
 												@enderror
 											</div-->
-											<div class="col-md-6">
+											<div class="col-md-12">
 												<label for="description">Description:</label>
 												<textarea type="text" class="form-control" id="description" name="description" cols=50
 												placeholder="Foodtruck description (extra details, warnings, links, etc.)"></textarea>

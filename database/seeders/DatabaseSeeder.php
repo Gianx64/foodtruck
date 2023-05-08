@@ -14,11 +14,9 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
-        // \App\Models\User::factory(10)->create();
+        $this->call(FoodtypeSeeder::class);
+        // \App\Models\Foodtype::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        // \App\Models\Foodtype::factory()->create([ 'name' => 'Chilean' ]);
     }
 }

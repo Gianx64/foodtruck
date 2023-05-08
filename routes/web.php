@@ -35,6 +35,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('roles', [RoleController::class, 'index'])->name('roles.index');
     Route::get('events', [EventController::class, 'index'])->name('events.index');
     Route::get('foodtrucks', [FoodtruckController::class, 'index'])->name('foodtrucks.index');
+    Route::get('foodtypes', [FoodtruckController::class, 'foodIndex'])->name('foodtypes.index');
 
     /*Route::apiResource('users', UserController::class);
     Route::apiResource('roles', RoleController::class);
