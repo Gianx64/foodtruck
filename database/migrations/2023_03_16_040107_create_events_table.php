@@ -26,6 +26,8 @@ return new class extends Migration
                   ->comment('Event date.');
             $table->string('address')
                   ->comment('Event physical address.');
+            $table->string('map')
+                  ->comment('Event map image file name.');
             $table->text('description')
                   ->nullable()
                   ->comment('Event description and additional information.');

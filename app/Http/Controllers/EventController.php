@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Class EventController
@@ -33,6 +34,7 @@ class EventController extends Controller
     public function show($id)
     {
         $event = Event::find($id);
+        $event->map = Storage::url($event-> map);
         $foodtrucks = DB::table('foodtrucks_accepted')->where('event_id', $id)->get();
 
         return view('event-show', compact('event', 'foodtrucks'));

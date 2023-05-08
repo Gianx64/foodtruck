@@ -2,16 +2,18 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\Component;
-use Livewire\WithPagination;
 use App\Models\Event;
+use Illuminate\Support\Facades\Storage;
+use Livewire\Component;
+use Livewire\WithFileUploads;
+use Livewire\WithPagination;
 
 class Events extends Component
 {
-    use WithPagination;
+    use WithFileUploads, WithPagination;
 
     protected $paginationTheme = 'bootstrap';
-    public $keyWord, $selected_id, $name, $owner, $date, $address, $description;
+    public $keyWord, $selected_id, $name, $name_old, $owner, $date, $address, $description, $dbmap, $map;
 
     public function render()
     {
@@ -35,10 +37,13 @@ class Events extends Component
     private function resetInput()
     {
         $this->name = null;
+        $this->name_old = null;
         $this->owner = null;
         $this->date = null;
         $this->address = null;
         $this->description = null;
+        $this->dbmap = null;
+        $this->map = null;
     }
 
     public function store()
@@ -46,12 +51,14 @@ class Events extends Component
         $this->owner = auth()->user()->email;
         $this->validate(Event::$rules, Event::$message);
 
+        $image = $this->map->storePublicly('public/eventmaps');
         Event::create([ 
             'name' => $this-> name,
             'owner' => $this-> owner,
             'date' => $this-> date,
             'address' => $this-> address,
-            'description' => $this-> description
+            'description' => $this-> description,
+            'map' => $image
         ]);
         
         $this->resetInput();
@@ -64,25 +71,43 @@ class Events extends Component
         $record = Event::findOrFail($id);
         $this->selected_id = $id; 
         $this->name = $record-> name;
+        $this->name_old = $record-> name;
         $this->owner = $record-> owner;
         $this->date = $record-> date;
         $this->address = $record-> address;
         $this->description = $record-> description;
+        $this->dbmap = Storage::url($record-> map);
     }
 
     public function update()
     {
-        $this->validate(Event::$rules, Event::$message);
-
         if ($this->selected_id) {
+            if ($this->name == $this->name_old)
+                $this->validate(array_slice(Event::$rules, 1, 3), Event::$message);
+            else
+                $this->validate(array_slice(Event::$rules, 0, 4), Event::$message);
             $record = Event::find($this->selected_id);
-            $record->update([ 
-            'name' => $this-> name,
-            'owner' => $this-> owner,
-            'date' => $this-> date,
-            'address' => $this-> address,
-            'description' => $this-> description
-            ]);
+
+            if ($this->map){
+                $this->validate(
+                    ['map' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'], Event::$message);
+                $image = $this->map->storePublicly('public/eventmaps');
+                $record->update([
+                'name' => $this-> name,
+                'owner' => $this-> owner,
+                'date' => $this-> date,
+                'address' => $this-> address,
+                'description' => $this-> description,
+                'map' => $image
+                ]);
+            } else
+                $record->update([
+                'name' => $this-> name,
+                'owner' => $this-> owner,
+                'date' => $this-> date,
+                'address' => $this-> address,
+                'description' => $this-> description
+                ]);
 
             $this->resetInput();
             $this->dispatchBrowserEvent('closeModal');
