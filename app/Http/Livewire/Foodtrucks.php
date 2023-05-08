@@ -109,6 +109,7 @@ class Foodtrucks extends Component
     {
         if ($id) {
             Foodtruck::where('id', $id)->delete();
+            session()->flash('message', 'Foodtruck successfully deleted.');
         }
     }
 }

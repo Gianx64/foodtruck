@@ -89,6 +89,7 @@ class Roles extends Component
     {
         if ($id) {
             Role::where('id', $id)->delete();
+			session()->flash('message', 'Role successfully deleted.');
         }
     }
 }

@@ -120,6 +120,7 @@ class Users extends Component
     {
         if ($id) {
             User::where('id', $id)->delete();
+            session()->flash('message', 'User successfully deleted.');
         }
     }
 }

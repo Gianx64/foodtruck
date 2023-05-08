@@ -119,6 +119,7 @@ class Events extends Component
     {
         if ($id) {
             Event::where('id', $id)->delete();
+            session()->flash('message', 'Event successfully deleted.');
         }
     }
 }
