@@ -6,8 +6,7 @@
 				<div class="card-header">
 					<div style="display: flex; justify-content: space-between; align-items: center;">
 						<div class="float-left">
-							<h4><i class="fab fa-laravel text-info"></i>
-							Foodtruck Listing </h4>
+							<h4><i class="fab fa-laravel text-info"></i>Foodtruck Listing</h4>
 						</div>
 						@if (session()->has('message'))
 						<div wire:poll.4s class="btn btn-sm btn-success" style="margin-top:0px; margin-bottom:0px;"> {{ session('message') }} </div>
@@ -29,7 +28,7 @@
 							<thead class="thead">
 								<tr> 
 									<td>ID</td> 
-									<th>Event Id</th>
+									<th>Event ID</th>
 									<th>Name</th>
 									<th>Plate</th>
 									<th>Owner</th>
@@ -41,7 +40,7 @@
 							<tbody>
 								@forelse($foodtrucks as $row)
 								<tr>
-									<td>{{ $loop->iteration }}</td> 
+									<td>{{ $row->id }}</td> 
 									<td>{{ $row->event_id }}</td>
 									<td>{{ $row->name }}</td>
 									<td>{{ $row->plate }}</td>

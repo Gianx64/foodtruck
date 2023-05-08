@@ -50,7 +50,7 @@ class Roles extends Component
         
         $this->resetInput();
 		$this->dispatchBrowserEvent('closeModal');
-		session()->flash('message', 'Role Successfully created.');
+		session()->flash('message', 'Role successfully created.');
     }
 
     public function edit($id)
@@ -81,7 +81,7 @@ class Roles extends Component
 
             $this->resetInput();
             $this->dispatchBrowserEvent('closeModal');
-			session()->flash('message', 'Role Successfully updated.');
+			session()->flash('message', 'Role successfully updated.');
         }
     }
 

@@ -63,7 +63,7 @@ class Events extends Component
         
         $this->resetInput();
         $this->dispatchBrowserEvent('closeModal');
-        session()->flash('message', 'Event Successfully created.');
+        session()->flash('message', 'Event successfully created.');
     }
 
     public function edit($id)
@@ -111,7 +111,7 @@ class Events extends Component
 
             $this->resetInput();
             $this->dispatchBrowserEvent('closeModal');
-            session()->flash('message', 'Event Successfully updated.');
+            session()->flash('message', 'Event successfully updated.');
         }
     }
 

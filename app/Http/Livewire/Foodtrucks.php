@@ -57,7 +57,7 @@ class Foodtrucks extends Component
 
         $this->resetInput();
         $this->dispatchBrowserEvent('closeModal');
-        session()->flash('message', 'Foodtruck Successfully created.');
+        session()->flash('message', 'Foodtruck successfully created.');
     }
 
     public function edit($id)
@@ -89,7 +89,7 @@ class Foodtrucks extends Component
 
             $this->resetInput();
             $this->dispatchBrowserEvent('closeModal');
-            session()->flash('message', 'Foodtruck Successfully updated.');
+            session()->flash('message', 'Foodtruck successfully updated.');
         }
     }
 
@@ -100,6 +100,9 @@ class Foodtrucks extends Component
         $accepted->setTable('foodtrucks_accepted');
         $accepted->save();
         $record->delete();
+
+        $this->dispatchBrowserEvent('closeModal');
+        session()->flash('message', 'Foodtruck successfully approved.');
     }
 
     public function destroy($id)

@@ -36,7 +36,7 @@ class SelfUpdate extends Component
 			'password' => Hash::make($this-> password)
             ]);
 
-            redirect()->route('home')->with('success', 'User updated successfully.');
+            redirect()->route('home')->with('success', 'User successfully updated.');
         }
     }
 }

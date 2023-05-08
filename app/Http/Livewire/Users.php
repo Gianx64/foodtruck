@@ -58,7 +58,7 @@ class Users extends Component
         
         $this->resetInput();
 		$this->dispatchBrowserEvent('closeModal');
-		session()->flash('message', 'User Successfully created.');
+		session()->flash('message', 'User successfully created.');
     }
 
     public function edit($id)
@@ -94,7 +94,7 @@ class Users extends Component
 
             $this->resetInput();
             $this->dispatchBrowserEvent('closeModal');
-			session()->flash('message', 'User Successfully updated.');
+			session()->flash('message', 'User successfully updated.');
         }
     }
 
@@ -113,7 +113,7 @@ class Users extends Component
 
         $this->resetInput();
         $this->dispatchBrowserEvent('closeModal');
-		session()->flash('message', 'User Successfully updated.');
+		session()->flash('message', 'User successfully updated.');
     }
 
     public function destroy($id)
