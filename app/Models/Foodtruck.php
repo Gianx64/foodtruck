@@ -28,8 +28,7 @@ class Foodtruck extends Model
         'name' => 'required|string',
         'plate' => 'required|string|min:6|max:8|unique:foodtrucks,plate',
         'owner' => 'required|string',
-        'food' => 'required',
-        'description' => 'string'
+        'food' => 'required'
     ];
 
     static $message = [

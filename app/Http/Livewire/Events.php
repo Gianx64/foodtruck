@@ -13,7 +13,7 @@ class Events extends Component
     use WithFileUploads, WithPagination;
 
     protected $paginationTheme = 'bootstrap';
-    public $keyWord, $selected_id, $name, $name_old, $owner, $date, $address, $description, $dbmap, $map;
+    public $keyWord, $selected_id, $name, $name_old, $owner, $date, $address, $slots, $description, $dbmap, $map;
 
     public function render()
     {
@@ -41,6 +41,7 @@ class Events extends Component
         $this->owner = null;
         $this->date = null;
         $this->address = null;
+        $this->slots = null;
         $this->description = null;
         $this->dbmap = null;
         $this->map = null;
@@ -57,6 +58,7 @@ class Events extends Component
             'owner' => $this-> owner,
             'date' => $this-> date,
             'address' => $this-> address,
+            'slots' => $this-> slots,
             'description' => $this-> description,
             'map' => $image
         ]);
@@ -75,6 +77,7 @@ class Events extends Component
         $this->owner = $record-> owner;
         $this->date = $record-> date;
         $this->address = $record-> address;
+        $this->slots = $record-> slots;
         $this->description = $record-> description;
         $this->dbmap = Storage::url($record-> map);
     }
@@ -97,6 +100,7 @@ class Events extends Component
                 'owner' => $this-> owner,
                 'date' => $this-> date,
                 'address' => $this-> address,
+                'slots' => $this-> slots,
                 'description' => $this-> description,
                 'map' => $image
                 ]);
@@ -106,6 +110,7 @@ class Events extends Component
                 'owner' => $this-> owner,
                 'date' => $this-> date,
                 'address' => $this-> address,
+                'slots' => $this-> slots,
                 'description' => $this-> description
                 ]);
 

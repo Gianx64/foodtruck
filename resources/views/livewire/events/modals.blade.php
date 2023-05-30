@@ -24,6 +24,11 @@
                         @error('address') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
+                        <label for="slots"></label>
+                        <input wire:model.defer="slots" type="number" class="form-control" id="slots" placeholder="Foodtruck slots" value="1" min="1" max="99">
+                        @error('slots') <span class="error text-danger">{{ $message }}</span> @enderror
+                    </div>
+                    <div class="form-group">
                         <label for="description"></label>
                         <input wire:model.defer="description" type="text" class="form-control" id="description" placeholder="Description">
                         @error('description') <span class="error text-danger">{{ $message }}</span> @enderror
@@ -77,6 +82,11 @@
                         <label for="address">Address:</label>
                         <input wire:model.defer="address" type="text" class="form-control" id="address" placeholder="Address">
                         @error('address') <span class="error text-danger">{{ $message }}</span> @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="slots"></label>
+                        <input wire:model.defer="slots" type="number" class="form-control" id="slots" placeholder="Foodtruck slots" value="1" min="1" max="99">
+                        @error('slots') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
                         <label for="description">Description:</label>

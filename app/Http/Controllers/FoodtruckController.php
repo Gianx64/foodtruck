@@ -39,7 +39,11 @@ class FoodtruckController extends Controller
     public function create ($id) {
         $foodtruck = new Foodtruck();
         $foodtruck->event_id = $id;
-        $foodtypes = DB::table('foodtypes')->pluck('name');
+        $foodtypes = DB::table('foodtypes')->pluck('name')->toArray();
+        $accepted_fts = DB::table('foodtrucks_accepted')->where('event_id', $id)->get();
+        if(!($accepted_fts->isEmpty()))
+            foreach($accepted_fts as $accepted_ft)
+                array_splice($foodtypes, array_search($accepted_ft->food, $foodtypes), 1);
 
         return view('foodtruck-apply', compact('foodtruck', 'foodtypes'));
     }

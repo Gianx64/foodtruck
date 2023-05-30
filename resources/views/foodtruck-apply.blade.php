@@ -12,11 +12,9 @@
 									<div class="col-10">
 										<h4>Apply Foodtruck</h4>
 									</div>
-									@can('events.read')
-										<div class="col">
-											<a class="btn btn-primary mr-2 float-right" href="{{ route('events.show', $foodtruck->event_id) }}">Go Back</a>
-										</div>
-									@endcan
+									<div class="col">
+										<a class="btn btn-primary mr-2 float-right" href="{{ route('events.show', $foodtruck->event_id) }}">Go Back</a>
+									</div>
 								</div>
 							</div>
 							<div class="card-body">

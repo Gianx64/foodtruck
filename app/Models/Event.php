@@ -14,7 +14,7 @@ class Event extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['name','owner','date','address','description','map'];
+    protected $fillable = ['name','owner','date','address','slots','map','description'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
@@ -29,6 +29,7 @@ class Event extends Model
         'owner' => 'required|string',
         'date' => 'required',
         'address' => 'required|string',
+        'slots' => 'required|integer|min:1|max:99',
         'map' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
     ];
 
@@ -37,6 +38,10 @@ class Event extends Model
       'owner.required' => 'Owner email is required.',
       'date.required' => 'The event date is required.',
       'address.required' => 'Address is required.',
+      'slots.required' => 'The event slots is required.',
+      'slots.integer' => 'The event slots must be a positive integer.',
+      'slots.min' => 'The event slots must be at least 1.',
+      'slots.max' => 'The event slots is too big.',
       'map.required' => 'The event map is required.',
       'map.max' => 'The event map is too big.',
       'map.mimes' => 'The map has to be a jpeg,png,jpg,gif or svg image.'

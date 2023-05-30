@@ -71,7 +71,11 @@
 											@endforeach
 										</tbody>
 									</table>
-									<a class="nav-link" href="{{ route('foodtrucks.create', $event->id) }}">Is your foodtruck missing in this list?<h1>Apply now!</h1></a>
+									@if($event->slots > count($foodtrucks))
+										<a class="nav-link" href="{{ route('foodtrucks.create', $event->id) }}">Is your foodtruck missing in this list?<h1>Apply now!</h1></a>
+									@else
+										<p>There's no more room for foodtruck applications at this time, keep checking other events!</p>
+									@endif
 								@else
 									<a class="nav-link" href="{{ route('foodtrucks.create', $event->id) }}">Do you have a foodtruck and want to sell food in this event?<h1>Apply now!</h1></a>
 								@endif
