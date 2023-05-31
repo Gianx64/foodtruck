@@ -9,13 +9,12 @@
             <div class="card">
                 <div class="card-header"><h5><span class="text-center fa fa-home"></span> @yield('title')</h5></div>
                 <div class="card-body">
-                    <h5>@guest
-                            {{ __('Welcome to') }} {{ config('app.name', 'Laravel') }} !!! </br>
-                            Please contact admin to get your Login Credentials or click "Login" to go to your Dashboard.
-                        @else
-                            Hi {{ Auth::user()->name }}, Welcome back to {{ config('app.name', 'Laravel') }}.
-                        @endif	
+                    <h5>{{ __('Welcome to') }} {{ config('app.name', 'Laravel') }}
+                        @auth
+                            , {{ Auth::user()->name }},
+                        @endif
                     </h5>
+                    <hr>
                     @livewire('events')
                 </div>
             </div>
