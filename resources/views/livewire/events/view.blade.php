@@ -26,29 +26,31 @@
 					<div class="table-responsive">
 						<table class="table table-bordered table-sm">
 							<thead class="thead">
-								<tr> 
+								<tr>
+									@can('events.read')
 									<td>ID</td> 
+									@endcan
 									<th>Name</th>
 									@can('events.read')
 										<th>Owner</th>
 									@endcan
 									<th>Date</th>
 									<th>Address</th>
-									<th>Description</th>
 									<td>ACTIONS</td>
 								</tr>
 							</thead>
 							<tbody>
 								@forelse($events as $row)
 								<tr>
-									<td>{{ $row->id }}</td> 
+									@can('events.read')
+										<td>{{ $row->id }}</td>
+									@endcan
 									<td>{{ $row->name }}</td>
 									@can('events.read')
 										<td>{{ $row->owner }}</td>
 									@endcan
 									<td>{{ $row->date }}</td>
 									<td>{{ $row->address }}</td>
-									<td>{{ $row->description }}</td>
 									<td width="90">
 										@can('events.read')
 											<div class="dropdown">
@@ -77,7 +79,7 @@
 								</tr>
 								@endforelse
 							</tbody>
-						</table>						
+						</table>
 						<div class="float-end">{{ $events->links() }}</div>
 					</div>
 				</div>

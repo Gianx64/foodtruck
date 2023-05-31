@@ -14,8 +14,6 @@
 					</div>
 				@endif
 				<div class="card-body">
-					<h5>Hi <strong>{{ Auth::user()->name }},</strong> {{ __('You are logged in to ') }}{{ config('app.name', 'Laravel') }}</h5></br>
-					<hr>
 					<div class="row w-100">
 						<div class="col-md-3">
 							<div class="card border-success mx-sm-1 p-3">
@@ -26,26 +24,28 @@
 						</div>
 						<div class="col-md-3">
 							<div class="card border-warning mx-sm-1 p-3">
-								<div class="card border-warning text-warning p-3 my-card"><span class="text-center fa fa-luggage-cart" aria-hidden="true"></span></div>
-								<div class="text-warning text-center mt-3"><h4>Baggage</h4></div>
-								<div class="text-warning text-center mt-2"><h1>9,332</h1></div>
+								<div class="card border-warning text-warning p-3 my-card"><span class="text-center fa fa-music" aria-hidden="true"></span></div>
+								<div class="text-warning text-center mt-3"><h4>Total Events</h4></div>
+								<div class="text-warning text-center mt-2"><h1>{{ $data[0] }}</h1></div>
 							</div>
 						</div>
 						<div class="col-md-3">
 							<div class="card border-info mx-sm-1 p-3">
-								<div class="card border-info text-info p-3" ><span class="text-center fa fa-plane-departure" aria-hidden="true"></span></div>
-								<div class="text-info text-center mt-3"><h4>Events</h4></div>
-								<div class="text-info text-center mt-2"><h1>{{ $data[0] }}</h1></div>
+								<div class="card border-info text-info p-3" ><span class="text-center fa fa-calendar" aria-hidden="true"></span></div>
+								<div class="text-info text-center mt-3"><h4>Future Events</h4></div>
+								<div class="text-info text-center mt-2"><h1>{{ $data[1] }}</h1></div>
 							</div>
 						</div>
 						<div class="col-md-3">
 							<div class="card border-danger mx-sm-1 p-3">
-								<div class="card border-danger text-danger p-3 my-card" ><span class="text-center fa fa-person-booth" aria-hidden="true"></span></div>
+								<div class="card border-danger text-danger p-3 my-card" ><span class="text-center fa fa-truck" aria-hidden="true"></span></div>
 								<div class="text-danger text-center mt-3"><h4>Pending Foodtruck Applies</h4></div>
-								<div class="text-danger text-center mt-2"><h1>{{ $data[1] }}</h1></div>
+								<div class="text-danger text-center mt-2"><h1>{{ $data[2] }}</h1></div>
 							</div>
 						</div>
 					</div>
+					<hr>
+					@livewire('events')
 				</div>
 			</div>
 		</div>

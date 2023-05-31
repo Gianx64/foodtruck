@@ -22,7 +22,7 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index() {
-        $data = [Event::all()->count(), Foodtruck::all()->count()];
+        $data = [Event::all()->count(), Event::all()->where('date', '>', date("Y-m-d"))->count(), Foodtruck::all()->count()];
 
         return view('home', compact('data'));
     }
