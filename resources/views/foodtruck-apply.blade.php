@@ -54,7 +54,7 @@
 											</div>
 											<div class="form-group">
 												<label for="food">Food type:</label>
-												<select class="form-control" name="food" id="food" value="{{ $foodtruck->food ?? old('food') ?? 'Burgers' }}">
+												<select class="form-control" name="food" id="food" value="{{ $foodtruck->food ?? old('food') }}">
 													@foreach($foodtypes as $foodtype)
 														<option value="{{$foodtype}}">{{$foodtype}}</option>
 													@endforeach

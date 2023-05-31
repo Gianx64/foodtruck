@@ -53,7 +53,7 @@
             <div class="modal-body">
 				<form>
                     <div class="form-group">
-                        <label for="event_id">Event ID <!--a href="{ route('events.show', $event_id) }}">(Click to go)</a--></label>
+                        <label for="event_id">Event ID:</label>
                         <input wire:model="event_id" type="text" class="form-control" id="event_id" placeholder="Event Id" readonly>
                     </div>
                     <div class="form-group">
@@ -69,7 +69,7 @@
                         <input wire:model="owner" type="text" class="form-control" id="owner" placeholder="Owner" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="food">Food type:</label>
+                        <label for="food">Food:</label>
                         <input wire:model="food" type="text" class="form-control" id="food" placeholder="Food" readonly>
                     </div>
                     <div class="form-group">
