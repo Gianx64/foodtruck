@@ -2,9 +2,10 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Foodtruck;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\Foodtruck;
 
 class Foodtrucks extends Component
 {
@@ -22,8 +23,8 @@ class Foodtrucks extends Component
                         ->orWhere('plate', 'LIKE', $keyWord)
                         ->orWhere('owner', 'LIKE', $keyWord)
                         ->orWhere('food', 'LIKE', $keyWord)
-                        ->orWhere('description', 'LIKE', $keyWord)
                         ->paginate(10),
+            'events' => DB::table('events')->select('name', 'slots')->get()->toArray()
         ]);
     }
 
@@ -95,14 +96,22 @@ class Foodtrucks extends Component
 
     public function approve($id)
     {
-        $record = Foodtruck::find($id);
-        $accepted = $record->replicate();
-        $accepted->setTable('foodtrucks_accepted');
-        $accepted->save();
-        $record->delete();
+        if (DB::table('foodtrucks_accepted')->where('event_id', $this->event_id)->count() < DB::table('events')->where('id', $this->event_id)->first()->slots)
+            if (DB::table('foodtrucks_accepted')->where('event_id', $this->event_id)->where('food', $this->food)->first() === null)
+            {
+                $record = Foodtruck::find($id);
+                $accepted = $record->replicate();
+                $accepted->setTable('foodtrucks_accepted');
+                $accepted->save();
+                $record->delete();
 
+                session()->flash('message', 'Foodtruck successfully approved.');
+            }
+            else
+                session()->flash('message', "There's already a foodtruck with this food in this event.");
+        else
+            session()->flash('message', "There's no room for this foodtruck in this event.");
         $this->dispatchBrowserEvent('closeModal');
-        session()->flash('message', 'Foodtruck successfully approved.');
     }
 
     public function destroy($id)

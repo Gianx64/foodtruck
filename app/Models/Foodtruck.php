@@ -28,7 +28,7 @@ class Foodtruck extends Model
         'name' => 'required|string',
         'plate' => 'required|string|min:6|max:8|unique:foodtrucks,plate',
         'owner' => 'required|string',
-        'food' => 'required'
+        'food' => 'required|exists:foodtypes,name'
     ];
 
     static $message = [
@@ -38,7 +38,8 @@ class Foodtruck extends Model
       'plate.min' => 'The foodtruck vehicle license plate cannot be under 6 characters.',
       'plate.unique' => 'The foodtruck vehicle license plate is already pending.',
       'owner.required' => 'Owner email is required.',
-      'food.required' => 'The food type is required.'
+      'food.required' => 'The food type is required.',
+      'food_id.exists' => 'The food type must be an option from the dropdown menu.'
     ];
 
     protected $table = 'foodtrucks';
