@@ -12,7 +12,7 @@ class SelfUpdate extends Component
 
     public function render()
     {
-        return view('livewire.self-update');
+        return view('livewire.users.self-update');
     }
 
     public function mount()
