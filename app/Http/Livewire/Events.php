@@ -114,10 +114,11 @@ class Events extends Component
                 'description' => $this-> description
                 ]);
 
-            $this->resetInput();
-            $this->dispatchBrowserEvent('closeModal');
             session()->flash('message', 'Event successfully updated.');
         }
+
+        $this->resetInput();
+        $this->dispatchBrowserEvent('closeModal');
     }
 
     public function destroy($id)
