@@ -13,7 +13,6 @@
 		<div class="form-group container-fluid">
             <form>
                 @csrf
-                @include('errors')
                 <input wire:model="event_id" type="hidden" id="event_id" name="event_id">
                 <div class="row">
                     <div class="form-group">

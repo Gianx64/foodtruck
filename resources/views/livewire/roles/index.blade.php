@@ -1,18 +1,19 @@
 @extends('layouts.app')
+@section('title', __('Roles'))
 @section('content')
-<div class="container-fluid">
-    <div class="row justify-content-center">
-        <div class="col-md-12">
-            @livewire('roles')
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                @livewire('roles')
+            </div>
         </div>
     </div>
-</div>
-<script type="module">
-    const addModal = new bootstrap.Modal('#createDataModal');
-    const editModal = new bootstrap.Modal('#updateDataModal');
-    window.addEventListener('closeModal', () => {
-       addModal.hide();
-       editModal.hide();
-    })
-</script>
+    <script type="module">
+        const addModal = new bootstrap.Modal('#createDataModal');
+        const editModal = new bootstrap.Modal('#updateDataModal');
+        window.addEventListener('closeModal', () => {
+        addModal.hide();
+        editModal.hide();
+        })
+    </script>
 @endsection
