@@ -32,18 +32,22 @@
 									</div>
 									<div class="col-6">
 										<h3>Address:</h3>
-										<h1>{{$event->address}}</h1>
+										<a href="https://www.google.com/maps/search/{{$event->address}}" target="_blank" rel="noopener noreferrer"><h1>{{$event->address}}</h1></a>
 									</div>
 								</div>
 								@if ($event->description)
 									<div class="col-10">
-										<h3>Description:</h3>
-										<h3>{{$event->description}}</h3>
+										<details close>
+											<summary>Description:</summary>
+											<h3>{{$event->description}}</h3>
+										</details>
 									</div>
 								@endif
 								<div class="col-10">
-									<h3>Map:</h3>
-									<img src="{{ asset($event->map) }}" width=1024>
+									<details close>
+										<summary>Event map:</summary>
+										<img src="{{ asset($event->map) }}" width=1024>
+									</details>
 								</div>
 							</div>
 							<div class="card-body">
@@ -71,10 +75,14 @@
 											@endforeach
 										</tbody>
 									</table>
-									@if($event->slots > count($foodtrucks))
-										<a class="nav-link" href="{{ route('foodtrucks.create', $event->id) }}">Is your foodtruck missing in this list?<h1>Apply now!</h1></a>
+									@if($event->date > date("Y-m-d"))
+										@if($event->slots > count($foodtrucks))
+											<a class="nav-link" href="{{ route('foodtrucks.create', $event->id) }}">Is your foodtruck missing in this list?<h1>Apply now!</h1></a>
+										@else
+											<p>There's no more room for foodtruck applications at this time, keep checking other events!</p>
+										@endif
 									@else
-										<p>There's no more room for foodtruck applications at this time, keep checking other events!</p>
+										<p>This event is already over, keep checking other events!</p>
 									@endif
 								@else
 									<a class="nav-link" href="{{ route('foodtrucks.create', $event->id) }}">Do you have a foodtruck and want to sell food in this event?<h1>Apply now!</h1></a>
