@@ -4,12 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Foodtruck;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class FoodtruckController extends Controller
 {
     public function __construct() {
-        $this->middleware('can:foodtrucks.read')->only('index','show');
+        $this->middleware('can:foodtrucks.read')->only('index','foodIndex');
     }
 
     /**
@@ -37,29 +36,6 @@ class FoodtruckController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create ($id) {
-        $foodtruck = new Foodtruck();
-        $foodtruck->event_id = $id;
-        $foodtypes = DB::table('foodtypes')->pluck('name')->toArray();
-        $accepted_fts = DB::table('foodtrucks_accepted')->where('event_id', $id)->get();
-        if(!($accepted_fts->isEmpty()))
-            foreach($accepted_fts as $accepted_ft)
-                array_splice($foodtypes, array_search($accepted_ft->food, $foodtypes), 1);
-
-        return view('foodtruck-apply', compact('foodtruck', 'foodtypes'));
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request) {
-        request()->validate(Foodtruck::$rules, Foodtruck::$message);
-
-        $foodtruck = Foodtruck::create($request->all());
-
-        return redirect()->route('events.show', $foodtruck->event_id)
-            ->with('success', 'Foodtruck applied successfully.');
+        return view('foodtruck-apply', compact('id'));
     }
 }
