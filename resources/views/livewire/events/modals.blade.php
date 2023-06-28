@@ -9,32 +9,37 @@
            <div class="modal-body">
 				<form>
                     <div class="form-group">
-                        <label for="name"></label>
+                        <label for="name">Name:</label>
                         <input wire:model.defer="name" type="text" class="form-control" id="name" placeholder="Name">
                         @error('name') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
-                        <label for="date"></label>
+                        <label for="owner">Owner email:</label>
+                        <input wire:model="owner" type="text" class="form-control" id="owner" placeholder="Owner" readonly>
+                        @error('owner') <span class="error text-danger">{{ $message }}</span> @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date:</label>
                         <input wire:model.defer="date" type="date" class="form-control" id="date" placeholder="Date">
                         @error('date') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
-                        <label for="address"></label>
+                        <label for="address">Address:</label>
                         <input wire:model.defer="address" type="text" class="form-control" id="address" placeholder="Address">
                         @error('address') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
-                        <label for="slots"></label>
+                        <label for="slots">Slots for foodtrucks:</label>
                         <input wire:model.defer="slots" type="number" class="form-control" id="slots" placeholder="Foodtruck slots" value="1" min="1" max="99">
                         @error('slots') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
-                        <label for="description"></label>
+                        <label for="description">Description:</label>
                         <input wire:model.defer="description" type="text" class="form-control" id="description" placeholder="Description">
                         @error('description') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
-                        <label for="map"></label>
+                        <label for="map">Map:</label>
                         <input wire:model="map" type="file" class="form-control" id="map">
                         @error('map') <span class="error text-danger">{{ $message }}</span> @enderror
                         <br><div wire:loading wire:target="map" >Loading image...</div>
@@ -84,7 +89,7 @@
                         @error('address') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
-                        <label for="slots"></label>
+                        <label for="slots">Slots for foodtrucks:</label>
                         <input wire:model.defer="slots" type="number" class="form-control" id="slots" placeholder="Foodtruck slots" value="1" min="1" max="99">
                         @error('slots') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>

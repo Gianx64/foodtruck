@@ -15,7 +15,7 @@
 						</div>
 						@can('events.create')
 							<div class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#createDataModal">
-								<i class="fa fa-plus"></i>Add Events
+								<i class="fa fa-plus"></i>Add Event
 							</div>
 						@endcan
 					</div>
@@ -42,9 +42,9 @@
 								@forelse($events as $row)
 								<tr>
 									@can('events.read')
-										<td>{{ $row->id }}</td>
+										<td><a href="{{route('events.show', $row)}}">{{ $row->id }}</a></td>
 									@endcan
-									<td>{{ $row->name }}</td>
+									<td><a href="{{route('events.show', $row)}}">{{ $row->name }}</a></td>
 									@can('events.read')
 										<td>{{ $row->owner }}</td>
 									@endcan
@@ -68,7 +68,7 @@
 												</ul>
 											</div>
 										@else
-										<a class="dropdown-item" href="{{route('events.show', $row)}}"><i class="fa fa-file-text"></i>Show</a></li>
+										<a href="{{route('events.show', $row)}}"><i class="fa fa-file-text"></i>Show</a></li>
 										@endcan
 									</td>
 								</tr>

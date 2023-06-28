@@ -1,0 +1,45 @@
+Hecho
+Actualizacion de perfil
+	Hacer que tome variables de Livewire
+Actualización de roles
+	Generar CRUD
+	Adaptar funciones
+Actualización de foodtrucks
+	Generar CRUD
+	Adaptar funciones
+Soporte de imágenes para eventos
+	Definir reglas en el Model Event
+	Habilitar subida de archivo en el blade
+	Manejar el archivo en el Livewire Component
+	Mostrar imágenes en páginas de eventos
+Alargar lista de tipos de comidas
+	Posiblemente generar CRUD
+Limitar cupos por eventos
+Limitar foodtrucks por tipo de comida
+Limitar postulaciones de foodtrucks
+	Cuando se llega al límite de foodtrucks por evento (vista manager)
+	Cuando ya hay un tipo de comida en el evento (vista manager)
+	Cuando el evento ya sucedió
+Subida de documentos legales para aplicación de foodtrucks
+	Crear Livewire Component
+	Definir reglas en el Model Foodtruck
+	Habilitar subida de archivo en el blade
+	Manejar el archivo en el Livewire Component
+Mostrar cupos por eventos
+Más links clickeables (ID, nombres)
+
+Por Hacer
+Limpiar postulaciones cuando ya pasó un evento
+Creador de formularios (?)
+
+Cuenta para foodtrucks:
+	Vista con login para ver cuántos foodtrucks están pendientes además de los aceptados
+	Documentación requerida por evento (variable)
+	Lista de foodtrucks para contactar masivamente (por zona)
+Módulo para aprovar o rechazar documentos de foodtrucks
+Implementar correos
+	Confirmaciones por correo (conexion, documentos, aplicaciones a eventos, seleccionado o rechazado para evento)
+	Recordatorios por correo (evento en una semana, cantidad de notificaciones, modificable)
+Fechas calendarizables en eventos
+
+Ver como portarlo a celulares

@@ -53,7 +53,7 @@
 							<div class="card-body">
 								@if(strval($foodtrucks) !== '[]')
 									<div class="row">
-										<h1>Attending foodtrucks:</h1>
+										<h1>Attending foodtrucks ({{count($foodtrucks)}} / {{$event->slots}}):</h1>
 									</div>
 									<table class="table table-hover">
 										<thead>

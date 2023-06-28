@@ -29,6 +29,12 @@ class Events extends Component
         ]);
     }
 
+    public function mount()
+    {
+        if (auth()->user())
+            $this->owner = auth()->user()->email;
+    }
+
     public function cancel()
     {
         $this->resetInput();
@@ -38,13 +44,16 @@ class Events extends Component
     {
         $this->name = null;
         $this->name_old = null;
-        $this->owner = null;
         $this->date = null;
         $this->address = null;
         $this->slots = null;
         $this->description = null;
         $this->dbmap = null;
         $this->map = null;
+        if (auth()->user())
+            $this->owner = auth()->user()->email;
+        else
+            $this->owner = null;
     }
 
     public function store()
