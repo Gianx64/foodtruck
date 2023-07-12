@@ -21,7 +21,7 @@
 					</div>
 				</div>
 				<div class="card-body">
-					@include('livewire.foodtrucks.modals')
+					@include('livewire.foodtrucks.review')
 					<div class="table-responsive">
 						<table class="table table-bordered table-sm">
 							<thead class="thead">
@@ -58,7 +58,7 @@
 													<li><a class="dropdown-item" onclick="confirm('Confirm Delete Foodtruck id {{$row->id}}? \nDeleted Foodtrucks cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$row->id}})"><i class="fa fa-trash"></i>Delete</a></li>
 												@endcan
 											</ul>
-										</div>								
+										</div>
 									</td>
 								</tr>
 								@empty
@@ -67,7 +67,7 @@
 								</tr>
 								@endforelse
 							</tbody>
-						</table>						
+						</table>
 						<div class="float-end">{{ $foodtrucks->links() }}</div>
 					</div>
 				</div>

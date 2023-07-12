@@ -4,11 +4,11 @@
 			<div class="col-10">
 				<h4>Update Profile</h4>
 			</div>
-			@can('events.read')
-				<div class="col">
-				    <a class="btn btn-primary mr-2 float-right" href="{{ route('home') }}">Home</a>
-				</div>
-			@endcan
+            @can('foodtrucks.create')
+                <div class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#createDataModal">
+                    <i class="fa fa-plus"></i>Add Foodtruck
+                </div>
+            @endcan
 		</div>
 	</div>
 	<div class="card-body">

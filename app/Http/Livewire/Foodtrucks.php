@@ -61,39 +61,6 @@ class Foodtrucks extends Component
         session()->flash('message', 'Foodtruck successfully created.');
     }
 
-    public function edit($id)
-    {
-        $record = Foodtruck::findOrFail($id);
-        $this->selected_id = $id; 
-        $this->event_id = $record-> event_id;
-        $this->name = $record-> name;
-        $this->plate = $record-> plate;
-        $this->owner = $record-> owner;
-        $this->food = $record-> food;
-        $this->description = $record-> description;
-    }
-
-    public function update()
-    {
-        $this->validate(Foodtruck::$rules, Foodtruck::$message);
-
-        if ($this->selected_id) {
-            $record = Foodtruck::find($this->selected_id);
-            $record->update([ 
-            'event_id' => $this-> event_id,
-            'name' => $this-> name,
-            'plate' => $this-> plate,
-            'owner' => $this-> owner,
-            'food' => $this-> food,
-            'description' => $this-> description
-            ]);
-
-            $this->resetInput();
-            $this->dispatchBrowserEvent('closeModal');
-            session()->flash('message', 'Foodtruck successfully updated.');
-        }
-    }
-
     public function approve($id)
     {
         if (DB::table('foodtrucks_accepted')->where('event_id', $this->event_id)->count() < DB::table('events')->where('id', $this->event_id)->first()->slots)

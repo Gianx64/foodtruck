@@ -42,7 +42,7 @@ class Foodtruck extends Model
       'food_id.exists' => 'The food type must be an option from the dropdown menu.'
     ];
 
-    protected $table = 'foodtrucks';
+    protected $table = 'foodtrucks_pending';
 
     public $timestamps = true;
 }

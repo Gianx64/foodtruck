@@ -18,6 +18,7 @@ class RoleSeeder extends Seeder
 		//---------------------- ROLES ---------------------------
 		$role1 = Role::create(['name' => 'Administrator']);
 		$role2 = Role::create(['name' => 'Manager']);
+		$role3 = Role::create(['name' => 'Foodtrucker']);
 
 		//---------------------- PERMISSIONS ---------------------------
 		// ----------------------- Users ----------------------------
@@ -74,7 +75,7 @@ class RoleSeeder extends Seeder
 		// ----------------------- Foodtrucks ----------------------------
 		Permission::create([
 			'name' => 'foodtrucks.create'
-		])->syncRoles([$role1, $role2]);
+		])->syncRoles([$role3]);
 
 		Permission::create([
 			'name' => 'foodtrucks.read'

@@ -26,9 +26,6 @@ Route::get('/', function () {
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('foodtrucks/create/{event}', [FoodtruckController::class, 'create'])->name('foodtrucks.create');
-Route::post('foodtrucks/create', [FoodtruckController::class, 'store'])->name('foodtrucks.store');
-
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('profile/user', [UserController::class, 'edit'])->name('users.edit');
     Route::get('users', [UserController::class, 'index'])->name('users.index');

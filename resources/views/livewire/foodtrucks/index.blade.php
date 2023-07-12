@@ -9,11 +9,9 @@
         </div>   
     </div>
     <script type="module">
-        const addModal = new bootstrap.Modal('#createDataModal');
-        const editModal = new bootstrap.Modal('#updateDataModal');
+        const reviewModal = new bootstrap.Modal('#reviewDataModal');
         window.addEventListener('closeModal', () => {
-        addModal.hide();
-        editModal.hide();
+        reviewModal.hide();
         })
     </script>
 @endsection
