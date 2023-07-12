@@ -20,10 +20,10 @@ return new class extends Migration
                   ->references('id')
                   ->on('users')
                   ->onDelete('cascade');
-            $table->string('foodtruck_name')
-                  ->comment('Foodtruck name.');
             $table->string('plate', 8)
                   ->comment('Foodtruck vehicle license plate.');
+            $table->string('foodtruck_name')
+                  ->comment('Foodtruck name.');
             $table->string('food')
                   ->comment('Foodtruck offered food type.');
             $table->text('description')

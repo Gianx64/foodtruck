@@ -33,6 +33,8 @@ Creador de formularios (?)
 Limpiar postulaciones cuando ya pasó un evento
 
 Cuenta para foodtrucks:
+	Crear y editar foodtruck propio
+	Arreglar modal que se cierra cuando hay error en campos
 	Vista con login para ver cuántos foodtrucks están pendientes además de los aceptados
 Módulo para aprovar o rechazar documentos de foodtrucks
 	Documentación requerida por evento (variable)

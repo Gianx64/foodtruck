@@ -1,13 +1,22 @@
 <div class="card">
 	<div class="card-header">
 		<div style="display: flex; justify-content: space-between; align-items: center;">
-			<div class="col-10">
+			<div class="float-left">
 				<h4>Update Profile</h4>
 			</div>
+            @if (session()->has('message'))
+                <div wire:poll.4s class="btn btn-sm btn-success" style="margin-top:0px; margin-bottom:0px;"> {{ session('message') }} </div>
+            @endif
             @can('foodtrucks.create')
-                <div class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#createDataModal">
-                    <i class="fa fa-plus"></i>Add Foodtruck
-                </div>
+                @if($hasFoodtruck)
+                    <div class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#createDataModal">
+                        <i class="fa fa-edit"></i>Edit Foodtruck
+                    </div>
+                @else
+                    <div class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#createDataModal">
+                        <i class="fa fa-plus"></i>Add Foodtruck
+                    </div>
+                @endif
             @endcan
 		</div>
 	</div>

@@ -13,4 +13,10 @@
 			</div>
 		</div>
 	</div>
+    <script type="module">
+        const addModal = new bootstrap.Modal('#createDataModal');
+        window.addEventListener('closeModal', () => {
+        addModal.hide();
+        })
+    </script>
 @stop
