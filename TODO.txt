@@ -29,15 +29,16 @@ Mostrar cupos por eventos
 Más links clickeables (ID, nombres)
 
 Por Hacer
-Limpiar postulaciones cuando ya pasó un evento
 Creador de formularios (?)
+Limpiar postulaciones cuando ya pasó un evento
 
 Cuenta para foodtrucks:
 	Vista con login para ver cuántos foodtrucks están pendientes además de los aceptados
-	Documentación requerida por evento (variable)
-	Lista de foodtrucks para contactar masivamente (por zona)
 Módulo para aprovar o rechazar documentos de foodtrucks
+	Documentación requerida por evento (variable)
+	Actualizar HomeController y home.blade
 Implementar correos
+	Lista de foodtrucks para contactar masivamente (por zona)
 	Confirmaciones por correo (conexion, documentos, aplicaciones a eventos, seleccionado o rechazado para evento)
 	Recordatorios por correo (evento en una semana, cantidad de notificaciones, modificable)
 Fechas calendarizables en eventos

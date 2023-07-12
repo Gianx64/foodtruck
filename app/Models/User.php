@@ -64,9 +64,9 @@ class User extends Authenticatable
     }
 
     static $rules = [
-      'email' => 'required|string|unique:users,email',
-      'name' => 'required|string',
-      'password' => 'required|string|confirmed',
+      'email' => 'required|string|email|max:255|unique:users,email',
+      'name' => 'required|string|max:255',
+      'password' => 'required|string|min:8|confirmed',
     ];
 
     static $message = [

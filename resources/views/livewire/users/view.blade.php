@@ -54,14 +54,14 @@
 													wire:click="destroy({{$row->id}})"><i class="fa fa-trash"></i> Delete </a></li>  
 												@endcan
 											</ul>
-										</div>								
+										</div>
 									</td>
 								</tr>
 								@empty
 									<tr><td class="text-center" colspan="100%">No data found</td></tr>
 								@endforelse
 							</tbody>
-						</table>						
+						</table>
 						<div class="float-end">{{ $users->links() }}</div>
 					</div>
 				</div>
