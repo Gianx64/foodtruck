@@ -14,7 +14,7 @@ class Foodtruck extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['event_id', 'plate', 'name', 'food', 'description'];
+    protected $fillable = ['event_id', 'plate', 'foodtruck_name', 'food', 'description'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
@@ -26,7 +26,7 @@ class Foodtruck extends Model
 
     static $rules = [
         'plate' => 'required|string|min:6|max:8|unique:foodtrucks,plate',
-        'name' => 'required|string',
+        'foodtruck_name' => 'required|string',
         'food' => 'required|exists:foodtypes,name'
     ];
 
@@ -35,7 +35,7 @@ class Foodtruck extends Model
         'plate.max' => 'The foodtruck vehicle license plate cannot be over 8 characters.',
         'plate.min' => 'The foodtruck vehicle license plate cannot be under 6 characters.',
         'plate.unique' => 'The foodtruck vehicle license plate is already pending.',
-        'name.required' => 'The foodtruck name is required.',
+        'foodtruck_name.required' => 'The foodtruck name is required.',
         'food.required' => 'The food type is required.',
         'food_id.exists' => 'The food type must be an option from the dropdown menu.'
     ];

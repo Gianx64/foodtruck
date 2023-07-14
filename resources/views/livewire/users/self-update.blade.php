@@ -8,15 +8,7 @@
                 <div wire:poll.4s class="btn btn-sm btn-success" style="margin-top:0px; margin-bottom:0px;"> {{ session('message') }} </div>
             @endif
             @can('foodtrucks.create')
-                @if($hasFoodtruck)
-                    <div class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#createDataModal">
-                        <i class="fa fa-edit"></i>Edit Foodtruck
-                    </div>
-                @else
-                    <div class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#createDataModal">
-                        <i class="fa fa-plus"></i>Add Foodtruck
-                    </div>
-                @endif
+				@livewire('foodtruck')
             @endcan
 		</div>
 	</div>

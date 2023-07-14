@@ -11,16 +11,17 @@ class Foodtruck extends Component
 {
     use WithFileUploads;
 
-    public $foodtypes, $plate, $plate_old, $name, $food, $description;
+    public $hasFoodtruck, $foodtypes, $plate, $plate_old, $foodtruck_name, $food, $description;
     //public $documents = [];
 
     public function render()
     {
-        return view('livewire.foodtrucks.modals');
+        return view('livewire.foodtrucks.manage');
     }
 
     public function mount()
     {
+        $this->hasFoodtruck = DB::table('foodtrucks')->where('user_id', auth()->user()->id)->exists();
         $this->foodtypes = DB::table('foodtypes')->pluck('name')->toArray();
         $this->food = $this->foodtypes[0];
         $this->resetInput();
@@ -28,6 +29,7 @@ class Foodtruck extends Component
 
     public function cancel()
     {
+        $this->dispatchBrowserEvent('closeModal');
         $this->resetInput();
     }
 
@@ -38,7 +40,7 @@ class Foodtruck extends Component
         {
             $this->plate = $record-> plate;
             $this->plate_old = $record-> plate;
-            $this->name = $record-> foodtruck_name;
+            $this->foodtruck_name = $record-> foodtruck_name;
             $this->food = $record-> food;
             $this->description = $record-> description;
         }
@@ -46,7 +48,7 @@ class Foodtruck extends Component
         {
             $this->plate = null;
             $this->plate_old = null;
-            $this->name = null;
+            $this->foodtruck_name = null;
             $this->food = null;
             $this->description = null;
         }
@@ -64,7 +66,7 @@ class Foodtruck extends Component
         DB::table('foodtrucks')->insertGetId([
             'user_id' => auth()->user()->id,
             'plate' => $this-> plate,
-            'foodtruck_name' => $this-> name,
+            'foodtruck_name' => $this-> foodtruck_name,
             'food' => $this-> food,
             'description' => $this-> description,
             'created_at' => now()->toDateTimeString(),
@@ -84,7 +86,7 @@ class Foodtruck extends Component
 
         DB::table('foodtrucks')->where('user_id', auth()->user()->id)->update([
             'plate' => $this-> plate,
-            'foodtruck_name' => $this-> name,
+            'foodtruck_name' => $this-> foodtruck_name,
             'food' => $this-> food,
             'description' => $this-> description,
             'updated_at' => now()->toDateTimeString()

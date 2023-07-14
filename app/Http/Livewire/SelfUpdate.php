@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class SelfUpdate extends Component
 {
-    public $hasFoodtruck, $name, $email, $email_old, $password, $password_confirmation;
+    public $name, $email, $email_old, $password, $password_confirmation;
 
     public function render()
     {
@@ -21,7 +21,6 @@ class SelfUpdate extends Component
 		$this->name = $record-> name;
 		$this->email = $record-> email;
 		$this->email_old = $record-> email;
-        $this->hasFoodtruck = User::hasFoodtruck();
     }
 
     public function update()
