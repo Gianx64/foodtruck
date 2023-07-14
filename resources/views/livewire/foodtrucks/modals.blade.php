@@ -60,8 +60,8 @@
            <div class="modal-body">
 				<form>
                     <div class="form-group">
-                        <label for="name"></label>
-                        <input wire:model.defer="name" type="text" class="form-control" id="name" placeholder="Name">@error('name') <span class="error text-danger">{{ $message }}</span> @enderror
+                        <label for="foodtruck_name"></label>
+                        <input wire:model.defer="foodtruck_name" type="text" class="form-control" id="foodtruck_name" placeholder="Foodtruck's name">@error('name') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
                         <label for="plate"></label>

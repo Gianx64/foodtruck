@@ -14,6 +14,5 @@
     window.addEventListener('closeModal', () => {
     addModal.hide();
     editModal.hide();
-	alert('The modal is now hidden.');
     })
 </script>
