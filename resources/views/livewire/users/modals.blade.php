@@ -1,3 +1,14 @@
+<script type="module">
+    const addModal = new bootstrap.Modal('#createDataModal');
+    const editModal = new bootstrap.Modal('#updateDataModal');
+    const assignModal = new bootstrap.Modal('#assignDataModal');
+    window.addEventListener('closeModal', () => {
+    addModal.hide();
+    editModal.hide();
+    assignModal.hide();
+    })
+</script>
+
 <!-- Add Modal -->
 <div wire:ignore.self class="modal fade" id="createDataModal" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="createDataModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

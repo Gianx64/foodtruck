@@ -34,9 +34,9 @@ Limpiar postulaciones cuando ya pasó un evento
 
 Cuenta para foodtrucks:
 	Crear y editar foodtruck propio
-	Arreglar modal que se cierra cuando hay error en campos
 	Cambiar método de aplicación a eventos
 	Vista con login para ver cuántos foodtrucks están pendientes además de los aceptados
+	El cambio de tipo de comida expira ciertos documentos e invalida las aplicaciones a eventos
 Módulo para aprovar o rechazar documentos de foodtrucks
 	Documentación requerida por evento (variable)
 	Actualizar HomeController y home.blade

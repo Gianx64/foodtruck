@@ -8,10 +8,4 @@
             </div>     
         </div>   
     </div>
-    <script type="module">
-        const reviewModal = new bootstrap.Modal('#reviewDataModal');
-        window.addEventListener('closeModal', () => {
-        reviewModal.hide();
-        })
-    </script>
 @endsection

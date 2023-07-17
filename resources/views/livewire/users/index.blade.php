@@ -8,14 +8,4 @@
             </div>     
         </div>   
     </div>
-    <script type="module">
-        const addModal = new bootstrap.Modal('#createDataModal');
-        const editModal = new bootstrap.Modal('#updateDataModal');
-        const assignModal = new bootstrap.Modal('#assignDataModal');
-        window.addEventListener('closeModal', () => {
-        addModal.hide();
-        editModal.hide();
-        assignModal.hide();
-        })
-    </script>
 @endsection

@@ -1,3 +1,12 @@
+<script type="module">
+    const addModal = new bootstrap.Modal('#createDataModal');
+    const editModal = new bootstrap.Modal('#updateDataModal');
+    window.addEventListener('closeModal', () => {
+    addModal.hide();
+    editModal.hide();
+    })
+</script>
+
 <!-- Add Modal -->
 <div wire:ignore.self class="modal fade" id="createDataModal" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="createDataModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -34,7 +43,7 @@
                         @error('slots') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
-                        <label for="description">Description:</label>
+                        <label for="description">(Optional) Description:</label>
                         <input wire:model.defer="description" type="text" class="form-control" id="description" placeholder="Description">
                         @error('description') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
@@ -94,7 +103,7 @@
                         @error('slots') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
-                        <label for="description">Description:</label>
+                        <label for="description">(Optional) Description:</label>
                         <input wire:model.defer="description" type="text" class="form-control" id="description" placeholder="Description">
                         @error('description') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>

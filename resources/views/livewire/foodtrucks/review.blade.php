@@ -1,3 +1,10 @@
+<script type="module">
+    const reviewModal = new bootstrap.Modal('#reviewDataModal');
+    window.addEventListener('closeModal', () => {
+    reviewModal.hide();
+    })
+</script>
+
 <!-- Review Modal -->
 <div wire:ignore.self class="modal fade" id="reviewDataModal" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -13,15 +20,15 @@
                         <input wire:model="event_id" type="text" class="form-control" id="event_id" placeholder="Event Id" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="name">Foodtruck Name:</label>
-                        <input wire:model="name" type="text" class="form-control" id="name" placeholder="Name" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="plate">Owner Email:</label>
+                        <label for="plate">License Plate:</label>
                         <input wire:model="plate" type="text" class="form-control" id="plate" placeholder="Plate" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="owner">License Plate:</label>
+                        <label for="foodtruck_name">Foodtruck Name:</label>
+                        <input wire:model="foodtruck_name" type="text" class="form-control" id="foodtruck_name" placeholder="Name" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="owner">Owner Email:</label>
                         <input wire:model="owner" type="text" class="form-control" id="owner" placeholder="Owner" readonly>
                     </div>
                     <div class="form-group">
@@ -37,7 +44,7 @@
             <div class="modal-footer">
                 @can('foodtrucks.delete')
                     <div class="col-9">
-                        <button type="button" onclick="confirm('Confirm Delete Foodtruck id {{$selected_id}}? \nDeleted Foodtrucks cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$selected_id}})" class="btn btn-danger" data-bs-dismiss="modal">Deny & Delete</button>
+                        <button type="button" onclick="confirm('Confirm delete application id {{$selected_id}}? \nDeleted Foodtrucks cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$selected_id}})" class="btn btn-danger" data-bs-dismiss="modal">Deny & Delete</button>
                     </div>
                 @endcan
                 @can('foodtrucks.update')
