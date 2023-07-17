@@ -35,8 +35,13 @@ class EventController extends Controller
     {
         $event = Event::find($id);
         $event->map = Storage::url($event-> map);
-        $foodtrucks = DB::table('foodtrucks_accepted')->where('event_id', $id)->get();
+        $foodtrucks = DB::table('foodtrucks_applications')->where('event_id', $id)
+        ->leftJoin('foodtrucks', 'foodtrucks_applications.foodtruck_id', 'foodtrucks.id')
+        ->select('foodtrucks_applications.*', 'foodtrucks.plate', 'foodtrucks.foodtruck_name', 'foodtrucks.description')->get();
+        $foodtrucks_approved = $foodtrucks->where('approved', 1);
+        $foodtrucks_pending = $foodtrucks->where('approved', 0);
+        $hasfoodtruck = DB::table('foodtrucks')->where('user_id', auth()->user()->id)->exists();
 
-        return view('event-show', compact('event', 'foodtrucks'));
+        return view('livewire.events.show', compact('event', 'foodtrucks_approved', 'foodtrucks_pending', 'hasfoodtruck'));
     }
 }

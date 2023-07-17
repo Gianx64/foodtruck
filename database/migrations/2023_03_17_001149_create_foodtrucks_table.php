@@ -11,86 +11,66 @@ return new class extends Migration
      */
     public function up(): void
     {
-      Schema::create('foodtrucks', function (Blueprint $table) {
+        Schema::create('foodtrucks', function (Blueprint $table) {
             $table->id()
-                  ->comment('Foodtruck identifier number.');
+                ->comment('Foodtruck identifier number.');
             $table->foreignId('user_id')
-                  ->comment('User identifier number.');
+                ->comment('User identifier number.');
             $table->foreign('user_id')
-                  ->references('id')
-                  ->on('users')
-                  ->onDelete('cascade');
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
             $table->string('plate', 8)
-                  ->comment('Foodtruck vehicle license plate.');
+                ->comment('Foodtruck vehicle license plate.');
             $table->string('foodtruck_name')
-                  ->comment('Foodtruck name.');
+                ->comment('Foodtruck name.');
             $table->string('food')
-                  ->comment('Foodtruck offered food type.');
+                ->comment('Foodtruck offered food type.');
             $table->text('description')
-                  ->nullable()
-                  ->comment('Foodtruck description and/or additional information.');
-          $table->timestamps();
-      });
-      Schema::create('foodtrucks_documents_pending', function (Blueprint $table) {
-            $table->id()
-                  ->comment('Document identifier number.');
-            $table->foreignId('foodtruck_id')
-                  ->comment('Foodtruck identifier number.');
-            $table->foreign('foodtruck_id')
-                  ->references('id')
-                  ->on('foodtrucks')
-                  ->onDelete('cascade');
-            $table->string('document_name')
-                  ->comment('Document name.');
-            $table->string('file')
-                  ->comment('Document file name.');
-          $table->timestamps();
-      });
-      Schema::create('foodtrucks_documents_accepted', function (Blueprint $table) {
-            $table->id()
-                  ->comment('Document identifier number.');
-            $table->foreignId('foodtruck_id')
-                  ->comment('Foodtruck identifier number.');
-            $table->foreign('foodtruck_id')
-                  ->references('id')
-                  ->on('foodtrucks')
-                  ->onDelete('cascade');
-            $table->string('document_name')
-                  ->comment('Document name.');
-            $table->string('file')
-                  ->comment('Document file name.');
-            $table->date('expires')
-                  ->comment('Document expire date.');
-          $table->timestamps();
-      });
-        Schema::create('foodtrucks_pending', function (Blueprint $table) {
-            $table->id()
-                  ->comment('Application identifier number.');
-            $table->foreignId('event_id')
-                  ->comment('Event identifier number.');
-            $table->foreign('event_id')
-                  ->references('id')
-                  ->on('events')
-                  ->onDelete('cascade');
-            $table->foreignId('foodtruck_id')
-                  ->comment('Foodtruck identifier number.');
-            $table->foreign('foodtruck_id')
-                  ->references('id')
-                  ->on('foodtrucks')
-                  ->onDelete('cascade');
+                ->nullable()
+                ->comment('Foodtruck description and/or additional information.');
             $table->timestamps();
         });
-        Schema::create('foodtrucks_accepted', function (Blueprint $table) {
+        Schema::create('foodtrucks_documents_applications', function (Blueprint $table) {
             $table->id()
-                  ->comment('Foodtruck identifier number.');
+                ->comment('Document identifier number.');
+            $table->foreignId('foodtruck_id')
+                ->comment('Foodtruck identifier number.');
+            $table->foreign('foodtruck_id')
+                ->references('id')
+                ->on('foodtrucks')
+                ->onDelete('cascade');
+            $table->string('document_name')
+                ->comment('Document name.');
+            $table->string('file')
+                ->comment('Document file name.');
+            $table->date('expires')
+                ->comment('Document expire date.');
+            $table->boolean('accepted')
+                ->default(0)
+                ->comment('Pending or accepted.');
+            $table->timestamps();
+        });
+        Schema::create('foodtrucks_applications', function (Blueprint $table) {
+            $table->id()
+                ->comment('Application identifier number.');
             $table->foreignId('event_id')
-                  ->comment('Event identifier number.');
+                ->comment('Event identifier number.');
             $table->foreign('event_id')
-                  ->references('id')
-                  ->on('events')
-                  ->onDelete('cascade');
+                ->references('id')
+                ->on('events')
+                ->onDelete('cascade');
+            $table->foreignId('foodtruck_id')
+                ->comment('Foodtruck identifier number.');
+            $table->foreign('foodtruck_id')
+                ->references('id')
+                ->on('foodtrucks')
+                ->onDelete('cascade');
             $table->string('food')
-                  ->comment('Foodtruck offered food type.');
+                ->comment('Foodtruck offered food type.');
+            $table->boolean('approved')
+                ->default(0)
+                ->comment('Pending or approved.');
             $table->timestamps();
         });
     }
@@ -100,10 +80,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-      Schema::dropIfExists('foodtrucks_accepted');
-      Schema::dropIfExists('foodtrucks_pending');
-      Schema::dropIfExists('foodtrucks_documents_pending');
-      Schema::dropIfExists('foodtrucks_documents_accepted');
-      Schema::dropIfExists('foodtrucks');
+        Schema::dropIfExists('foodtrucks_applications');
+        Schema::dropIfExists('foodtrucks_documents_applications');
+        Schema::dropIfExists('foodtrucks');
     }
 };

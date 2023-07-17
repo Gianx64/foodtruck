@@ -28,8 +28,8 @@
 								<tr> 
 									<td>ID</td> 
 									<th>Event</th>
-									<th>Name</th>
 									<th>Plate</th>
+									<th>Foodtruck Name</th>
 									<th>Owner</th>
 									<th>Food</th>
 									<td>ACTIONS</td>
@@ -39,10 +39,10 @@
 								@forelse($foodtrucks as $row)
 								<tr>
 									<td>{{ $row->id }}</td> 
-									<td><a class="dropdown-item" href="{{route('events.show', $row->event_id)}}">{{$events[$row->event_id - 1]->name}}</a></td>
-									<td>{{ $row->name }}</td>
+									<td><a class="nav-link" href="{{route('events.show', $row->event_id)}}">{{$events[$row->event_id - 1]->name}}</a></td>
 									<td>{{ $row->plate }}</td>
-									<td>{{ $row->owner }}</td>
+									<td>{{ $row->foodtruck_name }}</td>
+									<td>{{ $row->email }}</td>
 									<td>{{ $row->food }}</td>
 									<td width="90">
 										<div class="dropdown">
@@ -51,11 +51,11 @@
 											</a>
 											<ul class="dropdown-menu">
 												@can('foodtrucks.update')
-													<li><a data-bs-toggle="modal" data-bs-target="#updateDataModal" class="dropdown-item" wire:click="edit({{$row->id}})"><i class="fa fa-edit"></i>Review</a></li>
+													<li><a data-bs-toggle="modal" data-bs-target="#reviewDataModal" class="dropdown-item" wire:click="edit({{$row->id}})"><i class="fa fa-edit"></i>Review</a></li>
 												@endcan
 												<li><a class="dropdown-item" href="{{route('events.show', $row->event_id)}}"><i class="fa fa-file-text"></i>Show event</a></li>
 												@can('foodtrucks.delete')
-													<li><a class="dropdown-item" onclick="confirm('Confirm Delete Foodtruck id {{$row->id}}? \nDeleted Foodtrucks cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$row->id}})"><i class="fa fa-trash"></i>Delete</a></li>
+													<li><a class="dropdown-item" onclick="confirm('Confirm delete application id {{$row->id}}? \nDeleted Foodtrucks cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$row->id}})"><i class="fa fa-trash"></i>Delete</a></li>
 												@endcan
 											</ul>
 										</div>

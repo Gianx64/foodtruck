@@ -12,17 +12,24 @@ class Foodtrucks extends Component
     use WithPagination;
 
     protected $paginationTheme = 'bootstrap';
-    public $keyWord, $selected_id, $event_id, $name, $plate, $owner, $food, $description;
+    public $keyWord, $selected_id, $event_id, $foodtruck_id, $foodtruck_name, $plate, $owner, $food, $description;
 
     public function render()
     {
-        $keyWord = '%'.$this->keyWord .'%';
+        $keyWord = '%'.$this->keyWord.'%';
         return view('livewire.foodtrucks.view', [
             'foodtrucks' => Foodtruck::latest()
-                        ->orWhere('name', 'LIKE', $keyWord)
+                        ->leftJoin('foodtrucks', 'foodtrucks_applications.foodtruck_id', 'foodtrucks.id')
+                        ->leftJoin('users', 'foodtrucks.user_id', 'users.id')
+                        ->select('foodtrucks_applications.*', 'foodtrucks.plate', 'foodtrucks.foodtruck_name', 'foodtrucks.description', 'users.email')
                         ->orWhere('plate', 'LIKE', $keyWord)
-                        ->orWhere('owner', 'LIKE', $keyWord)
-                        ->orWhere('food', 'LIKE', $keyWord)
+                        ->where('approved', 0)
+                        ->orWhere('email', 'LIKE', $keyWord)
+                        ->where('approved', 0)
+                        ->orWhere('foodtruck_name', 'LIKE', $keyWord)
+                        ->where('approved', 0)
+                        ->orWhere('foodtrucks_applications.food', 'LIKE', $keyWord)
+                        ->where('approved', 0)
                         ->paginate(10),
             'events' => DB::table('events')->select('name', 'slots')->get()->toArray()
         ]);
@@ -36,9 +43,9 @@ class Foodtrucks extends Component
     private function resetInput()
     {
         $this->event_id = null;
-        $this->name = null;
         $this->plate = null;
         $this->owner = null;
+        $this->foodtruck_name = null;
         $this->food = null;
         $this->description = null;
     }
@@ -47,13 +54,10 @@ class Foodtrucks extends Component
     {
         $this->validate(Foodtruck::$rules, Foodtruck::$message);
 
-        Foodtruck::create([ 
+        Foodtruck::create([
             'event_id' => $this-> event_id,
-            'name' => $this-> name,
-            'plate' => $this-> plate,
-            'owner' => $this-> owner,
-            'food' => $this-> food,
-            'description' => $this-> description
+            'foodtruck_id' => $this-> foodtruck_id,
+            'food' => $this-> food
         ]);
 
         $this->resetInput();
@@ -61,16 +65,34 @@ class Foodtrucks extends Component
         session()->flash('message', 'Foodtruck successfully created.');
     }
 
+    public function edit($id)
+    {
+        $this->selected_id = $id;
+        $record = Foodtruck::findOrFail($id);
+        $this->event_id = $record-> event_id;
+        $this->foodtruck_id = $record-> foodtruck_id;
+        $this->food = $record-> food;
+        $foodtruck = DB::table('foodtrucks')->where('id', $this->foodtruck_id)->first();
+        $this->plate = $foodtruck-> plate;
+        $this->foodtruck_name = $foodtruck-> foodtruck_name;
+        $this->description = $foodtruck-> description;
+        $user = DB::table('users')->where('id', $foodtruck-> user_id)->first();
+        $this->owner = $user-> email;
+    }
+
     public function approve($id)
     {
-        if (DB::table('foodtrucks_accepted')->where('event_id', $this->event_id)->count() < DB::table('events')->where('id', $this->event_id)->first()->slots)
-            if (DB::table('foodtrucks_accepted')->where('event_id', $this->event_id)->where('food', $this->food)->first() === null)
+        if (DB::table('foodtrucks_applications')->where('event_id', $this->event_id)->where('approved', 1)->count()
+            < DB::table('events')->where('id', $this->event_id)->first()->slots)
+            if (DB::table('foodtrucks_applications')->where('event_id', $this->event_id)->where('approved', 1)->where('food', $this->food)->first() === null)
             {
                 $record = Foodtruck::find($id);
-                $accepted = $record->replicate();
-                $accepted->setTable('foodtrucks_accepted');
-                $accepted->save();
-                $record->delete();
+                $record->update([
+                    'event_id' => $this->event_id,
+                    'foodtruck_id' => $this->foodtruck_id,
+                    'food', $this->food,
+                    'approved' => 1
+                ]);
 
                 session()->flash('message', 'Foodtruck successfully approved.');
             }
@@ -85,7 +107,7 @@ class Foodtrucks extends Component
     {
         if ($id) {
             Foodtruck::where('id', $id)->delete();
-            session()->flash('message', 'Foodtruck successfully deleted.');
+            session()->flash('message', 'Application successfully deleted.');
         }
     }
 }

@@ -14,7 +14,7 @@ class Foodtruck extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['event_id', 'plate', 'foodtruck_name', 'food', 'description'];
+    protected $fillable = ['event_id', 'foodtruck_id', 'food', 'approved'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
@@ -40,7 +40,7 @@ class Foodtruck extends Model
         'food_id.exists' => 'The food type must be an option from the dropdown menu.'
     ];
 
-    protected $table = 'foodtrucks_pending';
+    protected $table = 'foodtrucks_applications';
 
     public $timestamps = true;
 }
