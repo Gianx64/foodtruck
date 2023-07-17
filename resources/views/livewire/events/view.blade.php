@@ -68,7 +68,7 @@
 												</ul>
 											</div>
 										@else
-										<a href="{{route('events.show', $row)}}"><i class="fa fa-file-text"></i>Show</a></li>
+										<a class="btn btn-sm btn-secondary" href="{{route('events.show', $row)}}"><i class="fa fa-file-text"></i>Show</a></li>
 										@endcan
 									</td>
 								</tr>

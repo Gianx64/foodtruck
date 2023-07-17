@@ -44,7 +44,7 @@
             <div class="modal-footer">
                 @can('foodtrucks.delete')
                     <div class="col-9">
-                        <button type="button" onclick="confirm('Confirm delete application id {{$selected_id}}? \nDeleted Foodtrucks cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$selected_id}})" class="btn btn-danger" data-bs-dismiss="modal">Deny & Delete</button>
+                        <button type="button" onclick="confirm('Confirm delete application id {{$selected_id}}? \nDeleted applications cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$selected_id}})" class="btn btn-danger" data-bs-dismiss="modal">Deny & Delete</button>
                     </div>
                 @endcan
                 @can('foodtrucks.update')

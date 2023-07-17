@@ -111,6 +111,7 @@
                         <label for="plate">Plate:</label>
                         <input wire:model.defer="plate" type="text" class="form-control" id="plate" readonly>
                         @error('plate') <span class="error text-danger">{{ $message }}</span> @enderror
+                        @error('foodtruck_id') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
                         <label for="foodtruck_name">Foodtruck's name:</label>

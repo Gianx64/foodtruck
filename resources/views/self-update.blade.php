@@ -8,6 +8,12 @@
 					<div class="row justify-content-center">
 						@livewire('self-update')
 					</div>
+					<br>
+					<div class="row justify-content-center">
+						@can('foodtrucks.create')
+							@livewire('foodtruck')
+						@endcan
+					</div>
 				</div>
 			</div>
 		</div>

@@ -11,17 +11,21 @@ class Foodtruck extends Component
 {
     use WithFileUploads;
 
-    public $hasFoodtruck, $foodtypes, $plate, $plate_old, $foodtruck_name, $food, $description;
+    public $selected_id, $foodtypes, $plate, $plate_old, $foodtruck_name, $food, $description;
     //public $documents = [];
 
     public function render()
     {
-        return view('livewire.foodtrucks.manage');
+        return view('livewire.foodtrucks.manage', [
+            'foodtrucks' => DB::table('foodtrucks')
+            ->where('user_id', auth()->user()->id)
+            ->latest()
+            ->paginate(10)
+        ]);
     }
 
     public function mount()
     {
-        $this->hasFoodtruck = DB::table('foodtrucks')->where('user_id', auth()->user()->id)->exists();
         $this->foodtypes = DB::table('foodtypes')->pluck('name')->toArray();
         $this->food = $this->foodtypes[0];
         $this->resetInput();
@@ -35,23 +39,11 @@ class Foodtruck extends Component
 
     public function resetInput()
     {
-        $record = DB::table('foodtrucks')->where('user_id', auth()->user()->id)->first();
-        if ($record !== null)
-        {
-            $this->plate = $record-> plate;
-            $this->plate_old = $record-> plate;
-            $this->foodtruck_name = $record-> foodtruck_name;
-            $this->food = $record-> food;
-            $this->description = $record-> description;
-        }
-        else
-        {
-            $this->plate = null;
-            $this->plate_old = null;
-            $this->foodtruck_name = null;
-            $this->food = null;
-            $this->description = null;
-        }
+        $this->plate = null;
+        $this->plate_old = null;
+        $this->foodtruck_name = null;
+        $this->food = null;
+        $this->description = null;
     }
 
     public function store()
@@ -77,6 +69,17 @@ class Foodtruck extends Component
 		session()->flash('message', 'Foodtruck successfully created.');
     }
 
+    public function edit($id)
+    {
+        $this->selected_id = $id;
+        $record = DB::table('foodtrucks')->where('user_id', auth()->user()->id)->where('id', $id)->first();
+        $this->food = $record-> food;
+        $this->plate = $record-> plate;
+        $this->plate_old = $record-> plate;
+        $this->foodtruck_name = $record-> foodtruck_name;
+        $this->description = $record-> description;
+    }
+
     public function update()
     {
         if ($this->plate == $this->plate_old)
@@ -84,7 +87,7 @@ class Foodtruck extends Component
         else
             $this->validate(FoodtruckModel::$rules, FoodtruckModel::$message);
 
-        DB::table('foodtrucks')->where('user_id', auth()->user()->id)->update([
+        DB::table('foodtrucks')->where('user_id', auth()->user()->id)->where('id', $this->selected_id)->update([
             'plate' => $this-> plate,
             'foodtruck_name' => $this-> foodtruck_name,
             'food' => $this-> food,
@@ -92,7 +95,15 @@ class Foodtruck extends Component
             'updated_at' => now()->toDateTimeString()
         ]);
 
-        redirect()->route('users.edit');
+        $this->dispatchBrowserEvent('closeModal');
         session()->flash('message', 'Foodtruck successfully updated.');
+    }
+
+    public function destroy($id)
+    {
+        if ($id) {
+            Foodtruck::where('id', $id)->delete();
+            session()->flash('message', 'Foodtruck successfully deleted.');
+        }
     }
 }

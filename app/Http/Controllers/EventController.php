@@ -33,7 +33,7 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        $event = Event::find($id);
+        $event = Event::findOrFail($id);
         $event->map = Storage::url($event-> map);
         $foodtrucks = DB::table('foodtrucks_applications')->where('event_id', $id)
         ->leftJoin('foodtrucks', 'foodtrucks_applications.foodtruck_id', 'foodtrucks.id')
