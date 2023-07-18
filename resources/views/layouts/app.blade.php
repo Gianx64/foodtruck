@@ -43,6 +43,11 @@
                                     <a href="{{ url('/events') }}" class="nav-link"><i class="fab fa-laravel text-info"></i>Events</a> 
                                 </li>
                             @endcan
+                            @can('documents.read' )
+                                <li class="nav-item">
+                                    <a href="{{ url('/documents') }}" class="nav-link"><i class="fab fa-laravel text-info"></i>Documents</a> 
+                                </li>
+                            @endcan
                             @can('foodtrucks.read')
                                 <li class="nav-item">
                                     <a href="{{ url('/applications') }}" class="nav-link"><i class="fab fa-laravel text-info"></i>Applications</a> 

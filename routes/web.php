@@ -28,7 +28,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('roles', [App\Http\Controllers\RoleController::class, 'index'])->name('roles.index');
     Route::get('events', [App\Http\Controllers\EventController::class, 'index'])->name('events.index');
     Route::get('applications', [App\Http\Controllers\FoodtruckController::class, 'index'])->name('applications.index');
-    Route::get('foodtypes', [App\Http\Controllers\FoodtruckController::class, 'foodIndex'])->name('foodtypes.index');
+    Route::get('documents', [App\Http\Controllers\FoodtruckController::class, 'documentsIndex'])->name('documents.index');
+    Route::get('foodtypes', [App\Http\Controllers\FoodtruckController::class, 'foodsIndex'])->name('foodtypes.index');
 });
 
 Route::get('events/{event}', [App\Http\Controllers\EventController::class, 'show'])->name('events.show');
