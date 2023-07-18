@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Foodtruck;
-use Illuminate\Http\Request;
-
 class FoodtruckController extends Controller
 {
     public function __construct() {
@@ -25,7 +22,16 @@ class FoodtruckController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function foodIndex() {
+    public function documentsIndex() {
+        return view('livewire.documents.index');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function foodsIndex() {
         return view('foodtypes');
     }
 }

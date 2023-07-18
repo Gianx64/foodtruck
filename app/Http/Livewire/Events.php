@@ -8,15 +8,13 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 
-class Events extends Component
-{
+class Events extends Component {
     use WithFileUploads, WithPagination;
 
     protected $paginationTheme = 'bootstrap';
     public $keyWord, $selected_id, $name, $name_old, $owner, $date, $address, $slots, $description, $dbmap, $map;
 
-    public function render()
-    {
+    public function render() {
         $keyWord = '%'.$this->keyWord .'%';
         return view('livewire.events.view', [
             'events' => Event::latest()
@@ -29,19 +27,16 @@ class Events extends Component
         ]);
     }
 
-    public function mount()
-    {
+    public function mount() {
         if (auth()->user())
             $this->owner = auth()->user()->email;
     }
 
-    public function cancel()
-    {
+    public function cancel() {
         $this->resetInput();
     }
 
-    private function resetInput()
-    {
+    private function resetInput() {
         $this->name = null;
         $this->name_old = null;
         $this->date = null;
@@ -56,8 +51,7 @@ class Events extends Component
             $this->owner = null;
     }
 
-    public function store()
-    {
+    public function store() {
         $this->owner = auth()->user()->email;
         $this->validate(Event::$rules, Event::$message);
 
@@ -77,8 +71,7 @@ class Events extends Component
         session()->flash('message', 'Event successfully created.');
     }
 
-    public function edit($id)
-    {
+    public function edit($id) {
         $record = Event::findOrFail($id);
         $this->selected_id = $id; 
         $this->name = $record-> name;
@@ -91,8 +84,7 @@ class Events extends Component
         $this->dbmap = Storage::url($record-> map);
     }
 
-    public function update()
-    {
+    public function update() {
         if ($this->selected_id) {
             if ($this->name == $this->name_old)
                 $this->validate(array_slice(Event::$rules, 1, 3), Event::$message);
@@ -130,8 +122,7 @@ class Events extends Component
         $this->dispatchBrowserEvent('closeModal');
     }
 
-    public function destroy($id)
-    {
+    public function destroy($id) {
         if ($id) {
             Event::where('id', $id)->delete();
             session()->flash('message', 'Event successfully deleted.');

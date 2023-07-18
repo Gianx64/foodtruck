@@ -7,15 +7,13 @@ use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class Applications extends Component
-{
+class Applications extends Component {
     use WithPagination;
 
     protected $paginationTheme = 'bootstrap';
     public $keyWord, $selected_id, $event_id, $foodtruck_id, $foodtruck_name, $plate, $owner, $food, $description;
 
-    public function render()
-    {
+    public function render() {
         $keyWord = '%'.$this->keyWord.'%';
         return view('livewire.applications.view', [
             'foodtrucks' => Application::leftJoin('foodtrucks', 'foodtrucks_applications.foodtruck_id', 'foodtrucks.id')
@@ -34,13 +32,11 @@ class Applications extends Component
         ]);
     }
 
-    public function cancel()
-    {
+    public function cancel() {
         $this->resetInput();
     }
 
-    private function resetInput()
-    {
+    private function resetInput() {
         $this->event_id = null;
         $this->plate = null;
         $this->owner = null;
@@ -49,23 +45,7 @@ class Applications extends Component
         $this->description = null;
     }
 
-    public function store()
-    {
-        $this->validate(Application::$rules, Application::$message);
-
-        Application::create([
-            'event_id' => $this-> event_id,
-            'foodtruck_id' => $this-> foodtruck_id,
-            'food' => $this-> food
-        ]);
-
-        $this->resetInput();
-        $this->dispatchBrowserEvent('closeModal');
-        session()->flash('message', 'Foodtruck successfully created.');
-    }
-
-    public function edit($id)
-    {
+    public function edit($id) {
         $this->selected_id = $id;
         $record = Application::findOrFail($id);
         $this->event_id = $record-> event_id;
@@ -79,13 +59,12 @@ class Applications extends Component
         $this->owner = $user-> email;
     }
 
-    public function approve($id)
-    {
+    public function approve() {
         if (DB::table('foodtrucks_applications')->where('event_id', $this->event_id)->where('approved', 1)->count()
             < DB::table('events')->where('id', $this->event_id)->first()->slots)
             if (DB::table('foodtrucks_applications')->where('event_id', $this->event_id)->where('approved', 1)->where('food', $this->food)->first() === null)
             {
-                $record = Application::find($id);
+                $record = Application::find($this-> selected_id);
                 $record->update([
                     'event_id' => $this->event_id,
                     'foodtruck_id' => $this->foodtruck_id,
@@ -102,8 +81,7 @@ class Applications extends Component
         $this->dispatchBrowserEvent('closeModal');
     }
 
-    public function destroy($id)
-    {
+    public function destroy($id) {
         if ($id) {
             Application::where('id', $id)->delete();
             session()->flash('message', 'Application successfully deleted.');

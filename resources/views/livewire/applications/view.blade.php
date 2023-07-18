@@ -5,7 +5,9 @@
 				<h4><i class="fab fa-laravel text-info"></i>Applications Listing</h4>
 			</div>
 			@if (session()->has('message'))
-			<div wire:poll.4s class="btn btn-sm btn-success" style="margin-top:0px; margin-bottom:0px;"> {{ session('message') }} </div>
+				<div wire:poll.4s class="btn btn-sm btn-success" style="margin-top:0px; margin-bottom:0px;">
+					{{ session('message') }}
+				</div>
 			@endif
 			<div>
 				<input wire:model='keyWord' type="text" class="form-control" name="search" id="search" placeholder="Search Foodtrucks">
@@ -18,7 +20,7 @@
 		</div>
 	</div>
 	<div class="card-body">
-		@include('livewire.applications.review')
+		@include('livewire.applications.modals')
 		<div class="table-responsive">
 			<table class="table table-bordered table-sm">
 				<thead class="thead">
@@ -43,9 +45,7 @@
 						<td>{{ $row->food }}</td>
 						<td width="90">
 							<div class="dropdown">
-								<a class="btn btn-sm btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-									Actions
-								</a>
+								<a class="btn btn-sm btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Actions</a>
 								<ul class="dropdown-menu">
 									@can('foodtrucks.update')
 										<li><a data-bs-toggle="modal" data-bs-target="#reviewDataModal" class="dropdown-item" wire:click="edit({{$row->id}})"><i class="fa fa-edit"></i>Review</a></li>
@@ -60,7 +60,7 @@
 					</tr>
 					@empty
 					<tr>
-						<td class="text-center" colspan="100%">No data found </td>
+						<td class="text-center" colspan="100%">No data found</td>
 					</tr>
 					@endforelse
 				</tbody>

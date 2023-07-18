@@ -17,7 +17,7 @@
 				<form>
                     <div class="form-group">
                         <label for="event_id">Event ID:</label>
-                        <input wire:model="event_id" type="text" class="form-control" id="event_id" placeholder="Event Id" readonly>
+                        <input wire:model="event_id" type="text" class="form-control" id="event_id" placeholder="Event ID" readonly>
                     </div>
                     <div class="form-group">
                         <label for="plate">License Plate:</label>
@@ -44,7 +44,8 @@
             <div class="modal-footer">
                 @can('foodtrucks.delete')
                     <div class="col-9">
-                        <button type="button" onclick="confirm('Confirm delete application id {{$selected_id}}? \nDeleted applications cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$selected_id}})" class="btn btn-danger" data-bs-dismiss="modal">Deny & Delete</button>
+                        <button type="button" onclick="confirm('Confirm delete application id {{$selected_id}}? \nDeleted applications cannot be recovered!')||event.stopImmediatePropagation()"
+                        wire:click="destroy({{$selected_id}})" class="btn btn-danger" data-bs-dismiss="modal">Deny & Delete</button>
                     </div>
                 @endcan
                 @can('foodtrucks.update')

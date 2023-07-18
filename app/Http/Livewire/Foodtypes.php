@@ -6,15 +6,13 @@ use App\Models\Foodtype;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class Foodtypes extends Component
-{
+class Foodtypes extends Component {
     use WithPagination;
 
     protected $paginationTheme = 'bootstrap';
     public $keyWord, $name;
 
-    public function render()
-    {
+    public function render() {
         $keyWord = '%'.$this->keyWord .'%';
         return view('livewire.foodtypes', [
             'foodtypes' => Foodtype::latest()
@@ -22,21 +20,18 @@ class Foodtypes extends Component
                         ->paginate(10) ]);
     }
 
-    private function resetInput()
-    {
+    private function resetInput() {
         $this->name = null;
     }
 
-    public function store()
-    {
+    public function store() {
         Foodtype::create([ 'name' => $this-> name ]);
         
         $this->resetInput();
         session()->flash('message', 'Foodtype successfully created.');
     }
 
-    public function destroy($id)
-    {
+    public function destroy($id) {
         if ($id) {
             Foodtype::where('id', $id)->delete();
             session()->flash('message', 'Foodtype successfully deleted.');

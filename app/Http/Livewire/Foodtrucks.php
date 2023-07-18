@@ -7,15 +7,12 @@ use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
-class Foodtrucks extends Component
-{
+class Foodtrucks extends Component {
     use WithFileUploads;
 
     public $selected_id, $foodtypes, $plate, $plate_old, $foodtruck_name, $food, $description;
-    //public $documents = [];
 
-    public function render()
-    {
+    public function render() {
         return view('livewire.foodtrucks.manage', [
             'foodtrucks' => Foodtruck::where('user_id', auth()->user()->id)
             ->latest()
@@ -23,21 +20,17 @@ class Foodtrucks extends Component
         ]);
     }
 
-    public function mount()
-    {
+    public function mount() {
         $this->foodtypes = DB::table('foodtypes')->pluck('name')->toArray();
         $this->food = $this->foodtypes[0];
-        $this->resetInput();
     }
 
-    public function cancel()
-    {
+    public function cancel() {
         $this->dispatchBrowserEvent('closeModal');
         $this->resetInput();
     }
 
-    public function resetInput()
-    {
+    public function resetInput() {
         $this->plate = null;
         $this->plate_old = null;
         $this->foodtruck_name = null;
@@ -45,14 +38,8 @@ class Foodtrucks extends Component
         $this->description = null;
     }
 
-    public function store()
-    {
+    public function store() {
         $this->validate(Foodtruck::$rules, Foodtruck::$message);
-        /*$this->validate(['documents.*' => 'required|mimes:pdf']);
- 
-        foreach ($this->documents as $document) {
-            $document->storePublicly('public/documents');
-        }*/
 
         Foodtruck::create([
             'user_id' => auth()->user()->id,
@@ -68,8 +55,7 @@ class Foodtrucks extends Component
 		session()->flash('message', 'Foodtruck successfully created.');
     }
 
-    public function edit($id)
-    {
+    public function edit($id) {
         $this->selected_id = $id;
         $record = Foodtruck::where('user_id', auth()->user()->id)->where('id', $id)->first();
         $this->food = $record-> food;
@@ -79,8 +65,7 @@ class Foodtrucks extends Component
         $this->description = $record-> description;
     }
 
-    public function update()
-    {
+    public function update() {
         if ($this->plate == $this->plate_old)
             $this->validate(array_slice(Foodtruck::$rules, 1), Foodtruck::$message);
         else
@@ -98,8 +83,7 @@ class Foodtrucks extends Component
         session()->flash('message', 'Foodtruck successfully updated.');
     }
 
-    public function destroy($id)
-    {
+    public function destroy($id) {
         if ($id) {
             Foodtruck::where('id', $id)->delete();
             session()->flash('message', 'Foodtruck successfully deleted.');
