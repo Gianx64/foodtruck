@@ -42,10 +42,10 @@ return new class extends Migration
                 ->onDelete('cascade');
             $table->string('document_name')
                 ->comment('Document name.');
-            $table->string('file')
-                ->comment('Document file name.');
             $table->date('expires')
                 ->comment('Document expire date.');
+            $table->string('file')
+                ->comment('Document file name.');
             $table->boolean('approved')
                 ->default(0)
                 ->comment('Pending or approved.');

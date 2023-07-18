@@ -16,9 +16,10 @@ class Applications extends Component {
     public function render() {
         $keyWord = '%'.$this->keyWord.'%';
         return view('livewire.applications.view', [
-            'foodtrucks' => Application::leftJoin('foodtrucks', 'foodtrucks_applications.foodtruck_id', 'foodtrucks.id')
+            'foodtrucks' => Application::leftJoin('events', 'foodtrucks_applications.event_id', 'events.id')
+                        ->leftJoin('foodtrucks', 'foodtrucks_applications.foodtruck_id', 'foodtrucks.id')
                         ->leftJoin('users', 'foodtrucks.user_id', 'users.id')
-                        ->select('foodtrucks_applications.*', 'foodtrucks.plate', 'foodtrucks.foodtruck_name', 'foodtrucks.description', 'users.email')
+                        ->select('foodtrucks_applications.*', 'events.name', 'foodtrucks.plate', 'foodtrucks.foodtruck_name', 'foodtrucks.description', 'users.email')
                         ->orWhere('plate', 'LIKE', $keyWord)
                         ->where('approved', 0)
                         ->orWhere('email', 'LIKE', $keyWord)
@@ -27,8 +28,7 @@ class Applications extends Component {
                         ->where('approved', 0)
                         ->orWhere('foodtrucks_applications.food', 'LIKE', $keyWord)
                         ->where('approved', 0)
-                        ->paginate(10),
-            'events' => DB::table('events')->select('name', 'slots')->get()->toArray()
+                        ->paginate(10)
         ]);
     }
 
@@ -45,6 +45,17 @@ class Applications extends Component {
         $this->description = null;
     }
 
+    public function edit($row) {
+        $this->selected_id = $row['id'];
+        $this->event_id = $row['event_id'];
+        $this->foodtruck_id = $row['foodtruck_id'];
+        $this->food = $row['food'];
+        $this->plate = $row['plate'];
+        $this->foodtruck_name = $row['foodtruck_name'];
+        $this->description = $row['description'];
+        $this->owner = $row['email'];
+    }
+/*
     public function edit($id) {
         $this->selected_id = $id;
         $record = Application::findOrFail($id);
@@ -58,13 +69,13 @@ class Applications extends Component {
         $user = DB::table('users')->where('id', $foodtruck-> user_id)->first();
         $this->owner = $user-> email;
     }
-
+*/
     public function approve() {
-        if (DB::table('foodtrucks_applications')->where('event_id', $this->event_id)->where('approved', 1)->count()
-            < DB::table('events')->where('id', $this->event_id)->first()->slots)
-            if (DB::table('foodtrucks_applications')->where('event_id', $this->event_id)->where('approved', 1)->where('food', $this->food)->first() === null)
-            {
-                $record = Application::find($this-> selected_id);
+        if (DB::table('foodtrucks_applications')->where('event_id', $this->event_id)->where('approved', 1)
+            ->count() < DB::table('events')->where('id', $this->event_id)->first()->slots)
+            if (DB::table('foodtrucks_applications')->where('event_id', $this->event_id)
+                ->where('approved', 1)->where('food', $this->food)->first() === null) {
+                $record = Application::findOrFail($this-> selected_id);
                 $record->update([
                     'event_id' => $this->event_id,
                     'foodtruck_id' => $this->foodtruck_id,

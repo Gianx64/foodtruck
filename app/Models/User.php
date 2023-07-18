@@ -10,8 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable
-{
+class User extends Authenticatable {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
     /**
@@ -26,40 +25,33 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    protected $hidden = [ 'password', 'remember_token' ];
 
     /**
      * The attributes that should be cast.
      *
      * @var array<string, string>
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    protected $casts = [ 'email_verified_at' => 'datetime' ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function events()
-    {
+    public function events() {
         return $this->hasMany('App\Models\Event', 'owner', 'email');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public static function hasFoodtruck()
-    {
+    public static function hasFoodtruck() {
         return DB::table('foodtrucks')->where('user_id', auth()->user()->id)->exists();
     }
 
     static $rules = [
       'email' => 'required|string|email|max:255|unique:users,email',
       'name' => 'required|string|max:255',
-      'password' => 'required|string|min:8|confirmed',
+      'password' => 'required|string|min:8|confirmed'
     ];
 
     static $message = [

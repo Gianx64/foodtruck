@@ -28,7 +28,7 @@
                         <td>{{ $row->food }}</td>
                         <td width="90">
                             @can('foodtrucks.create')
-                                <a class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#showDataModal" wire:click="preview({{$row->id}})"><i class="fa fa-edit"></i>Apply</a>
+                                <a class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#showDataModal" wire:click="edit({{$row->id}})"><i class="fa fa-edit"></i>Apply</a>
                             @endcan
                         </td>
                     </tr>

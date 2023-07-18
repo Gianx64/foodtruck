@@ -4,8 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Document extends Model
-{
+class Document extends Model {
     /**
      * The attributes that are mass assignable.
      *
@@ -16,30 +15,27 @@ class Document extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function foodtruck()
-    {
+    public function foodtruck() {
         return $this->hasOne('App\Models\Foodtruck', 'id', 'foodtruck_id');
     }
 
     static $rules = [
         'foodtruck_id' => 'required|integer',
         'document_name' => 'required|string',
-        'file' => 'required|unique:foodtrucks_documents_applications,file',
-        'expires' => 'required|date'
+        'expires' => 'required|date',
+        'document' => 'required|mimes:pdf'
     ];
 
     static $message = [
-      'foodtruck_id.required' => 'The event name is required.',
-      'owner.required' => 'Owner email is required.',
-      'date.required' => 'The event date is required.',
-      'address.required' => 'Address is required.',
-      'slots.required' => 'The event slots is required.',
-      'slots.integer' => 'The event slots must be a positive integer.',
-      'slots.min' => 'The event slots must be at least 1.',
-      'slots.max' => 'The event slots is too big.',
-      'map.required' => 'The event map is required.',
-      'map.max' => 'The event map is too big.',
-      'map.mimes' => 'The map has to be a jpeg,png,jpg,gif or svg image.'
+        'foodtruck_id.required' => 'Foodtruck ID is required.',
+        'foodtruck_id.integer' => 'Foodtruck ID must be an integer.',
+        'document_name.required' => 'The document name is required.',
+        'document_name.string' => 'The document name must be a valid name.',
+        'expires.required' => 'The expiration date is required.',
+        'expires.date' => 'The expiration date must be a date.',
+        'document.required' => 'The document file is required.',
+        'document.max' => 'The document file is too big.',
+        'document.mimes' => 'The document file has to be a pdf file.'
     ];
 
     protected $table = 'foodtrucks_documents_applications';

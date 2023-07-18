@@ -5,8 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Foodtype extends Model
-{
+class Foodtype extends Model {
     use HasFactory;
 
     /**
@@ -19,8 +18,7 @@ class Foodtype extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function foodtruck()
-    {
+    public function foodtruck() {
         return $this->hasOne('App\Models\Foodtruck', 'food', 'name');
     }
 

@@ -103,18 +103,18 @@
 								@endif
 								@if($event->date > date("Y-m-d"))
 									@auth
-										@if(Auth::user()->hasRole('Foodtrucker'))
-											@if($event->slots > count($foodtrucks_approved))
-												@if($hasfoodtruck)
+										@can('foodtrucks.create')
+											@if($hasfoodtruck)
+												@if($event->slots > count($foodtrucks_approved))
 													@livewire('foodtruck-apply', [$event->id])
 												@else
-													<p>To apply for this event, you need to register a foodtruck in your profile.</p>
-													<h2><a class="nav-link" href="{{ route('users.edit') }}">Click here to go.</a></h2>
+													<p>There's no more room for foodtruck applications at this time, keep checking other events!</p>
 												@endif
 											@else
-												<p>There's no more room for foodtruck applications at this time, keep checking other events!</p>
+												<p>To apply for this event, you need to register a foodtruck in your profile.</p>
+												<h2><a class="nav-link" href="{{ route('users.edit') }}">Click here to go.</a></h2>
 											@endif
-										@endif
+										@endcan
 									@else
 										@if (Route::has('register'))
 											<p>Do you have a foodtruck and want to sell food in this event?</p>

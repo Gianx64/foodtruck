@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -41,7 +42,7 @@ class EventController extends Controller
         $foodtrucks_approved = $foodtrucks->where('approved', 1);
         $foodtrucks_pending = $foodtrucks->where('approved', 0);
         if(auth()->user()){
-            $hasfoodtruck = DB::table('foodtrucks')->where('user_id', auth()->user()->id)->exists();
+            $hasfoodtruck = User::hasfoodtruck();
             return view('livewire.events.show', compact('event', 'foodtrucks_approved', 'foodtrucks_pending', 'hasfoodtruck'));
         }
 

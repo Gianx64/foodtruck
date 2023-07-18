@@ -38,7 +38,7 @@
 					@forelse($foodtrucks as $row)
 					<tr>
 						<td>{{ $row->id }}</td> 
-						<td><a class="nav-link" href="{{route('events.show', $row->event_id)}}">{{$events[$row->event_id - 1]->name}}</a></td>
+						<td><a class="nav-link" href="{{route('events.show', $row->event_id)}}">{{$row->name}}</a></td>
 						<td>{{ $row->plate }}</td>
 						<td>{{ $row->foodtruck_name }}</td>
 						<td>{{ $row->email }}</td>
@@ -48,7 +48,7 @@
 								<a class="btn btn-sm btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Actions</a>
 								<ul class="dropdown-menu">
 									@can('foodtrucks.update')
-										<li><a data-bs-toggle="modal" data-bs-target="#reviewDataModal" class="dropdown-item" wire:click="edit({{$row->id}})"><i class="fa fa-edit"></i>Review</a></li>
+										<li><a data-bs-toggle="modal" data-bs-target="#reviewDataModal" class="dropdown-item" wire:click="edit({{$row}})"><i class="fa fa-edit"></i>Review</a></li>
 									@endcan
 									<li><a class="dropdown-item" href="{{route('events.show', $row->event_id)}}"><i class="fa fa-file-text"></i>Show event</a></li>
 									@can('foodtrucks.delete')

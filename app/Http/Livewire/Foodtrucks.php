@@ -13,10 +13,8 @@ class Foodtrucks extends Component {
     public $selected_id, $foodtypes, $plate, $plate_old, $foodtruck_name, $food, $description;
 
     public function render() {
-        return view('livewire.foodtrucks.manage', [
-            'foodtrucks' => Foodtruck::where('user_id', auth()->user()->id)
-            ->latest()
-            ->paginate(10)
+        return view('livewire.foodtrucks.view', [
+            'foodtrucks' => Foodtruck::where('user_id', auth()->user()->id)->latest()->paginate(10)
         ]);
     }
 
@@ -26,7 +24,6 @@ class Foodtrucks extends Component {
     }
 
     public function cancel() {
-        $this->dispatchBrowserEvent('closeModal');
         $this->resetInput();
     }
 
@@ -51,7 +48,7 @@ class Foodtrucks extends Component {
             'updated_at' => now()->toDateTimeString()
         ]);
 
-        redirect()->route('users.edit');
+        $this->dispatchBrowserEvent('closeModal');
 		session()->flash('message', 'Foodtruck successfully created.');
     }
 

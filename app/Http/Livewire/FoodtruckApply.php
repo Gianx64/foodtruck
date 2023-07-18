@@ -27,7 +27,7 @@ class FoodtruckApply extends Component {
         $this->dispatchBrowserEvent('closeModal');
     }
 
-    public function preview($id) {
+    public function edit($id) {
         $this->foodtruck_id = $id;
         $record = DB::table('foodtrucks')->where('user_id', auth()->user()->id)->where('id', $id)->first();
         $this->food = $record-> food;
@@ -36,10 +36,11 @@ class FoodtruckApply extends Component {
         $this->description = $record-> description;
     }
 
-    public function apply() {
+    public function store() {
         $this->validate([
-            'foodtruck_id' => 'required|unique:foodtrucks_applications,foodtruck_id,NULL,id,event_id,'.$this-> event_id,
-            'food' => 'required|unique:foodtrucks_applications,food,NULL,id,event_id,'.$this-> event_id
+            'event_id' => 'required|integer',
+            'foodtruck_id' => 'required|integer|unique:foodtrucks_applications,foodtruck_id,NULL,id,event_id,'.$this-> event_id,
+            'food' => 'required|exists:foodtypes,name|unique:foodtrucks_applications,food,NULL,id,event_id,'.$this-> event_id
         ], Application::$message);
 
         Application::create([

@@ -5,8 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Foodtruck extends Model
-{
+class Foodtruck extends Model {
     use HasFactory;
 
     /**
@@ -14,13 +13,12 @@ class Foodtruck extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['plate', 'foodtruck_name', 'food'];
+    protected $fillable = ['user_id', 'plate', 'foodtruck_name', 'food'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function event()
-    {
+    public function event() {
         return $this->hasOne('App\Models\Event', 'id', 'event_id');
     }
 
