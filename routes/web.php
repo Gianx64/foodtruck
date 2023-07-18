@@ -1,9 +1,5 @@
 <?php
 
-use App\Http\Controllers\EventController;
-use App\Http\Controllers\FoodtruckController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -27,17 +23,12 @@ Route::get('/', function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::get('profile/user', [UserController::class, 'edit'])->name('users.edit');
-    Route::get('users', [UserController::class, 'index'])->name('users.index');
-    Route::get('roles', [RoleController::class, 'index'])->name('roles.index');
-    Route::get('events', [EventController::class, 'index'])->name('events.index');
-    Route::get('foodtrucks', [FoodtruckController::class, 'index'])->name('foodtrucks.index');
-    Route::get('foodtypes', [FoodtruckController::class, 'foodIndex'])->name('foodtypes.index');
-
-    /*Route::apiResource('users', UserController::class);
-    Route::apiResource('roles', RoleController::class);
-    Route::apiResource('events', EventController::class)->except('show');
-    Route::apiResource('foodtrucks', FoodtruckController::class);*/
+    Route::get('profile/user', [App\Http\Controllers\UserController::class, 'edit'])->name('users.edit');
+    Route::get('users', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
+    Route::get('roles', [App\Http\Controllers\RoleController::class, 'index'])->name('roles.index');
+    Route::get('events', [App\Http\Controllers\EventController::class, 'index'])->name('events.index');
+    Route::get('applications', [App\Http\Controllers\FoodtruckController::class, 'index'])->name('applications.index');
+    Route::get('foodtypes', [App\Http\Controllers\FoodtruckController::class, 'foodIndex'])->name('foodtypes.index');
 });
 
-Route::get('events/{event}', [EventController::class, 'show'])->name('events.show');
+Route::get('events/{event}', [App\Http\Controllers\EventController::class, 'show'])->name('events.show');

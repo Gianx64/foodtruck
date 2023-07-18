@@ -38,12 +38,13 @@ Por Hacer
 Creador de formularios (?)
 Limpiar postulaciones cuando ya pasó un evento
 
-Cuenta para foodtrucks:
-	El cambio de tipo de comida expira ciertos documentos e invalida las aplicaciones a eventos
-	Implementar múltiples tipos de comida por foodtruck
+Cambiar nombres de componentes Foodtruck por Foodtrucks y Foodtrucks por Applications
 Módulo para aprovar o rechazar documentos de foodtrucks
 	Documentación requerida por evento (variable)
 	Actualizar HomeController y home.blade
+Cuenta para foodtrucks:
+	El cambio de tipo de comida expira ciertos documentos e invalida las aplicaciones a eventos
+	Implementar múltiples tipos de comida por foodtruck
 Implementar correos
 	Lista de foodtrucks para contactar masivamente (por zona)
 	Confirmaciones por correo (conexion, documentos, aplicaciones a eventos, seleccionado o rechazado para evento)

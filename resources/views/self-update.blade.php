@@ -11,7 +11,7 @@
 					<br>
 					<div class="row justify-content-center">
 						@can('foodtrucks.create')
-							@livewire('foodtruck')
+							@livewire('foodtrucks')
 						@endcan
 					</div>
 				</div>

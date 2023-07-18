@@ -5,46 +5,41 @@ namespace App\Http\Livewire;
 use App\Models\Foodtruck;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
-use Livewire\WithPagination;
+use Livewire\WithFileUploads;
 
 class Foodtrucks extends Component
 {
-    use WithPagination;
+    use WithFileUploads;
 
-    protected $paginationTheme = 'bootstrap';
-    public $keyWord, $selected_id, $event_id, $foodtruck_id, $foodtruck_name, $plate, $owner, $food, $description;
+    public $selected_id, $foodtypes, $plate, $plate_old, $foodtruck_name, $food, $description;
+    //public $documents = [];
 
     public function render()
     {
-        $keyWord = '%'.$this->keyWord.'%';
-        return view('livewire.foodtrucks.view', [
-            'foodtrucks' => Foodtruck::latest()
-                        ->leftJoin('foodtrucks', 'foodtrucks_applications.foodtruck_id', 'foodtrucks.id')
-                        ->leftJoin('users', 'foodtrucks.user_id', 'users.id')
-                        ->select('foodtrucks_applications.*', 'foodtrucks.plate', 'foodtrucks.foodtruck_name', 'foodtrucks.description', 'users.email')
-                        ->orWhere('plate', 'LIKE', $keyWord)
-                        ->where('approved', 0)
-                        ->orWhere('email', 'LIKE', $keyWord)
-                        ->where('approved', 0)
-                        ->orWhere('foodtruck_name', 'LIKE', $keyWord)
-                        ->where('approved', 0)
-                        ->orWhere('foodtrucks_applications.food', 'LIKE', $keyWord)
-                        ->where('approved', 0)
-                        ->paginate(10),
-            'events' => DB::table('events')->select('name', 'slots')->get()->toArray()
+        return view('livewire.foodtrucks.manage', [
+            'foodtrucks' => Foodtruck::where('user_id', auth()->user()->id)
+            ->latest()
+            ->paginate(10)
         ]);
+    }
+
+    public function mount()
+    {
+        $this->foodtypes = DB::table('foodtypes')->pluck('name')->toArray();
+        $this->food = $this->foodtypes[0];
+        $this->resetInput();
     }
 
     public function cancel()
     {
+        $this->dispatchBrowserEvent('closeModal');
         $this->resetInput();
     }
 
-    private function resetInput()
+    public function resetInput()
     {
-        $this->event_id = null;
         $this->plate = null;
-        $this->owner = null;
+        $this->plate_old = null;
         $this->foodtruck_name = null;
         $this->food = null;
         $this->description = null;
@@ -53,61 +48,61 @@ class Foodtrucks extends Component
     public function store()
     {
         $this->validate(Foodtruck::$rules, Foodtruck::$message);
+        /*$this->validate(['documents.*' => 'required|mimes:pdf']);
+ 
+        foreach ($this->documents as $document) {
+            $document->storePublicly('public/documents');
+        }*/
 
         Foodtruck::create([
-            'event_id' => $this-> event_id,
-            'foodtruck_id' => $this-> foodtruck_id,
-            'food' => $this-> food
+            'user_id' => auth()->user()->id,
+            'plate' => $this-> plate,
+            'foodtruck_name' => $this-> foodtruck_name,
+            'food' => $this-> food,
+            'description' => $this-> description,
+            'created_at' => now()->toDateTimeString(),
+            'updated_at' => now()->toDateTimeString()
         ]);
 
-        $this->resetInput();
-        $this->dispatchBrowserEvent('closeModal');
-        session()->flash('message', 'Foodtruck successfully created.');
+        redirect()->route('users.edit');
+		session()->flash('message', 'Foodtruck successfully created.');
     }
 
     public function edit($id)
     {
         $this->selected_id = $id;
-        $record = Foodtruck::findOrFail($id);
-        $this->event_id = $record-> event_id;
-        $this->foodtruck_id = $record-> foodtruck_id;
+        $record = Foodtruck::where('user_id', auth()->user()->id)->where('id', $id)->first();
         $this->food = $record-> food;
-        $foodtruck = DB::table('foodtrucks')->where('id', $this->foodtruck_id)->first();
-        $this->plate = $foodtruck-> plate;
-        $this->foodtruck_name = $foodtruck-> foodtruck_name;
-        $this->description = $foodtruck-> description;
-        $user = DB::table('users')->where('id', $foodtruck-> user_id)->first();
-        $this->owner = $user-> email;
+        $this->plate = $record-> plate;
+        $this->plate_old = $record-> plate;
+        $this->foodtruck_name = $record-> foodtruck_name;
+        $this->description = $record-> description;
     }
 
-    public function approve($id)
+    public function update()
     {
-        if (DB::table('foodtrucks_applications')->where('event_id', $this->event_id)->where('approved', 1)->count()
-            < DB::table('events')->where('id', $this->event_id)->first()->slots)
-            if (DB::table('foodtrucks_applications')->where('event_id', $this->event_id)->where('approved', 1)->where('food', $this->food)->first() === null)
-            {
-                $record = Foodtruck::find($id);
-                $record->update([
-                    'event_id' => $this->event_id,
-                    'foodtruck_id' => $this->foodtruck_id,
-                    'food', $this->food,
-                    'approved' => 1
-                ]);
-
-                session()->flash('message', 'Foodtruck successfully approved.');
-            }
-            else
-                session()->flash('message', "There's already a foodtruck with this food in this event.");
+        if ($this->plate == $this->plate_old)
+            $this->validate(array_slice(Foodtruck::$rules, 1), Foodtruck::$message);
         else
-            session()->flash('message', "There's no room for this foodtruck in this event.");
+            $this->validate(Foodtruck::$rules, Foodtruck::$message);
+
+        Foodtruck::where('user_id', auth()->user()->id)->where('id', $this->selected_id)->update([
+            'plate' => $this-> plate,
+            'foodtruck_name' => $this-> foodtruck_name,
+            'food' => $this-> food,
+            'description' => $this-> description,
+            'updated_at' => now()->toDateTimeString()
+        ]);
+
         $this->dispatchBrowserEvent('closeModal');
+        session()->flash('message', 'Foodtruck successfully updated.');
     }
 
     public function destroy($id)
     {
         if ($id) {
             Foodtruck::where('id', $id)->delete();
-            session()->flash('message', 'Application successfully deleted.');
+            session()->flash('message', 'Foodtruck successfully deleted.');
         }
     }
 }

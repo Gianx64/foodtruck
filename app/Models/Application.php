@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Foodtruck extends Model
+class Application extends Model
 {
     use HasFactory;
 
@@ -14,7 +14,7 @@ class Foodtruck extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['plate', 'foodtruck_name', 'food'];
+    protected $fillable = ['event_id', 'foodtruck_id', 'food', 'approved'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
@@ -34,7 +34,7 @@ class Foodtruck extends Model
         'plate.required' => 'The foodtruck vehicle plate is required.',
         'plate.max' => 'The foodtruck vehicle license plate cannot be over 8 characters.',
         'plate.min' => 'The foodtruck vehicle license plate cannot be under 6 characters.',
-        'plate.unique' => 'The foodtruck vehicle license plate is already taken.',
+        'plate.unique' => 'This foodtruck is already pending.',
         'foodtruck_name.required' => 'The foodtruck name is required.',
         'foodtruck_id.unique' => 'This foodtruck is already pending.',
         'food.required' => 'The food type is required.',
@@ -42,7 +42,7 @@ class Foodtruck extends Model
         'food_id.unique' => 'This food type is already taken.'
     ];
 
-    protected $table = 'foodtrucks';
+    protected $table = 'foodtrucks_applications';
 
     public $timestamps = true;
 }

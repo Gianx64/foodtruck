@@ -40,8 +40,11 @@ class EventController extends Controller
         ->select('foodtrucks_applications.*', 'foodtrucks.plate', 'foodtrucks.foodtruck_name', 'foodtrucks.description')->get();
         $foodtrucks_approved = $foodtrucks->where('approved', 1);
         $foodtrucks_pending = $foodtrucks->where('approved', 0);
-        $hasfoodtruck = DB::table('foodtrucks')->where('user_id', auth()->user()->id)->exists();
+        if(auth()->user()){
+            $hasfoodtruck = DB::table('foodtrucks')->where('user_id', auth()->user()->id)->exists();
+            return view('livewire.events.show', compact('event', 'foodtrucks_approved', 'foodtrucks_pending', 'hasfoodtruck'));
+        }
 
-        return view('livewire.events.show', compact('event', 'foodtrucks_approved', 'foodtrucks_pending', 'hasfoodtruck'));
+        return view('livewire.events.show', compact('event', 'foodtrucks_approved', 'foodtrucks_pending'));
     }
 }

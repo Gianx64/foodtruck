@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Foodtruck;
+use App\Models\Application;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -49,9 +49,9 @@ class FoodtruckApply extends Component
         $this->validate([
             'foodtruck_id' => 'required|unique:foodtrucks_applications,foodtruck_id,NULL,id,event_id,'.$this-> event_id,
             'food' => 'required|unique:foodtrucks_applications,food,NULL,id,event_id,'.$this-> event_id
-        ], Foodtruck::$message);
+        ], Application::$message);
 
-        Foodtruck::create([
+        Application::create([
             'event_id' => $this-> event_id,
             'foodtruck_id' => $this-> foodtruck_id,
             'food' => $this-> food

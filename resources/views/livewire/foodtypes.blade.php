@@ -13,12 +13,10 @@
 		</div>
 	</div>
 	<div class="card-body">
-		@can('foodtrucks.create')
-			<div>
-				<input wire:model='name' type="text" name="name" id="name" placeholder="Food name">
-				<button type="button" wire:click.prevent="store()" wire:loading.attr="disabled" wire:target="save" class="btn btn-primary">Save</button>
-			</div>
-		@endcan
+		<div>
+			<input wire:model='name' type="text" name="name" id="name" placeholder="Food name">
+			<button type="button" wire:click.prevent="store()" wire:loading.attr="disabled" wire:target="save" class="btn btn-primary">Save</button>
+		</div>
 		<div class="table-responsive">
 			<table class="table table-bordered table-sm">
 				<thead class="thead">
@@ -34,9 +32,7 @@
 						<td>{{ $row->id }}</td> 
 						<td>{{ $row->name }}</td>
 						<td width="100">
-							@can('foodtrucks.delete')
-								<button type="button" onclick="confirm('Confirm Delete Foodtruck id {{$row->id}}? \nDeleted Foodtrucks cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$row->id}})" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa fa-trash"></i>Delete</button>
-							@endcan
+							<button type="button" onclick="confirm('Confirm Delete Foodtruck id {{$row->id}}? \nDeleted Foodtrucks cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$row->id}})" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa fa-trash"></i>Delete</button>
 						</td>
 					</tr>
 					@empty

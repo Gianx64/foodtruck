@@ -17,7 +17,7 @@ class FoodtruckController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        return view('livewire.foodtrucks.index');
+        return view('livewire.applications.index');
     }
 
     /**
@@ -27,15 +27,5 @@ class FoodtruckController extends Controller
      */
     public function foodIndex() {
         return view('foodtypes');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function create ($id) {
-        return view('foodtruck-apply', compact('id'));
     }
 }

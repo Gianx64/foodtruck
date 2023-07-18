@@ -37,7 +37,7 @@
 							<div class="col-md-3">
 								<div class="card border-danger mx-sm-1 p-3">
 									<div class="card border-danger text-danger p-3 my-card" ><span class="text-center fa fa-truck" aria-hidden="true"></span></div>
-									<div class="text-danger text-center mt-3"><a href="{{ url('/foodtrucks') }}" class="nav-link"><h4>Pending Foodtruck Applies</h4></a></div>
+									<div class="text-danger text-center mt-3"><a href="{{ url('/foodtrucks') }}" class="nav-link"><h4>Pending Foodtruck Applications</h4></a></div>
 									<div class="text-danger text-center mt-2"><h1>{{ $data[2] }}</h1></div>
 								</div>
 							</div>
