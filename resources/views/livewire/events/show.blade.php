@@ -49,31 +49,6 @@
 								</div>
 							</div>
 							<div class="card-body">
-								@if(strval($foodtrucks_pending) !== '[]')
-									<div class="row">
-										<h1>Pending foodtrucks ({{count($foodtrucks_pending)}}):</h1>
-									</div>
-									<table class="table table-hover">
-										<thead>
-											<tr>
-												<th>Name</th>
-												<th>Plate</th>
-												<th>Food type</th>
-												<th>Description</th>
-											</tr>
-										</thead>
-										<tbody>
-											@foreach ($foodtrucks_pending as $foodtruck)
-												<tr>
-													<td>{{$foodtruck->foodtruck_name}}</td>
-													<td>{{$foodtruck->plate}}</td>
-													<td>{{$foodtruck->food}}</td>
-													<td>{{$foodtruck->description}}</td>
-												</tr>
-											@endforeach
-										</tbody>
-									</table>
-								@endif
 								@if(strval($foodtrucks_approved) !== '[]')
 									<div class="row">
 										<h1>Attending foodtrucks ({{count($foodtrucks_approved)}} / {{$event->slots}}):</h1>
@@ -98,6 +73,33 @@
 											@endforeach
 										</tbody>
 									</table>
+								@endif
+								@auth
+									@if(strval($foodtrucks_pending) !== '[]')
+										<div class="row">
+											<h1>Pending foodtrucks ({{count($foodtrucks_pending)}}):</h1>
+										</div>
+										<table class="table table-hover">
+											<thead>
+												<tr>
+													<th>Name</th>
+													<th>Plate</th>
+													<th>Food type</th>
+													<th>Description</th>
+												</tr>
+											</thead>
+											<tbody>
+												@foreach ($foodtrucks_pending as $foodtruck)
+													<tr>
+														<td>{{$foodtruck->foodtruck_name}}</td>
+														<td>{{$foodtruck->plate}}</td>
+														<td>{{$foodtruck->food}}</td>
+														<td>{{$foodtruck->description}}</td>
+													</tr>
+												@endforeach
+											</tbody>
+										</table>
+									@endif
 								@endif
 								@if($event->date > date("Y-m-d"))
 									@auth
