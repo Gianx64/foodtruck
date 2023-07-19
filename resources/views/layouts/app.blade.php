@@ -17,8 +17,13 @@
         <div id="app">
             <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
                 <div class="container">
+                    @guest
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Laravel') }}
+                    @else
+                    <a class="navbar-brand" href="{{ url('/home') }}">
+                        {{ config('app.name', 'Laravel') }}
+                    @endif
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                         <span class="navbar-toggler-icon"></span>
@@ -43,15 +48,17 @@
                                     <a href="{{ url('/events') }}" class="nav-link"><i class="fab fa-laravel text-info"></i>Events</a> 
                                 </li>
                             @endcan
+                            @can('foodtrucks.read')
+                                <li class="nav-item">
+                                    <a href="{{ url('/applications') }}" class="nav-link"><i class="fab fa-laravel text-info"></i>Applications</a> 
+                                </li>
+                            @endcan
                             @can('documents.read' )
                                 <li class="nav-item">
                                     <a href="{{ url('/documents') }}" class="nav-link"><i class="fab fa-laravel text-info"></i>Documents</a> 
                                 </li>
                             @endcan
                             @can('foodtrucks.read')
-                                <li class="nav-item">
-                                    <a href="{{ url('/applications') }}" class="nav-link"><i class="fab fa-laravel text-info"></i>Applications</a> 
-                                </li>
                                 <li class="nav-item">
                                     <a href="{{ url('/foodtypes') }}" class="nav-link"><i class="fab fa-laravel text-info"></i>Foodtypes</a> 
                                 </li>

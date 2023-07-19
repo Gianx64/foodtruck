@@ -81,8 +81,7 @@
                     </div>
                     <div class="form-group">
                         <label for="file">Document File:</label>
-                        <input wire:model="file" type="file" class="form-control" id="file" placeholder="File" readonly>
-                        @error('file') <span class="error text-danger">{{ $message }}</span> @enderror
+                        <br><a class="btn btn-sm btn-secondary" href="{{$file}}" target="_blank" rel="noopener noreferrer">Open in a new tab</a>
                     </div>
                 </form>
             </div>
