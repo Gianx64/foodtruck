@@ -17,7 +17,7 @@ class Events extends Component {
     public function render() {
         $keyWord = '%'.$this->keyWord .'%';
         return view('livewire.events.view', [
-            'events' => Event::latest()
+            'events' => Event::orderBy('date', 'DESC')
                         ->orWhere('name', 'LIKE', $keyWord)
                         ->orWhere('owner', 'LIKE', $keyWord)
                         ->orWhere('date', 'LIKE', $keyWord)
