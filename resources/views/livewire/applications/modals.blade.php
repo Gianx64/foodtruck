@@ -50,7 +50,7 @@
                 @endcan
                 @can('foodtrucks.update')
                     <div class="col">
-                        <button type="button" wire:click.prevent="approve({{$selected_id}})" class="btn btn-primary" data-bs-dismiss="modal">Approve</button>
+                        <button type="button" wire:click.prevent="update()" class="btn btn-primary" data-bs-dismiss="modal">Approve</button>
                     </div>
                 @endcan
             </div>

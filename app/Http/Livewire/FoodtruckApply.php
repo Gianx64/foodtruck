@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Application;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
@@ -41,7 +42,10 @@ class FoodtruckApply extends Component {
         $this->validate([
             'event_id' => 'required|integer',
             'foodtruck_id' => 'required|integer|unique:foodtrucks_applications,foodtruck_id,NULL,id,event_id,'.$this-> event_id,
-            'food' => 'required|exists:foodtypes,name|unique:foodtrucks_applications,food,NULL,id,event_id,'.$this-> event_id
+            'food' => [
+                'required', 'exists:foodtypes,name',
+                Rule::unique('foodtrucks_applications')->where('event_id', $this-> event_id)->where('approved', 1)
+            ]
         ], Application::$message);
 
         Application::create([

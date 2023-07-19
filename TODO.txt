@@ -33,15 +33,16 @@ Cuenta para foodtrucks:
 	Vista con login para ver cuántos foodtrucks están pendientes además de los aceptados
 	Implementar múltiples foodtrucks por persona
 404 para eventos no existentes
+Documentos de foodtrucks
+	Módulo para aprovar o rechazar documentos de foodtrucks
 
 Por Hacer
 Creador de formularios (?)
 Limpiar postulaciones cuando ya pasó un evento
 
-Cambiar nombres de componentes Foodtruck por Foodtrucks y Foodtrucks por Applications
-Módulo para aprovar o rechazar documentos de foodtrucks
+Actualizar HomeController y home.blade
+Documentos de foodtrucks
 	Documentación requerida por evento (variable)
-	Actualizar HomeController y home.blade
 Cuenta para foodtrucks:
 	El cambio de tipo de comida expira ciertos documentos e invalida las aplicaciones a eventos
 	Implementar múltiples tipos de comida por foodtruck

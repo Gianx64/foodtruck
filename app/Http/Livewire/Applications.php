@@ -70,18 +70,13 @@ class Applications extends Component {
         $this->owner = $user-> email;
     }
 */
-    public function approve() {
+    public function update() {
         if (DB::table('foodtrucks_applications')->where('event_id', $this->event_id)->where('approved', 1)
             ->count() < DB::table('events')->where('id', $this->event_id)->first()->slots)
             if (DB::table('foodtrucks_applications')->where('event_id', $this->event_id)
                 ->where('approved', 1)->where('food', $this->food)->first() === null) {
                 $record = Application::findOrFail($this-> selected_id);
-                $record->update([
-                    'event_id' => $this->event_id,
-                    'foodtruck_id' => $this->foodtruck_id,
-                    'food', $this->food,
-                    'approved' => 1
-                ]);
+                $record->update(['approved' => 1]);
 
                 session()->flash('message', 'Foodtruck successfully approved.');
             }

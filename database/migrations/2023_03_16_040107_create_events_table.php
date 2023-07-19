@@ -28,11 +28,11 @@ return new class extends Migration
                   ->comment('Event physical address.');
             $table->unsignedTinyInteger('slots')
                   ->comment('Ammount of event room for foodtrucks.');
-            $table->string('map')
-                  ->comment('Event map image file name.');
             $table->text('description')
                   ->nullable()
                   ->comment('Event description and additional information.');
+            $table->string('map')
+                  ->comment('Event map image file name.');
             $table->timestamps();
         });
     }

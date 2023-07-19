@@ -25,10 +25,10 @@
 			<table class="table table-bordered table-sm">
 				<thead class="thead">
 					<tr> 
-						<td>ID</td> 
-						<th>Foodtruck ID</th>
+						<td>ID</td>
+						<th>Foodtruck Plate</th>
+						<th>Foodtruck Name</th>
 						<th>Document Name</th>
-						<th>File</th>
 						<th>Expiration Date</th>
 						<th>Approved</th>
 						<td>ACTIONS</td>
@@ -37,20 +37,20 @@
 				<tbody>
 					@forelse($documents as $row)
 					<tr>
-						<td>{{ $row->id }}</td> 
-						<td>{{ $row->foodtruck_id }}</td>
+						<td>{{ $row->id }}</td>
+						<td>{{ $row->plate }}</td>
+						<td>{{ $row->foodtruck_name }}</td>
 						<td>{{ $row->document_name }}</td>
-						<td>{{ $row->file }}</td>
 						<td>{{ $row->expires }}</td>
 						<td>{{ $row->approved }}</td>
 						<td width="90">
 							<div class="dropdown">
 								<a class="btn btn-sm btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Actions</a>
 								<ul class="dropdown-menu">
-									@can('foodtrucks.update')
-										<li><a data-bs-toggle="modal" data-bs-target="#reviewDataModal" class="dropdown-item" wire:click="edit({{$row->id}})"><i class="fa fa-edit"></i>Edit</a></li>
+									@can('documents.update')
+										<li><a data-bs-toggle="modal" data-bs-target="#reviewDataModal" class="dropdown-item" wire:click="edit({{$row}})"><i class="fa fa-edit"></i>Review</a></li>
 									@endcan
-									@can('foodtrucks.delete')
+									@can('documents.delete')
 										<li><a class="dropdown-item" onclick="confirm('Confirm delete document id {{$row->id}}? \nDeleted documents cannot be recovered!')||event.stopImmediatePropagation()"
 										wire:click="destroy({{$row->id}})"><i class="fa fa-trash"></i>Delete</a></li>
 									@endcan

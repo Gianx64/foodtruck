@@ -44,11 +44,11 @@ return new class extends Migration
                 ->comment('Document name.');
             $table->date('expires')
                 ->comment('Document expire date.');
-            $table->string('file')
-                ->comment('Document file name.');
             $table->boolean('approved')
                 ->default(0)
                 ->comment('Pending or approved.');
+            $table->string('file')
+                ->comment('Document file name.');
             $table->timestamps();
         });
         Schema::create('foodtrucks_applications', function (Blueprint $table) {

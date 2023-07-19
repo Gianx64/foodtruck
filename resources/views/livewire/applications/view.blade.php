@@ -52,7 +52,8 @@
 									@endcan
 									<li><a class="dropdown-item" href="{{route('events.show', $row->event_id)}}"><i class="fa fa-file-text"></i>Show event</a></li>
 									@can('foodtrucks.delete')
-										<li><a class="dropdown-item" onclick="confirm('Confirm delete application id {{$row->id}}? \nDeleted Foodtrucks cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$row->id}})"><i class="fa fa-trash"></i>Delete</a></li>
+										<li><a class="dropdown-item" onclick="confirm('Confirm delete application id {{$row->id}}? \nDeleted Foodtrucks cannot be recovered!')||event.stopImmediatePropagation()"
+										wire:click="destroy({{$row->id}})"><i class="fa fa-trash"></i>Delete</a></li>
 									@endcan
 								</ul>
 							</div>

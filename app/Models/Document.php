@@ -21,9 +21,9 @@ class Document extends Model {
 
     static $rules = [
         'foodtruck_id' => 'required|integer',
-        'document_name' => 'required|string',
+        'document_name' => 'required|string|unique:foodtrucks_documents_applications,document_name',
         'expires' => 'required|date',
-        'document' => 'required|mimes:pdf'
+        'file' => 'required|mimes:pdf'
     ];
 
     static $message = [
@@ -31,11 +31,12 @@ class Document extends Model {
         'foodtruck_id.integer' => 'Foodtruck ID must be an integer.',
         'document_name.required' => 'The document name is required.',
         'document_name.string' => 'The document name must be a valid name.',
+        'document_name.unique' => 'This document name is already pending for this foodtruck.',
         'expires.required' => 'The expiration date is required.',
         'expires.date' => 'The expiration date must be a date.',
-        'document.required' => 'The document file is required.',
-        'document.max' => 'The document file is too big.',
-        'document.mimes' => 'The document file has to be a pdf file.'
+        'file.required' => 'The document file is required.',
+        'file.max' => 'The document file is too big.',
+        'file.mimes' => 'The document file has to be a pdf file.'
     ];
 
     protected $table = 'foodtrucks_documents_applications';

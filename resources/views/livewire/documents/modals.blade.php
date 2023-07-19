@@ -18,7 +18,15 @@
            <div class="modal-body">
 				<form>
                     <div class="form-group">
-                        <label for="document_name">Document Name:</label>
+                        <label for="plate">License Plate:</label>
+                        <input wire:model.defer="plate" type="text" class="form-control" id="plate" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="foodtruck_name">Foodtruck's Name:</label>
+                        <input wire:model.defer="foodtruck_name" type="text" class="form-control" id="foodtruck_name" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="document_name">Document's Name:</label>
                         <input wire:model="document_name" type="text" class="form-control" id="document_name" placeholder="Document Name">
                         @error('document_name') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
@@ -37,7 +45,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary close-btn" data-bs-dismiss="modal">Close</button>
-                <button type="button" wire:click.prevent="store()" class="btn btn-primary">Save</button>
+                <button type="button" wire:click.prevent="store()" wire:loading.attr="disabled" wire:target="save, file" class="btn btn-primary">Save</button>
             </div>
         </div>
     </div>
@@ -54,7 +62,15 @@
             <div class="modal-body">
                 <form>
                     <div class="form-group">
-                        <label for="document_name">Document Name:</label>
+                        <label for="plate">License Plate:</label>
+                        <input wire:model.defer="plate" type="text" class="form-control" id="plate" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="foodtruck_name">Foodtruck's Name:</label>
+                        <input wire:model.defer="foodtruck_name" type="text" class="form-control" id="foodtruck_name" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="document_name">Document's Name:</label>
                         <input wire:model="document_name" type="text" class="form-control" id="document_name" placeholder="Document Name" readonly>
                         @error('document_name') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>

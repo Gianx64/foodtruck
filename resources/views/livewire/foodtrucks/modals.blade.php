@@ -20,17 +20,17 @@
            <div class="modal-body">
 				<form>
                     <div class="form-group">
-                        <label for="plate">Plate:</label>
+                        <label for="plate">License Plate:</label>
                         <input wire:model.defer="plate" type="text" class="form-control" id="plate">
                         @error('plate') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
-                        <label for="foodtruck_name">Foodtruck's name:</label>
+                        <label for="foodtruck_name">Foodtruck's Name:</label>
                         <input wire:model.defer="foodtruck_name" type="text" class="form-control" id="foodtruck_name">
                         @error('foodtruck_name') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
-                        <label for="food">Food type:</label>
+                        <label for="food">Food Type:</label>
                         <select wire:model.defer="food" class="form-control" name="food" id="food">
                             @foreach($foodtypes as $foodtype)
                                 <option value="{{$foodtype}}">{{$foodtype}}</option>
@@ -64,17 +64,17 @@
            <div class="modal-body">
 				<form>
                     <div class="form-group">
-                        <label for="plate">Plate:</label>
+                        <label for="plate">License Plate:</label>
                         <input wire:model.defer="plate" type="text" class="form-control" id="plate">
                         @error('plate') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
-                        <label for="foodtruck_name">Foodtruck's name:</label>
+                        <label for="foodtruck_name">Foodtruck's Name:</label>
                         <input wire:model.defer="foodtruck_name" type="text" class="form-control" id="foodtruck_name">
                         @error('foodtruck_name') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
-                        <label for="food">Food type:</label>
+                        <label for="food">Food Type:</label>
                         <select wire:model.defer="food" class="form-control" name="food" id="food">
                             @foreach($foodtypes as $foodtype)
                                 <option value="{{$foodtype}}">{{$foodtype}}</option>

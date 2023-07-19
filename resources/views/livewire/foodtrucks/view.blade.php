@@ -34,21 +34,15 @@
 						<td>{{ $row->plate }}</td>
 						<td>{{ $row->foodtruck_name }}</td>
 						<td>{{ $row->food }}</td>
-						<td width="90">
-							<div class="dropdown">
-								<a class="btn btn-sm btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-									Actions
-								</a>
-								<ul class="dropdown-menu">
-									<li><a data-bs-toggle="modal" data-bs-target="#updateDataModal" class="dropdown-item" wire:click="edit({{$row->id}})"><i class="fa fa-edit"></i>Edit</a></li>
-									@can('documents.create')
-										<li>@livewire('document-apply', [$row->id])</li>
-									@endcan
-									@can('foodtrucks.delete' && false)
-										<li><a class="dropdown-item" onclick="confirm('Confirm delete foodtruck id {{$row->id}}? \nDeleted foodtrucks cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$row->id}})"><i class="fa fa-trash"></i>Delete</a></li>
-									@endcan
-								</ul>
-							</div>
+						<td width="130">
+							@can('documents.create')
+								@livewire('document-apply', [$row])
+							@endcan
+							<a data-bs-toggle="modal" data-bs-target="#updateDataModal" class="btn btn-sm btn-secondary" wire:click="edit({{$row->id}})"><i class="fa fa-edit"></i>Edit</a>
+							@can('foodtrucks.delete' && false)
+								<a class="btn btn-sm btn-danger" onclick="confirm('Confirm delete foodtruck id {{$row->id}}? \nDeleted foodtrucks cannot be recovered!')||event.stopImmediatePropagation()"
+								wire:click="destroy({{$row->id}})"><i class="fa fa-trash"></i>Delete</a>
+							@endcan
 						</td>
 					</tr>
 					@empty

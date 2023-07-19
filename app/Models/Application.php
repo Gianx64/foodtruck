@@ -25,10 +25,10 @@ class Application extends Model {
     static $message = [
         'foodtruck_name.required' => 'The foodtruck name is required.',
         'foodtruck_id.integer' => 'Foodtruck ID must be an integer.',
-        'foodtruck_id.unique' => 'This foodtruck is already pending.',
+        'foodtruck_id.unique' => 'This foodtruck has already applied to this event.',
         'food.required' => 'The food type is required.',
         'food.exists' => 'The food type must be an option from the dropdown menu.',
-        'food.unique' => 'This food type is already taken.'
+        'food.unique' => 'This food type is already taken for this event.'
     ];
 
     protected $table = 'foodtrucks_applications';
