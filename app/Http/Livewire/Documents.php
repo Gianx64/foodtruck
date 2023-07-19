@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Document;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -51,8 +52,9 @@ class Documents extends Component {
         $this->plate = $row['plate'];
         $this->foodtruck_name = $row['foodtruck_name'];
         $this->document_name = $record-> document_name;
-        $this->file = $record-> file;
         $this->expires = $record-> expires;
+        $this->file = $record-> file;
+        $this->file = Storage::url($this->file);
     }
 
     public function update() {
