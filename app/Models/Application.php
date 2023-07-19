@@ -13,7 +13,7 @@ class Application extends Model {
      *
      * @var array<int, string>
      */
-    protected $fillable = ['event_id', 'foodtruck_id', 'food'];
+    protected $fillable = ['event_id', 'foodtruck_id', 'food', 'approved'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

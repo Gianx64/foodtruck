@@ -10,7 +10,7 @@ class Document extends Model {
      *
      * @var array<int, string>
      */
-    protected $fillable = ['foodtruck_id','document_name','file','expires'];
+    protected $fillable = ['foodtruck_id', 'document_name', 'file', 'expires', 'approved'];
 	
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

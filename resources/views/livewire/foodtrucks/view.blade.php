@@ -40,8 +40,9 @@
 									Actions
 								</a>
 								<ul class="dropdown-menu">
-									@can('foodtrucks.create')
-										<li><a data-bs-toggle="modal" data-bs-target="#updateDataModal" class="dropdown-item" wire:click="edit({{$row->id}})"><i class="fa fa-edit"></i>Edit</a></li>
+									<li><a data-bs-toggle="modal" data-bs-target="#updateDataModal" class="dropdown-item" wire:click="edit({{$row->id}})"><i class="fa fa-edit"></i>Edit</a></li>
+									@can('documents.create')
+										<li>@livewire('document-apply', [$row->id])</li>
 									@endcan
 									@can('foodtrucks.delete' && false)
 										<li><a class="dropdown-item" onclick="confirm('Confirm delete foodtruck id {{$row->id}}? \nDeleted foodtrucks cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$row->id}})"><i class="fa fa-trash"></i>Delete</a></li>

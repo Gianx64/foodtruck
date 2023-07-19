@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class FoodtruckApply extends Component {
+    protected $paginationTheme = 'bootstrap';
     public $foodtypes, $event_id, $foodtruck_id, $foodtruck_name, $plate, $food, $description;
 
     public function render() {
