@@ -1,9 +1,47 @@
 <script type="module">
+    const docModal = new bootstrap.Modal('#documentDataModal');
     const reviewModal = new bootstrap.Modal('#reviewDataModal');
     window.addEventListener('closeModal', () => {
+    docModal.hide();
     reviewModal.hide();
     })
 </script>
+
+<!-- Add Modal -->
+<div wire:ignore.self class="modal fade" id="documentDataModal" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="createDataModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createDataModalLabel">Create New Document</h5>
+                <button wire:click.prevent="cancel()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+           <div class="modal-body">
+				<form>
+                    <div class="form-group">
+                        <label for="document_name">Document Name:</label>
+                        <input wire:model="document_name" type="text" class="form-control" id="document_name" placeholder="Document Name">
+                        @error('document_name') <span class="error text-danger">{{ $message }}</span> @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="expires">Expiration Date:</label>
+                        <input wire:model="expires" type="date" class="form-control" id="expires" placeholder="Expires">
+                        @error('expires') <span class="error text-danger">{{ $message }}</span> @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="file">Document File:</label>
+                        <input wire:model="file" type="file" class="form-control" id="file" placeholder="File">
+                        @error('file') <span class="error text-danger">{{ $message }}</span> @enderror
+                        <br><div wire:loading wire:target="file" >Loading file...</div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary close-btn" data-bs-dismiss="modal">Close</button>
+                <button type="button" wire:click.prevent="store()" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Review Modal -->
 <div wire:ignore.self class="modal fade" id="reviewDataModal" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
@@ -16,24 +54,19 @@
             <div class="modal-body">
                 <form>
                     <div class="form-group">
-                        <label for="foodtruck_id">Foodtruck ID:</label>
-                        <input wire:model="foodtruck_id" type="text" class="form-control" id="foodtruck_id" placeholder="Foodtruck ID" readonly>
-                        @error('foodtruck_id') <span class="error text-danger">{{ $message }}</span> @enderror
-                    </div>
-                    <div class="form-group">
                         <label for="document_name">Document Name:</label>
                         <input wire:model="document_name" type="text" class="form-control" id="document_name" placeholder="Document Name" readonly>
                         @error('document_name') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
-                        <label for="file">File</label>
-                        <input wire:model="file" type="text" class="form-control" id="file" placeholder="File" readonly>
-                        @error('file') <span class="error text-danger">{{ $message }}</span> @enderror
+                        <label for="expires">Expiration Date:</label>
+                        <input wire:model="expires" type="date" class="form-control" id="expires" placeholder="Expires" readonly>
+                        @error('expires') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
-                        <label for="expires">Expiration Date:</label>
-                        <input wire:model="expires" type="text" class="form-control" id="expires" placeholder="Expires" readonly>
-                        @error('expires') <span class="error text-danger">{{ $message }}</span> @enderror
+                        <label for="file">Document File:</label>
+                        <input wire:model="file" type="file" class="form-control" id="file" placeholder="File" readonly>
+                        @error('file') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                 </form>
             </div>
