@@ -26,7 +26,7 @@
 								<div class="row">
 									<div class="col-6">
 										<h3>Date:</h3>
-										<h1>{{$event->date}}</h1>
+										<time datetime="{{$event->date}}"><h1>{{$event->date}}</h1></time>
 									</div>
 									<div class="col-6">
 										<h3>Address:</h3>

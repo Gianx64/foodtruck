@@ -16,15 +16,29 @@ class Events extends Component {
 
     public function render() {
         $keyWord = '%'.$this->keyWord .'%';
+        if(auth()->user())
+            return view('livewire.events.view', [
+                'events' => Event::latest()
+                ->orWhere('name', 'LIKE', $keyWord)
+                ->orWhere('owner', 'LIKE', $keyWord)
+                ->orWhere('date', 'LIKE', $keyWord)
+                ->orWhere('address', 'LIKE', $keyWord)
+                ->orWhere('description', 'LIKE', $keyWord)
+                ->paginate(10)
+            ]);
         return view('livewire.events.view', [
-            'events' => Event::orderBy('date', 'DESC')
-                        ->orWhere('name', 'LIKE', $keyWord)
-                        ->orWhere('owner', 'LIKE', $keyWord)
-                        ->orWhere('date', 'LIKE', $keyWord)
-                        ->orWhere('address', 'LIKE', $keyWord)
-                        ->orWhere('description', 'LIKE', $keyWord)
-                        ->paginate(10),
-        ]);
+            'events' => Event::orWhere('name', 'LIKE', $keyWord)
+                ->where('date', '>=', date("Y-m-d"))
+                ->orWhere('owner', 'LIKE', $keyWord)
+                ->where('date', '>=', date("Y-m-d"))
+                ->orWhere('date', 'LIKE', $keyWord)
+                ->where('date', '>=', date("Y-m-d"))
+                ->orWhere('address', 'LIKE', $keyWord)
+                ->where('date', '>=', date("Y-m-d"))
+                ->orWhere('description', 'LIKE', $keyWord)
+                ->where('date', '>=', date("Y-m-d"))
+                ->orderBy('date')->paginate(10)
+            ]);
     }
 
     public function mount() {

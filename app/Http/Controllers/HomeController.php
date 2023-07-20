@@ -24,7 +24,7 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index() {
-        $data = [Event::all()->where('date', '>', date("Y-m-d"))->count(), Application::where('approved', 0)->count(), Document::where('approved', 0)->count()];
+        $data = [Event::all()->where('date', '>=', date("Y-m-d"))->count(), Application::where('approved', 0)->count(), Document::where('approved', 0)->count()];
         /*$user = User::find(auth()->user()->id);
         if($user->hasRole('Administrator'))
             $data = [User::count(), Event::all()->where('date', '>', date("Y-m-d"))->count(), Application::where('approved', 0)->count()];

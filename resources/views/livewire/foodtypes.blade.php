@@ -8,29 +8,31 @@
 				<div wire:poll.4s class="btn btn-sm btn-success" style="margin-top:0px; margin-bottom:0px;"> {{ session('message') }} </div>
 			@endif
 			<div>
+				<input wire:model='name' type="text" name="name" id="name" placeholder="Food name">
+				<button type="button" wire:click.prevent="store()" wire:loading.attr="disabled" wire:target="save" class="btn btn-primary">Save</button>
+			</div>
+			<div>
 				<input wire:model='keyWord' type="text" class="form-control" name="search" id="search" placeholder="Search Foodtype">
 			</div>
 		</div>
 	</div>
 	<div class="card-body">
-		<div>
-			<input wire:model='name' type="text" name="name" id="name" placeholder="Food name">
-			<button type="button" wire:click.prevent="store()" wire:loading.attr="disabled" wire:target="save" class="btn btn-primary">Save</button>
-		</div>
-		<div class="table-responsive">
+		<div class="table-responsive" style="height:75vh">
 			<table class="table table-bordered table-sm">
 				<thead class="thead">
 					<tr> 
-						<td>ID</td> 
+						<td>ID</td>
 						<th>Name</th>
+						<th>Created At</th>
 						<td>ACTIONS</td>
 					</tr>
 				</thead>
 				<tbody>
 					@forelse($foodtypes as $row)
 					<tr>
-						<td>{{ $row->id }}</td> 
+						<td>{{ $row->id }}</td>
 						<td>{{ $row->name }}</td>
+						<td>{{ $row->created_at }}</td>
 						<td width="100">
 							<button type="button" onclick="confirm('Confirm Delete Foodtruck id {{$row->id}}? \nDeleted Foodtrucks cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$row->id}})" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa fa-trash"></i>Delete</button>
 						</td>

@@ -27,7 +27,7 @@
                     </div>
                     <div class="form-group">
                         <label for="document_name">Document's Name:</label>
-                        <input wire:model="document_name" type="text" class="form-control" id="document_name" placeholder="Document Name">
+                        <input wire:model="document_name" type="text" class="form-control" id="document_name" placeholder="Document Name" autofocus>
                         @error('document_name') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">

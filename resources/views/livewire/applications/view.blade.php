@@ -21,7 +21,7 @@
 	</div>
 	<div class="card-body">
 		@include('livewire.applications.modals')
-		<div class="table-responsive">
+		<div class="table-responsive" style="height:75vh">
 			<table class="table table-bordered table-sm">
 				<thead class="thead">
 					<tr> 

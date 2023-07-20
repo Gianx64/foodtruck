@@ -6,7 +6,9 @@
             <div class="col-md-12">
                 <div class="container-fluid">
                     <div class="row justify-content-center">
-                        @livewire('foodtypes')
+                        <div class="col-md-12">
+                            @livewire('foodtypes')
+                        </div>
                     </div>
                 </div>
             </div>

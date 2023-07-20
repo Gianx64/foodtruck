@@ -11,7 +11,7 @@
                             @auth
                                 , {{ Auth::user()->name }}
                             @endif
-                            .
+                            . Today is {{date("Y-m-d")}}.
                         </h5>
                         <hr>
                         @livewire('events')

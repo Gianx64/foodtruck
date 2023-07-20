@@ -24,12 +24,12 @@
                     </div>
                     <div class="form-group">
                         <label for="owner">Owner email:</label>
-                        <input wire:model="owner" type="text" class="form-control" id="owner" placeholder="Owner" readonly>
+                        <input wire:model="owner" type="text" class="form-control" id="owner" placeholder="Owner">
                         @error('owner') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
                         <label for="date">Date:</label>
-                        <input wire:model.defer="date" type="date" class="form-control" id="date" placeholder="Date">
+                        <input wire:model.defer="date" type="datetime-local" class="form-control" id="date">
                         @error('date') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
@@ -79,17 +79,17 @@
 					<input type="hidden" wire:model.defer="selected_id">
                     <div class="form-group">
                         <label for="name">Name:</label>
-                        <input wire:model.defer="name" type="text" class="form-control" id="name" placeholder="Name">
+                        <input wire:model.defer="name" type="text" class="form-control" id="name" placeholder="Name" autofocus>
                         @error('name') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
                         <label for="owner">Owner email:</label>
-                        <input wire:model.defer="owner" type="text" class="form-control" id="owner" placeholder="Owner" readonly>
+                        <input wire:model.defer="owner" type="text" class="form-control" id="owner" placeholder="Owner">
                         @error('owner') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
                         <label for="date">Date:</label>
-                        <input wire:model.defer="date" type="date" class="form-control" id="date" placeholder="Date">
+                        <input wire:model.defer="date" type="date" class="form-control" id="date">
                         @error('date') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">

@@ -9,7 +9,7 @@
     })
 </script>
 
-<!-- Add & Edit Modal -->
+<!-- Add Modal -->
 <div wire:ignore.self class="modal fade" id="createDataModal" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="createDataModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -21,7 +21,7 @@
 				<form>
                     <div class="form-group">
                         <label for="plate">License Plate:</label>
-                        <input wire:model.defer="plate" type="text" class="form-control" id="plate">
+                        <input wire:model.defer="plate" type="text" class="form-control" id="plate" autofocus>
                         @error('plate') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
@@ -65,7 +65,7 @@
 				<form>
                     <div class="form-group">
                         <label for="plate">License Plate:</label>
-                        <input wire:model.defer="plate" type="text" class="form-control" id="plate">
+                        <input wire:model.defer="plate" type="text" class="form-control" id="plate" autofocus>
                         @error('plate') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">

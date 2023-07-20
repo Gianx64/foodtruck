@@ -19,7 +19,8 @@
 				<form>
                     <div class="form-group">
                         <label for="name"></label>
-                        <input wire:model="name" type="text" class="form-control" id="name" placeholder="Name">@error('name') <span class="error text-danger">{{ $message }}</span> @enderror
+                        <input wire:model="name" type="text" class="form-control" id="name" placeholder="Name" autofocus>
+                        @error('name') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
 					<br><h4>Permissions List:</h4>
 					@foreach ($permissions as $permission)
@@ -51,7 +52,8 @@
 					<input type="hidden" wire:model="selected_id">
                     <div class="form-group">
                         <label for="name"></label>
-                        <input wire:model="name" type="text" class="form-control" id="name" placeholder="Name">@error('name') <span class="error text-danger">{{ $message }}</span> @enderror
+                        <input wire:model="name" type="text" class="form-control" id="name" placeholder="Name" autofocus>
+                        @error('name') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
 					<br><h4>Permissions List:</h4>
 					@foreach ($permissions as $permission)
