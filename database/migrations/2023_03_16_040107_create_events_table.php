@@ -22,8 +22,8 @@ return new class extends Migration
                   ->references('email')
                   ->on('users')
                   ->onDelete('cascade');
-            $table->date('date')
-                  ->comment('Event date.');
+            $table->dateTime('date')
+                  ->comment('Event date and time.');
             $table->string('address')
                   ->comment('Event physical address.');
             $table->unsignedTinyInteger('slots')
