@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Models;
 
@@ -13,7 +13,7 @@ class Event extends Model {
      *
      * @var array<int, string>
      */
-    protected $fillable = ['name','owner','date','address','slots','map','description'];
+    protected $fillable = [ 'name','owner','date','address','slots','map','description' ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

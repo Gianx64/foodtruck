@@ -13,7 +13,7 @@ class Foodtruck extends Model {
      *
      * @var array<int, string>
      */
-    protected $fillable = ['user_id', 'plate', 'foodtruck_name', 'food'];
+    protected $fillable = [ 'user_id', 'plate', 'foodtruck_name', 'food' ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
