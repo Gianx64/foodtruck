@@ -100,11 +100,12 @@ class Events extends Component {
 
     public function update() {
         if ($this->selected_id) {
+            //hardcoded
             if ($this->name == $this->name_old)
-                $this->validate(array_slice(Event::$rules, 1, 3), Event::$message);
+                $this->validate(array_slice(Event::$rules, 1, 4), Event::$message);
             else
-                $this->validate(array_slice(Event::$rules, 0, 4), Event::$message);
-            $record = Event::find($this->selected_id);
+                $this->validate(array_slice(Event::$rules, 0, 5), Event::$message);
+            $record = Event::findOrFail($this->selected_id);
 
             if ($this->map){
                 $this->validate(
@@ -137,9 +138,11 @@ class Events extends Component {
     }
 
     public function destroy($id) {
-        if ($id) {
-            Event::where('id', $id)->delete();
-            session()->flash('message', 'Event successfully deleted.');
-        }
+        $record = Event::findOrFail($id);
+        if (file_exists(storage_path('app').'/'.$record->map))
+            if(unlink(storage_path('app').'/'.$record->map)){
+                $record->delete();
+                session()->flash('message', 'Event successfully deleted.');
+            }
     }
 }

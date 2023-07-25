@@ -72,9 +72,8 @@ class Documents extends Component {
 
     public function destroy($id) {
         $record = Document::findOrFail($id);
-        $this->file = Storage::url($this->file);
-        if(file_exists(public_path($this->file)))
-            if(unlink(public_path($this->file))){
+        if(file_exists(storage_path('app').'/'.$record->file))
+            if(unlink(storage_path('app').'/'.$record->file)){
                 $record->delete();
                 session()->flash('message', 'Document successfully deleted.');
             }
