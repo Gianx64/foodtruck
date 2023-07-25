@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class FoodTypes extends Component {
+class DocumentNames extends Component {
     use WithPagination;
 
     protected $paginationTheme = 'bootstrap';
@@ -14,8 +14,8 @@ class FoodTypes extends Component {
 
     public function render() {
         $keyWord = '%'.$this->keyWord .'%';
-        return view('livewire.food-types', [
-            'foodtypes' => DB::table('foodtypes')->latest()
+        return view('livewire.document-names', [
+            'documentnames' => DB::table('documentnames')->latest()
                         ->orWhere('name', 'LIKE', $keyWord)
                         ->paginate(10) ]);
     }
@@ -25,16 +25,16 @@ class FoodTypes extends Component {
     }
 
     public function store() {
-        DB::table('foodtypes')->insert(['name' => ucwords(strtolower($this-> name))]);
+        DB::table('documentnames')->insert(['name' => ucwords(strtolower($this-> name))]);
         
         $this->resetInput();
-        session()->flash('message', 'Food type successfully created.');
+        session()->flash('message', 'Document name successfully created.');
     }
 
     public function destroy($id) {
         if ($id) {
-            DB::table('foodtypes')->where('id', $id)->delete();
-            session()->flash('message', 'Food type successfully deleted.');
+            DB::table('documentnames')->where('id', $id)->delete();
+            session()->flash('message', 'Document name successfully deleted.');
         }
     }
 }

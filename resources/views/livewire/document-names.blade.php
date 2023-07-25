@@ -2,22 +2,22 @@
 	<div class="card-header">
 		<div style="display: flex; justify-content: space-between; align-items: center;">
 			<div class="float-left">
-				<h4><i class="fab fa-laravel text-info"></i>Foodtype Listing</h4>
+				<h4><i class="fab fa-laravel text-info"></i>Document Names Listing</h4>
 			</div>
 			@if (session()->has('message'))
 				<div wire:poll.4s class="btn btn-sm btn-success" style="margin-top:0px; margin-bottom:0px;"> {{ session('message') }} </div>
 			@endif
 			<div>
-				<input wire:model='name' type="text" name="name" id="name" placeholder="Food name">
+				<input wire:model='name' type="text" name="name" id="name" placeholder="Document name">
 				<button type="button" wire:click.prevent="store()" wire:loading.attr="disabled" wire:target="save" class="btn btn-primary">Save</button>
 			</div>
 			<div>
-				<input wire:model='keyWord' type="text" class="form-control" name="search" id="search" placeholder="Search Foodtype">
+				<input wire:model='keyWord' type="text" class="form-control" name="search" id="search" placeholder="Search document name">
 			</div>
 		</div>
 	</div>
 	<div class="card-body">
-		<div class="table-responsive" style="height:75vh">
+		<div class="table-responsive" style="height:30vh">
 			<table class="table table-bordered table-sm">
 				<thead class="thead">
 					<tr> 
@@ -28,13 +28,14 @@
 					</tr>
 				</thead>
 				<tbody>
-					@forelse($foodtypes as $row)
+					@forelse($documentnames as $row)
 					<tr>
 						<td>{{ $row->id }}</td>
 						<td>{{ $row->name }}</td>
 						<td>{{ $row->created_at }}</td>
 						<td width="100">
-							<button type="button" onclick="confirm('Confirm Delete Foodtruck id {{$row->id}}? \nDeleted Foodtrucks cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$row->id}})" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa fa-trash"></i>Delete</button>
+							<button type="button" onclick="confirm('Confirm delete document name {{$row->name}}? \nDeleted document names cannot be recovered!')||event.stopImmediatePropagation()"
+                            wire:click="destroy({{$row->id}})" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa fa-trash"></i>Delete</button>
 						</td>
 					</tr>
 					@empty
@@ -44,7 +45,7 @@
 					@endforelse
 				</tbody>
 			</table>
-			<div class="float-end">{{ $foodtypes->links() }}</div>
+			<div class="float-end">{{ $documentnames->links() }}</div>
 		</div>
 	</div>
 </div>

@@ -12,11 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('foodtypes', function (Blueprint $table) {
-            $table->id()
-                  ->comment('Foodtype identifier number.');
-            $table->string('name')
-                  ->comment('Foodtype name.');
-            $table->timestamps();
+            $table->id();
+            $table->string('name');
+            $table->timestamp('created_at')->useCurrent();
+        });
+        Schema::create('documentnames', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 
@@ -26,5 +29,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('foodtypes');
+        Schema::dropIfExists('documentnames');
     }
 };

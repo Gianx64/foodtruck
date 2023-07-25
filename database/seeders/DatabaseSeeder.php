@@ -14,9 +14,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
-        $this->call(FoodtypeSeeder::class);
-        // \App\Models\Foodtype::factory(10)->create();
-
-        // \App\Models\Foodtype::factory()->create([ 'name' => 'Chilean' ]);
+        $this->call(NameSeeder::class);
     }
 }

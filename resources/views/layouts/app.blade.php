@@ -60,7 +60,7 @@
                             @endcan
                             @can('foodtrucks.read')
                                 <li class="nav-item">
-                                    <a href="{{ url('/foodtypes') }}" class="nav-link"><i class="fab fa-laravel text-info"></i>Foodtypes</a> 
+                                    <a href="{{ url('/names') }}" class="nav-link"><i class="fab fa-laravel text-info"></i>Names</a> 
                                 </li>
                             @endcan
                         </ul>

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 class FoodtruckController extends Controller
 {
     public function __construct() {
-        $this->middleware('can:foodtrucks.read')->only('index','foodIndex');
+        $this->middleware('can:foodtrucks.read')->only('index','documentsIndex','documentNamesIndex','foodIndex');
     }
 
     /**
@@ -31,7 +31,7 @@ class FoodtruckController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function foodsIndex() {
-        return view('foodtypes');
+    public function namesIndex() {
+        return view('names');
     }
 }
