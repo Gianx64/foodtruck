@@ -19,7 +19,15 @@
 				<form>
                     <div class="form-group">
                         <label for="plate">License Plate:</label>
-                        <input wire:model.defer="plate" type="text" class="form-control" id="plate" readonly>
+                        @if($foodtruck_list)
+                            <select wire:model="plate" class="form-control" name="plate" id="plate" autofocus>
+                                @foreach($foodtruck_list as $foodtruck)
+                                    <option value="{{$foodtruck->plate}}">{{$foodtruck->plate}}</option>
+                                @endforeach
+                            </select>
+                        @else
+                            <input value="Error. No foodtrucks to show." readonly>
+                        @endif
                     </div>
                     <div class="form-group">
                         <label for="foodtruck_name">Foodtruck's Name:</label>
@@ -27,7 +35,15 @@
                     </div>
                     <div class="form-group">
                         <label for="document_name">Document's Name:</label>
-                        <input wire:model="document_name" type="text" class="form-control" id="document_name" placeholder="Document Name" autofocus>
+                        @if($document_list)
+                            <select wire:model.defer="document_name" class="form-control" name="document_name" id="document_name">
+                                @foreach($document_list as $document)
+                                    <option value="{{$document}}">{{$document}}</option>
+                                @endforeach
+                            </select>
+                        @else
+                            <input value="Error. No document names to show." readonly>
+                        @endif
                         @error('document_name') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">

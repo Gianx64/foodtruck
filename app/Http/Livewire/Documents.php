@@ -12,6 +12,7 @@ class Documents extends Component {
 
     protected $paginationTheme = 'bootstrap';
     public $selected_id, $keyWord, $foodtruck_id, $plate, $foodtruck_name, $document_name, $expires, $file;
+    public $foodtruck_list, $document_list; //From Livewire/DocumentApply.php to avoid modal errors
 
     public function render() {
         $keyWord = '%'.$this->keyWord .'%';

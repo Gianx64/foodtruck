@@ -7,6 +7,9 @@
 			@if (session()->has('message'))
 			<div wire:poll.4s class="btn btn-sm btn-success" style="margin-top:0px; margin-bottom:0px;"> {{ session('message') }} </div>
 			@endif
+			@can('documents.create')
+				@livewire('document-apply')
+			@endcan
             @can('foodtrucks.create')
                 <div class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#createDataModal">
                     <i class="fa fa-plus"></i>Add Foodtruck
@@ -35,9 +38,6 @@
 						<td>{{ $row->foodtruck_name }}</td>
 						<td>{{ $row->food }}</td>
 						<td width="130">
-							@can('documents.create')
-								@livewire('document-apply', [$row])
-							@endcan
 							<a data-bs-toggle="modal" data-bs-target="#updateDataModal" class="btn btn-sm btn-secondary" wire:click="edit({{$row->id}})"><i class="fa fa-edit"></i>Edit</a>
 							@can('foodtrucks.delete' && false)
 								<a class="btn btn-sm btn-danger" onclick="confirm('Confirm delete foodtruck id {{$row->id}}? \nDeleted foodtrucks cannot be recovered!')||event.stopImmediatePropagation()"
