@@ -96,8 +96,8 @@
                         @error('expires') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
-                        <label for="file">Document File:</label>
-                        <br><a class="btn btn-sm btn-secondary" href="{{$file}}" target="_blank" rel="noopener noreferrer">Open in a new tab</a>
+                        <label>Document File:</label>
+                        <br><a class="btn btn-sm btn-secondary" href="{{Storage::url($file)}}" target="_blank" rel="noopener noreferrer">Open in a new tab</a>
                     </div>
                 </form>
             </div>
@@ -110,7 +110,7 @@
                 @endcan
                 @can('documents.update')
                     <div class="col">
-                        <button type="button" wire:click.prevent="approve()" class="btn btn-primary" data-bs-dismiss="modal">Approve</button>
+                        <button type="button" wire:click.prevent="update()" class="btn btn-primary" data-bs-dismiss="modal">Approve</button>
                     </div>
                 @endcan
             </div>

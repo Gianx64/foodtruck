@@ -44,18 +44,28 @@ class DocumentApply extends Component {
     }
 
     public function store() {
-        $this->validate(Document::$rules, Document::$message);
-        $document = $this->file->storePublicly('public/documents');
+        if(strval(Document::where('foodtruck_id', $this->foodtruck_id)->where('approved', 0)
+        ->where('document_name', $this-> document_name)->get()) == '[]'){
+            $this->validate([
+                'document_name' => 'required|string|exists:documentnames,name',
+                'file' => 'required|mimes:pdf',
+                'foodtruck_id' => 'required|integer',
+                'expires' => 'required|date'
+            ], Document::$message);
+            $document = $this->file->storePublicly('public/documents');
 
-        Document::create([
-            'foodtruck_id' => $this-> foodtruck_id,
-            'document_name' => $this-> document_name,
-            'expires' => $this-> expires,
-            'file' => $document
-        ]);
+            Document::create([
+                'foodtruck_id' => $this-> foodtruck_id,
+                'document_name' => $this-> document_name,
+                'expires' => $this-> expires,
+                'file' => $document
+            ]);
 
-        $this->resetInput();
-        $this->dispatchBrowserEvent('closeModal');
-        session()->flash('message', 'Document successfully created for review.');
+            $this->resetInput();
+            $this->dispatchBrowserEvent('closeModal');
+            session()->flash('message', 'Document successfully created for review.');
+        }
+        else
+            $this->validate(['document_name' => 'integer'], ['document_name.integer' => 'This foodtruck already has this document pending.']);
     }
 }

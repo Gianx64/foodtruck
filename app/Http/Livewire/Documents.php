@@ -3,7 +3,6 @@
 namespace App\Http\Livewire;
 
 use App\Models\Document;
-use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -55,20 +54,26 @@ class Documents extends Component {
         $this->document_name = $record-> document_name;
         $this->expires = $record-> expires;
         $this->file = $record-> file;
-        $this->file = Storage::url($this->file);
     }
 
     public function update() {
-        $this->validate(Document::$rules, Document::$message);
-
-        if ($this->selected_id) {
-            $record = Document::find($this->selected_id);
-            $record->update(['accepted' => 1]);
-
+        if(strval(Document::where('foodtruck_id', $this->foodtruck_id)->where('approved', 1)
+        ->where('expires', '>=', date("Y-m-d"))->get()) == '[]'){
+            $this->validate([
+                'document_name' => 'required|string|exists:documentnames,name',
+                'foodtruck_id' => 'required|integer',
+                'expires' => 'required|date'
+            ], Document::$message);
+    
+            $record = Document::findOrFail($this->selected_id);
+            $record->update(['approved' => 1]);
+    
             $this->resetInput();
             $this->dispatchBrowserEvent('closeModal');
             session()->flash('message', 'Document successfully approved.');
         }
+        else
+            $this->validate(['expires' => 'integer'], ['expires.integer' => 'This foodtruck already has a current document.']);
     }
 
     public function destroy($id) {
