@@ -15,9 +15,15 @@
             </div>
             <div class="modal-body">
 				<form>
-                    <div class="form-group">
-                        <label for="event_id">Event ID:</label>
-                        <input wire:model="event_id" type="text" class="form-control" id="event_id" placeholder="Event ID" readonly>
+                    <div class="row">
+                        <div class="form-group col">
+                            <label for="event_id">Event ID:</label>
+                            <input wire:model="event_id" type="text" class="form-control" id="event_id" placeholder="Event ID" readonly>
+                        </div>
+                        <div class="form-group col">
+                            <label for="event_name">Event Name:</label>
+                            <input wire:model="event_name" type="text" class="form-control" id="event_name" placeholder="Event Name" readonly>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="plate">License Plate:</label>
@@ -33,7 +39,37 @@
                     </div>
                     <div class="form-group">
                         <label for="food">Food:</label>
-                        <input wire:model="food" type="text" class="form-control" id="food" placeholder="Food" readonly>
+                        <ul>
+                            @foreach($foods as $single)
+                                <li>{{$single}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col">
+                            <label for="documents">Required documents:</label>
+                            @if($documents)
+                                <ul>
+                                    @foreach($documents as $document)
+                                        <li>{{$document}}</li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                            @error('documents') <span class="error text-danger">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="form-group col">
+                            <label for="approved">Approved documents:</label>
+                            @if($approved)
+                                <ul>
+                                    @foreach($approved as $document)
+                                        <li><a class="nav-link" href="{{Storage::url($document->file)}}" target="_blank" rel="noopener noreferrer">{{$document->document_name}}</a></li>
+                                    @endforeach
+                                </ul>
+                            @else
+                                <p>No documents approved.</p>
+                            @endif
+                            @error('approved') <span class="error text-danger">{{ $message }}</span> @enderror
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="description">Description:</label>

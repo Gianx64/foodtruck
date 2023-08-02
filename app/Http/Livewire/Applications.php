@@ -11,7 +11,7 @@ class Applications extends Component {
     use WithPagination;
 
     protected $paginationTheme = 'bootstrap';
-    public $keyWord, $selected_id, $event_id, $foodtruck_id, $foodtruck_name, $plate, $owner, $food, $description;
+    public $keyWord, $selected_id, $event_id, $event_name, $foodtruck_id, $foodtruck_name, $plate, $owner, $foods = [], $documents = [], $approved = [], $links = [], $description;
 
     public function render() {
         $keyWord = '%'.$this->keyWord.'%';
@@ -41,27 +41,23 @@ class Applications extends Component {
         $this->plate = null;
         $this->owner = null;
         $this->foodtruck_name = null;
-        $this->food = null;
+        $this->foods = [];
+        $this->documents = [];
+        $this->approved = [];
         $this->description = null;
     }
 
     public function edit($row) {
         $this->selected_id = $row['id'];
-        $this->event_id = $row['event_id'];
-        $this->foodtruck_id = $row['foodtruck_id'];
-        $this->food = $row['food'];
-        $this->plate = $row['plate'];
-        $this->foodtruck_name = $row['foodtruck_name'];
-        $this->description = $row['description'];
-        $this->owner = $row['email'];
-    }
-/*
-    public function edit($id) {
-        $this->selected_id = $id;
-        $record = Application::findOrFail($id);
+        $record = Application::findOrFail($row['id']);
         $this->event_id = $record-> event_id;
+        $this->event_name = $row['name'];
         $this->foodtruck_id = $record-> foodtruck_id;
-        $this->food = $record-> food;
+        $this->foods = explode(', ',$record-> food);
+        $this->documents = explode(', ', DB::table('events')->where('id', $record-> event_id)->first()->documents);
+        $this->approved = DB::table('foodtrucks_documents_applications')
+        ->where('foodtruck_id', $record-> foodtruck_id)->where('approved', 1)
+        ->where('expires', '>=', date("Y-m-d"))->get()->toArray();
         $foodtruck = DB::table('foodtrucks')->where('id', $this->foodtruck_id)->first();
         $this->plate = $foodtruck-> plate;
         $this->foodtruck_name = $foodtruck-> foodtruck_name;
@@ -69,7 +65,7 @@ class Applications extends Component {
         $user = DB::table('users')->where('id', $foodtruck-> user_id)->first();
         $this->owner = $user-> email;
     }
-*/
+
     public function update() {
         if (DB::table('foodtrucks_applications')->where('event_id', $this->event_id)->where('approved', 1)
             ->count() < DB::table('events')->where('id', $this->event_id)->first()->slots)
