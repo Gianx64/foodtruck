@@ -25,7 +25,8 @@ class Foodtruck extends Model {
     static $rules = [
         'plate' => 'required|string|min:6|max:8|unique:foodtrucks,plate',
         'foodtruck_name' => 'required|string',
-        'food' => 'required|exists:foodtypes,name'
+        'foods' => 'required|array|min:1|max:3',
+        'foods.*' => 'required|exists:foodtypes,name'
     ];
 
     static $message = [
@@ -34,8 +35,12 @@ class Foodtruck extends Model {
         'plate.max' => 'The foodtruck vehicle license plate cannot be over 8 characters.',
         'plate.unique' => 'The foodtruck vehicle license plate is already taken.',
         'foodtruck_name.required' => 'The foodtruck name is required.',
-        'food.required' => 'The food type is required.',
-        'food.exists' => 'The food type must be an option from the dropdown menu.'
+        'foods.required' => 'The food types are required.',
+        'foods.array' => 'The food types must be an array.',
+        'foods.min' => 'There must be at least 1 food type.',
+        'foods.max' => 'The maximum of food types is 3.',
+        'foods.*.required' => 'The food types are required.',
+        'foods.*.exists' => 'The food type must be an option from the dropdown menu.'
     ];
 
     protected $table = 'foodtrucks';

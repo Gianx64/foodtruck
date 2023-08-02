@@ -9,7 +9,8 @@ use Livewire\Component;
 
 class FoodtruckApply extends Component {
     protected $paginationTheme = 'bootstrap';
-    public $foodtypes, $event_id, $foodtruck_id, $foodtruck_name, $plate, $food, $description;
+    public $foodtypes, $event_id, $foodtruck_id, $foodtruck_name, $plate, $foods = [], $description;
+    public $food; //From Livewire/Foodtruck.php to avoid modal errors
 
     public function render() {
         return view('livewire.foodtrucks.apply', [
@@ -32,6 +33,7 @@ class FoodtruckApply extends Component {
     public function edit($id) {
         $this->foodtruck_id = $id;
         $record = DB::table('foodtrucks')->where('user_id', auth()->user()->id)->where('id', $id)->first();
+        $this->foods = explode(',',$record-> food);
         $this->food = $record-> food;
         $this->plate = $record-> plate;
         $this->foodtruck_name = $record-> foodtruck_name;
@@ -39,12 +41,14 @@ class FoodtruckApply extends Component {
     }
 
     public function store() {
+        //hardcoded
         $this->validate([
             'event_id' => 'required|integer',
             'foodtruck_id' => 'required|integer|unique:foodtrucks_applications,foodtruck_id,NULL,id,event_id,'.$this-> event_id,
-            'food' => [
+            'foods' => 'required|array|min:1|max:3',
+            'foods.*' => [
                 'required', 'exists:foodtypes,name',
-                Rule::unique('foodtrucks_applications')->where('event_id', $this-> event_id)->where('approved', 1)
+                //Rule::unique('foodtrucks_applications')->where('event_id', $this-> event_id)->where('approved', 1)
             ]
         ], Application::$message);
 

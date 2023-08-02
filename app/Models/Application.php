@@ -26,9 +26,13 @@ class Application extends Model {
         'foodtruck_name.required' => 'The foodtruck name is required.',
         'foodtruck_id.integer' => 'Foodtruck ID must be an integer.',
         'foodtruck_id.unique' => 'This foodtruck has already applied to this event.',
-        'food.required' => 'The food type is required.',
-        'food.exists' => 'The food type must be an option from the dropdown menu.',
-        'food.unique' => 'This food type is already taken for this event.'
+        'foods.required' => 'The food types are required.',
+        'foods.array' => 'The food types must be an array.',
+        'foods.min' => 'There must be at least 1 food type.',
+        'foods.max' => 'The maximum of food types is 3.',
+        'foods.*.required' => 'The food types are required.',
+        'foods.*.exists' => 'The food type must be an option from the dropdown menu.',
+        'foods.*.unique' => 'This food type is already taken for this event.'
     ];
 
     protected $table = 'foodtrucks_applications';

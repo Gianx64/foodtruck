@@ -31,11 +31,20 @@
                     </div>
                     <div class="form-group">
                         <label for="food">Food Type:</label>
-                        <select wire:model.defer="food" class="form-control" name="food" id="food">
-                            @foreach($foodtypes as $foodtype)
-                                <option value="{{$foodtype}}">{{$foodtype}}</option>
+                        <div style="display: flex;">
+                            <select wire:model.defer="food" class="form-control" name="food" id="food">
+                                @foreach($foodtypes as $foodtype)
+                                    <option value="{{$foodtype}}">{{$foodtype}}</option>
+                                @endforeach
+                            </select>
+                            <button type="button" class="btn btn-primary" wire:click="addFood">Add/Remove</button>
+                        </div>
+                        <ul>
+                            @foreach($foods as $single)
+                                <li>{{$single}}</li>
                             @endforeach
-                        </select>
+                        </ul>
+                        @error('foods') <span class="error text-danger">{{ $message }}</span> @enderror
                         @error('food') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
@@ -75,11 +84,20 @@
                     </div>
                     <div class="form-group">
                         <label for="food">Food Type:</label>
-                        <select wire:model.defer="food" class="form-control" name="food" id="food">
-                            @foreach($foodtypes as $foodtype)
-                                <option value="{{$foodtype}}">{{$foodtype}}</option>
+                        <div style="display: flex;">
+                            <select wire:model.defer="food" class="form-control" name="food" id="food">
+                                @foreach($foodtypes as $foodtype)
+                                    <option value="{{$foodtype}}">{{$foodtype}}</option>
+                                @endforeach
+                            </select>
+                            <button type="button" class="btn btn-primary" wire:click="addFood">Add/Remove</button>
+                        </div>
+                        <ul>
+                            @foreach($foods as $single)
+                                <li>{{$single}}</li>
                             @endforeach
-                        </select>
+                        </ul>
+                        @error('foods') <span class="error text-danger">{{ $message }}</span> @enderror
                         @error('food') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
@@ -120,7 +138,11 @@
                     </div>
                     <div class="form-group">
                         <label for="food">Food type:</label>
-                        <input wire:model.defer="food" class="form-control" name="food" id="food" readonly>
+                        <ul>
+                            @foreach($foods as $single)
+                                <li>{{$single}}</li>
+                            @endforeach
+                        </ul>
                         @error('food') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
