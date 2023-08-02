@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Event;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -12,7 +13,7 @@ class Events extends Component {
     use WithFileUploads, WithPagination;
 
     protected $paginationTheme = 'bootstrap';
-    public $keyWord, $selected_id, $name, $name_old, $owner, $date, $address, $slots, $description, $dbmap, $map;
+    public $keyWord, $selected_id, $document_list, $name, $name_old, $owner, $date, $address, $slots, $documents = [], $document, $description, $dbmap, $map;
 
     public function render() {
         $keyWord = '%'.$this->keyWord .'%';
@@ -42,6 +43,8 @@ class Events extends Component {
     }
 
     public function mount() {
+        $this->document_list = DB::table('documentnames')->pluck('name')->toArray();
+        $this->document = $this->document_list[0];
         if (auth()->user())
             $this->owner = auth()->user()->email;
     }
@@ -56,6 +59,7 @@ class Events extends Component {
         $this->date = null;
         $this->address = null;
         $this->slots = null;
+        $this->documents = [];
         $this->description = null;
         $this->dbmap = null;
         $this->map = null;
@@ -63,6 +67,13 @@ class Events extends Component {
             $this->owner = auth()->user()->email;
         else
             $this->owner = null;
+    }
+
+    public function addName() {
+        if(in_array($this->document, $this->documents))
+            array_splice($this->documents, array_search($this->document, $this->documents), 1);
+        else
+            array_push($this->documents, $this->document);
     }
 
     public function store() {
@@ -76,6 +87,7 @@ class Events extends Component {
             'date' => $this-> date,
             'address' => $this-> address,
             'slots' => $this-> slots,
+            'documents' => implode(', ', $this-> documents),
             'description' => $this-> description,
             'map' => $image
         ]);
@@ -94,6 +106,7 @@ class Events extends Component {
         $this->date = $record-> date;
         $this->address = $record-> address;
         $this->slots = $record-> slots;
+        $this->documents = explode(', ', $record-> documents);
         $this->description = $record-> description;
         $this->dbmap = Storage::url($record-> map);
     }
@@ -117,6 +130,7 @@ class Events extends Component {
                 'date' => $this-> date,
                 'address' => $this-> address,
                 'slots' => $this-> slots,
+                'documents' => implode(', ', $this-> documents),
                 'description' => $this-> description,
                 'map' => $image
                 ]);
@@ -127,6 +141,7 @@ class Events extends Component {
                 'date' => $this-> date,
                 'address' => $this-> address,
                 'slots' => $this-> slots,
+                'documents' => implode(', ', $this-> documents),
                 'description' => $this-> description
                 ]);
 

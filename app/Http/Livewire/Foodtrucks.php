@@ -11,6 +11,7 @@ class Foodtrucks extends Component {
     use WithFileUploads;
 
     public $selected_id, $foodtypes, $plate, $plate_old, $foodtruck_name, $foods = [], $food, $description;
+    public $documents, $approved; //From Livewire/FoodtruckApply.php to avoid modal errors
 
     public function render() {
         return view('livewire.foodtrucks.view', [
@@ -36,7 +37,7 @@ class Foodtrucks extends Component {
         $this->description = null;
     }
 
-    public function addFood() {
+    public function addName() {
         if(in_array($this->food, $this->foods))
             array_splice($this->foods, array_search($this->food, $this->foods), 1);
         else
@@ -44,7 +45,6 @@ class Foodtrucks extends Component {
                 array_push($this->foods, $this->food);
             else
                 $this->validate(['foods' => 'required|array|max:2'], Foodtruck::$message); //hardcoded
-
     }
 
     public function store() {

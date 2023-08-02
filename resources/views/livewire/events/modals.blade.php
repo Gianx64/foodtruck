@@ -43,6 +43,24 @@
                         @error('slots') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
+                        <label for="slots">Documents requred:</label>
+                        <div style="display: flex;">
+                            <select wire:model.defer="document" class="form-control" name="document" id="document">
+                                @foreach($document_list as $document_name)
+                                    <option value="{{$document_name}}">{{$document_name}}</option>
+                                @endforeach
+                            </select>
+                            <button type="button" class="btn btn-primary" wire:click="addName">Add/Remove</button>
+                        </div>
+                        <ul>
+                            @foreach($documents as $single)
+                                <li>{{$single}}</li>
+                            @endforeach
+                        </ul>
+                        @error('documents') <span class="error text-danger">{{ $message }}</span> @enderror
+                        @error('document') <span class="error text-danger">{{ $message }}</span> @enderror
+                    </div>
+                    <div class="form-group">
                         <label for="description">(Optional) Description:</label>
                         <input wire:model.defer="description" type="text" class="form-control" id="description" placeholder="Description">
                         @error('description') <span class="error text-danger">{{ $message }}</span> @enderror
@@ -101,6 +119,24 @@
                         <label for="slots">Slots for foodtrucks:</label>
                         <input wire:model.defer="slots" type="number" class="form-control" id="slots" placeholder="Foodtruck slots" value="1" min="1" max="99">
                         @error('slots') <span class="error text-danger">{{ $message }}</span> @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="slots">Documents requred:</label>
+                        <div style="display: flex;">
+                            <select wire:model.defer="document" class="form-control" name="document" id="document">
+                                @foreach($document_list as $document_name)
+                                    <option value="{{$document_name}}">{{$document_name}}</option>
+                                @endforeach
+                            </select>
+                            <button type="button" class="btn btn-primary" wire:click="addName">Add/Remove</button>
+                        </div>
+                        <ul>
+                            @foreach($documents as $single)
+                                <li>{{$single}}</li>
+                            @endforeach
+                        </ul>
+                        @error('documents') <span class="error text-danger">{{ $message }}</span> @enderror
+                        @error('document') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
                         <label for="description">(Optional) Description:</label>

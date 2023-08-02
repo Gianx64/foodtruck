@@ -28,6 +28,9 @@ return new class extends Migration
                   ->comment('Event physical address.');
             $table->unsignedTinyInteger('slots')
                   ->comment('Ammount of event room for foodtrucks.');
+            $table->string('documents')
+                  ->nullable()
+                  ->comment('Required approved documents for foodtrucks.');
             $table->text('description')
                   ->nullable()
                   ->comment('Event description and additional information.');

@@ -37,7 +37,7 @@
                                     <option value="{{$foodtype}}">{{$foodtype}}</option>
                                 @endforeach
                             </select>
-                            <button type="button" class="btn btn-primary" wire:click="addFood">Add/Remove</button>
+                            <button type="button" class="btn btn-primary" wire:click="addName">Add/Remove</button>
                         </div>
                         <ul>
                             @foreach($foods as $single)
@@ -144,6 +144,33 @@
                             @endforeach
                         </ul>
                         @error('food') <span class="error text-danger">{{ $message }}</span> @enderror
+                    </div>
+                    <div class="row">
+                        <div class="form-group col">
+                            <label for="documents">Required documents:</label>
+                            @if($documents)
+                                <ul>
+                                    @foreach($documents as $document)
+                                        <li>{{$document}}</li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                            @error('documents') <span class="error text-danger">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="form-group col">
+                            <label for="approved">Approved documents:</label>
+                            @if($approved)
+                                <ul>
+                                    @foreach($approved as $document)
+                                        <li>{{$document}}</li>
+                                    @endforeach
+                                </ul>
+                            @else
+                                <p>No documents approved.</p>
+                            @endif
+                            @error('approved') <span class="error text-danger">{{ $message }}</span> @enderror
+                            <a class="nav-link" href="{{ route('users.edit') }}">To add documents for review, click here.</a>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="description">Description:</label>
