@@ -25,7 +25,10 @@ class FoodTypes extends Component {
     }
 
     public function store() {
-        DB::table('foodtypes')->insert(['name' => ucwords(strtolower($this-> name))]);
+        if(str_contains($this->name, ', '))
+            $this->validate(['name' => 'integer'], ['name.integer' => 'Name cannot contain ", " (comma)(space)']);
+        //DB::table('foodtypes')->insert(['name' => ucwords(strtolower($this-> name))]);
+        DB::table('foodtypes')->insert(['name' => $this-> name]);
         
         $this->resetInput();
         session()->flash('message', 'Food type successfully created.');

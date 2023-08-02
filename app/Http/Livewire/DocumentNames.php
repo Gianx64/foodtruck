@@ -25,7 +25,10 @@ class DocumentNames extends Component {
     }
 
     public function store() {
-        DB::table('documentnames')->insert(['name' => ucwords(strtolower($this-> name))]);
+        if(str_contains($this->name, ', '))
+            $this->validate(['name' => 'integer'], ['name.integer' => 'Name cannot contain ", " (comma)(space)']);
+        //DB::table('documentnames')->insert(['name' => ucwords(strtolower($this-> name))]);
+        DB::table('documentnames')->insert(['name' => $this-> name]);
         
         $this->resetInput();
         session()->flash('message', 'Document name successfully created.');

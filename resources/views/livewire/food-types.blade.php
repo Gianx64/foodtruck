@@ -7,6 +7,7 @@
 			@if (session()->has('message'))
 				<div wire:poll.4s class="btn btn-sm btn-success" style="margin-top:0px; margin-bottom:0px;"> {{ session('message') }} </div>
 			@endif
+			@error('name') <span class="error text-danger">{{ $message }}</span> @enderror
 			<div>
 				<input wire:model='name' type="text" name="name" id="name" placeholder="Food type name" autofocus>
 				<button type="button" wire:click.prevent="store()" wire:loading.attr="disabled" wire:target="save" class="btn btn-primary">Save</button>
