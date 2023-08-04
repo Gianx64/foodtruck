@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', __('Foodtypes'))
+@section('title', __('Names'))
 @section('content')
     <div class="container-fluid">
         <div class="row justify-content-center">

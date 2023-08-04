@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('title', __('Dashboard'))
 @section('content')
-	<div class="container-fluid">
+	<div class="container-fluid" id="top">
 		<div class="row justify-content-center">
 			<div class="col-md-12">
 				<div class="card">
-					<div class="card-header"><h5><span class="text-center fa fa-home"></span> @yield('title')</h5></div>
+					<div class="card-header"><h5><span class="text-center fa fa-home"></span>@yield('title')</h5></div>
 					@if ($message = Session::get('success'))
 						<div class="alert alert-success">
 							<p>{{ $message }}</p>

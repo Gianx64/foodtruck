@@ -15,13 +15,15 @@ class Foodtrucks extends Component {
 
     public function render() {
         return view('livewire.foodtrucks.view', [
-            'foodtrucks' => Foodtruck::where('user_id', auth()->user()->id)->latest()->paginate(10)
+            'foodtrucks' => Foodtruck::where('user_id', auth()->user()->id)->latest()->paginate(5)
         ]);
     }
 
     public function mount() {
         $this->foodtypes = DB::table('foodtypes')->pluck('name')->toArray();
-        $this->food = $this->foodtypes[0];
+        if($this->foodtypes != '[]'){
+            $this->food = $this->foodtypes[0];
+        }
     }
 
     public function cancel() {

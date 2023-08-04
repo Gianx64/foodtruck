@@ -44,7 +44,9 @@ class Events extends Component {
 
     public function mount() {
         $this->document_list = DB::table('documentnames')->pluck('name')->toArray();
-        $this->document = $this->document_list[0];
+        if($this->document_list != '[]'){
+            $this->document = $this->document_list[0];
+        }
         if (auth()->user())
             $this->owner = auth()->user()->email;
     }

@@ -8,7 +8,9 @@
 			<div wire:poll.4s class="btn btn-sm btn-success" style="margin-top:0px; margin-bottom:0px;"> {{ session('message') }} </div>
 			@endif
 			@can('documents.create')
-				@livewire('document-apply')
+				@if(!empty($foodtrucks->all()))
+					@livewire('document-apply')
+				@endif
 			@endcan
             @can('foodtrucks.create')
                 <div class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#createDataModal">

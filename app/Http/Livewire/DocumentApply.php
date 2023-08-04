@@ -22,11 +22,15 @@ class DocumentApply extends Component {
     public function mount() {
         $this->foodtruck_list = Foodtruck::where('user_id', auth()->user()->id)
         ->select('id', 'plate', 'foodtruck_name')->get();
-        $this->plate = $this->foodtruck_list[0]['plate'];
-        $this->foodtruck_id = $this->foodtruck_list->firstWhere('plate', $this->plate)['id'];
-        $this->foodtruck_name = $this->foodtruck_list->firstWhere('plate', $this->plate)['foodtruck_name'];
+        if($this->foodtruck_list != '[]'){
+            $this->plate = $this->foodtruck_list[0]['plate'];
+            $this->foodtruck_id = $this->foodtruck_list->firstWhere('plate', $this->plate)['id'];
+            $this->foodtruck_name = $this->foodtruck_list->firstWhere('plate', $this->plate)['foodtruck_name'];
+        }
         $this->document_list = DB::table('documentnames')->pluck('name');
-        $this->document_name = $this->document_list[0];
+        if($this->document_list != '[]'){
+            $this->document_name = $this->document_list[0];
+        }
     }
 
     public function updatedPlate() {
