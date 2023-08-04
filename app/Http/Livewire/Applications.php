@@ -2,8 +2,12 @@
 
 namespace App\Http\Livewire;
 
+use App\Mail\ApplicationApproved;
 use App\Models\Application;
+use App\Models\Foodtruck;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -57,7 +61,7 @@ class Applications extends Component {
         $this->documents = explode(', ', DB::table('events')->where('id', $record-> event_id)->first()->documents);
         $this->approved = DB::table('foodtrucks_documents_applications')
         ->where('foodtruck_id', $record-> foodtruck_id)->where('approved', 1)
-        ->where('expires', '>=', date("Y-m-d"))->get()->toArray();
+        ->where('expires', '>=', date("Y-m-d"))->get();
         $foodtruck = DB::table('foodtrucks')->where('id', $this->foodtruck_id)->first();
         $this->plate = $foodtruck-> plate;
         $this->foodtruck_name = $foodtruck-> foodtruck_name;
@@ -68,18 +72,20 @@ class Applications extends Component {
 
     public function update() {
         if (DB::table('foodtrucks_applications')->where('event_id', $this->event_id)->where('approved', 1)
-            ->count() < DB::table('events')->where('id', $this->event_id)->first()->slots)
-            if (DB::table('foodtrucks_applications')->where('event_id', $this->event_id)
-                ->where('approved', 1)->where('food', $this->food)->first() === null) {
+            ->count() < DB::table('events')->where('id', $this->event_id)->first()->slots) {
+//            if (DB::table('foodtrucks_applications')->where('event_id', $this->event_id)
+//                ->where('approved', 1)->where('food', $this->food)->first() === null) {
                 $record = Application::findOrFail($this-> selected_id);
                 $record->update(['approved' => 1]);
 
+                Mail::to(User::findOrFail(Foodtruck::where('id', $this->foodtruck_id)->first()->user_id)->email)->send(new ApplicationApproved);
+
                 session()->flash('message', 'Foodtruck successfully approved.');
             }
-            else
-                session()->flash('message', "There's already a foodtruck with this food in this event.");
+//            else
+//                session()->flash('message', "There's already a foodtruck with this food in this event.");
         else
-            session()->flash('message', "There's no room for this foodtruck in this event.");
+            session()->flash('message', "There's no room for more foodtrucks in this event.");
         $this->dispatchBrowserEvent('closeModal');
     }
 

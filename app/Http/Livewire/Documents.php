@@ -2,7 +2,11 @@
 
 namespace App\Http\Livewire;
 
+use App\Mail\DocumentApproved;
 use App\Models\Document;
+use App\Models\Foodtruck;
+use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -58,7 +62,7 @@ class Documents extends Component {
 
     public function update() {
         if(strval(Document::where('foodtruck_id', $this->foodtruck_id)->where('approved', 1)
-        ->where('expires', '>=', date("Y-m-d"))->get()) == '[]'){
+        ->where('expires', '>=', date("Y-m-d"))->get()) == '[]') {
             $this->validate([
                 'document_name' => 'required|string|exists:documentnames,name',
                 'foodtruck_id' => 'required|integer',
@@ -67,6 +71,8 @@ class Documents extends Component {
     
             $record = Document::findOrFail($this->selected_id);
             $record->update(['approved' => 1]);
+
+            Mail::to(User::findOrFail(Foodtruck::where('id', $this->foodtruck_id)->first()->user_id)->email)->send(new DocumentApproved);
     
             $this->resetInput();
             $this->dispatchBrowserEvent('closeModal');
@@ -79,7 +85,7 @@ class Documents extends Component {
     public function destroy($id) {
         $record = Document::findOrFail($id);
         if(file_exists(storage_path('app').'/'.$record->file))
-            if(unlink(storage_path('app').'/'.$record->file)){
+            if(unlink(storage_path('app').'/'.$record->file)) {
                 $record->delete();
                 session()->flash('message', 'Document successfully deleted.');
             }
