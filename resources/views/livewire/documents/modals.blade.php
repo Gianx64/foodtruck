@@ -19,7 +19,7 @@
 				<form>
                     <div class="form-group">
                         <label for="plate">License Plate:</label>
-                        @if($foodtruck_list != '[]')
+                        @if($foodtruck_list != '[]' && $foodtruck_list != null)
                             <select wire:model="plate" class="form-control" name="plate" id="plate" autofocus>
                                 @foreach($foodtruck_list as $foodtruck)
                                     <option value="{{$foodtruck->plate}}">{{$foodtruck->plate}}</option>
@@ -35,7 +35,7 @@
                     </div>
                     <div class="form-group">
                         <label for="document_name">Document's Name:</label>
-                        @if($document_list != '[]')
+                        @if($document_list != '[]' && $document_list != null)
                             <select wire:model.defer="document_name" class="form-control" name="document_name" id="document_name">
                                 @foreach($document_list as $document)
                                     <option value="{{$document}}">{{$document}}</option>
