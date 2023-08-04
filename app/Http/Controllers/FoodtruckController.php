@@ -32,6 +32,6 @@ class FoodtruckController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function namesIndex() {
-        return view('names');
+        return view('livewire.names');
     }
 }

@@ -36,21 +36,25 @@ Cuenta para foodtrucks:
 Documentos de foodtrucks
 	Módulo para aprovar o rechazar documentos de foodtrucks
 Actualizar HomeController y home.blade
-
-Por Hacer
-Creador de formularios (?)
-Limpiar postulaciones cuando ya pasó un evento
-
+Cuenta para foodtrucks:
+	Implementar múltiples tipos de comida por foodtruck
 Documentos de foodtrucks
 	Documentación requerida por evento (variable)
+Asignar rol de Foodtrucker a usuarios verificados
+Implementar correos
+	Confirmaciones por correo (conexion, documentos, aplicaciones a eventos, seleccionado o rechazado para evento)
+
+Por Hacer
+Limpiar postulaciones cuando ya pasó un evento
+Editor de correos para user update
+
+Document modal se cierra solo al apretar approve
+Eliminar names de foodtrucks cuando son eliminados de la tabla
 Cuenta para foodtrucks:
 	El cambio de tipo de comida expira ciertos documentos e invalida las aplicaciones a eventos
-	Implementar múltiples tipos de comida por foodtruck
 Implementar correos
 	Lista de foodtrucks para contactar masivamente (por zona)
-	Confirmaciones por correo (conexion, documentos, aplicaciones a eventos, seleccionado o rechazado para evento)
 	Recordatorios por correo (evento en una semana, cantidad de notificaciones, modificable)
-Asignar rol de Foodtrucker a usuarios verificados
 Fechas calendarizables en eventos
 
 Ver como portarlo a celulares

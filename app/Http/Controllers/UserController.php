@@ -29,6 +29,6 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit() {
-        return view('self-update');
+        return view('livewire.self-update');
     }
 }

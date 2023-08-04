@@ -30,7 +30,6 @@
 						<th>Foodtruck Name</th>
 						<th>Document Name</th>
 						<th>Expiration Date</th>
-						<th>Approved</th>
 						<td>ACTIONS</td>
 					</tr>
 				</thead>
@@ -42,7 +41,6 @@
 						<td>{{ $row->foodtruck_name }}</td>
 						<td>{{ $row->document_name }}</td>
 						<td>{{ $row->expires }}</td>
-						<td>{{ $row->approved }}</td>
 						<td width="90">
 							<div class="dropdown">
 								<a class="btn btn-sm btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Actions</a>
