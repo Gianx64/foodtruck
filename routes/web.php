@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\FoodtruckController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -14,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,10 +28,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('profile/user', [App\Http\Controllers\UserController::class, 'edit'])->name('users.edit');
     Route::get('users', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
     Route::get('roles', [App\Http\Controllers\RoleController::class, 'index'])->name('roles.index');
-    Route::get('events', [App\Http\Controllers\EventController::class, 'index'])->name('events.index');
-    Route::get('applications', [App\Http\Controllers\FoodtruckController::class, 'index'])->name('applications.index');
-    Route::get('documents', [App\Http\Controllers\FoodtruckController::class, 'documentsIndex'])->name('documents.index');
-    Route::get('names', [App\Http\Controllers\FoodtruckController::class, 'namesIndex'])->name('names.index');
+    Route::get('events', [EventController::class, 'index'])->name('events.index');
+    Route::get('applications', [FoodtruckController::class, 'index'])->name('applications.index');
+    Route::get('documents', [FoodtruckController::class, 'documentsIndex'])->name('documents.index');
+    Route::get('names', [FoodtruckController::class, 'namesIndex'])->name('names.index');
 });
 
-Route::get('events/{event}', [App\Http\Controllers\EventController::class, 'show'])->name('events.show');
+Route::get('events/{event}', [EventController::class, 'show'])->name('events.show');
