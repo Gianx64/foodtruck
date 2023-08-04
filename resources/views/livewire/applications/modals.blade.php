@@ -48,7 +48,7 @@
                     <div class="row">
                         <div class="form-group col">
                             <label for="documents">Required documents:</label>
-                            @if($documents)
+                            @if($documents != '[]')
                                 <ul>
                                     @foreach($documents as $document)
                                         <li>{{$document}}</li>
@@ -59,7 +59,7 @@
                         </div>
                         <div class="form-group col">
                             <label for="approved">Approved documents:</label>
-                            @if($approved)
+                            @if($approved != '[]')
                                 <ul>
                                     @foreach($approved as $document)
                                         <li><a class="nav-link" href="{{Storage::url($document->file)}}" target="_blank" rel="noopener noreferrer">{{$document->document_name}}</a></li>
