@@ -22,13 +22,13 @@ class DocumentApply extends Component {
     public function mount() {
         $this->foodtruck_list = Foodtruck::where('user_id', auth()->user()->id)
         ->select('id', 'plate', 'foodtruck_name')->get();
-        if($this->foodtruck_list != '[]'){
+        if($this->foodtruck_list != '[]') {
             $this->plate = $this->foodtruck_list[0]['plate'];
             $this->foodtruck_id = $this->foodtruck_list->firstWhere('plate', $this->plate)['id'];
             $this->foodtruck_name = $this->foodtruck_list->firstWhere('plate', $this->plate)['foodtruck_name'];
         }
         $this->document_list = DB::table('documentnames')->pluck('name');
-        if($this->document_list != '[]'){
+        if($this->document_list != '[]') {
             $this->document_name = $this->document_list[0];
         }
     }
@@ -49,7 +49,7 @@ class DocumentApply extends Component {
 
     public function store() {
         if(strval(Document::where('foodtruck_id', $this->foodtruck_id)->where('approved', 0)
-        ->where('document_name', $this-> document_name)->get()) == '[]'){
+        ->where('document_name', $this-> document_name)->get()) == '[]') {
             $this->validate([
                 'document_name' => 'required|string|exists:documentnames,name',
                 'file' => 'required|mimes:pdf',

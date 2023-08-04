@@ -21,7 +21,7 @@ class Foodtrucks extends Component {
 
     public function mount() {
         $this->foodtypes = DB::table('foodtypes')->pluck('name')->toArray();
-        if($this->foodtypes != '[]'){
+        if($this->foodtypes != '[]') {
             $this->food = $this->foodtypes[0];
         }
     }

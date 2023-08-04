@@ -32,8 +32,7 @@ class EventController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         $event = Event::findOrFail($id);
         $event->map = Storage::url($event-> map);
         $foodtrucks = DB::table('foodtrucks_applications')->where('event_id', $id)
@@ -41,7 +40,7 @@ class EventController extends Controller
         ->select('foodtrucks_applications.*', 'foodtrucks.plate', 'foodtrucks.foodtruck_name', 'foodtrucks.description')->get();
         $foodtrucks_approved = $foodtrucks->where('approved', 1);
         $foodtrucks_pending = $foodtrucks->where('approved', 0);
-        if(auth()->user()){
+        if(auth()->user()) {
             $hasfoodtruck = User::hasfoodtruck();
             return view('livewire.events.show', compact('event', 'foodtrucks_approved', 'foodtrucks_pending', 'hasfoodtruck'));
         }

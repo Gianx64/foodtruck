@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 class RoleController extends Controller
 {
     public function __construct() {
-        $this->middleware('can:roles.read')->only('index', 'show');
+        $this->middleware('can:roles.read')->only('index');
     }
 
     /**

@@ -61,7 +61,7 @@ class FoodtruckApply extends Component {
             foreach($this->approved as $approved)
                 if($document == $approved)
                     $count++;
-        if(count($this->documents) == $count){
+        if(count($this->documents) == $count) {
             Application::create([
                 'event_id' => $this-> event_id,
                 'foodtruck_id' => $this-> foodtruck_id,

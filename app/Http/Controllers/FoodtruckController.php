@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 class FoodtruckController extends Controller
 {
     public function __construct() {
-        $this->middleware('can:foodtrucks.read')->only('index','documentsIndex','documentNamesIndex','foodIndex');
+        $this->middleware('can:foodtrucks.read')->only('index','documentsIndex','namesIndex');
     }
 
     /**

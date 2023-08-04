@@ -44,7 +44,7 @@ class Events extends Component {
 
     public function mount() {
         $this->document_list = DB::table('documentnames')->pluck('name')->toArray();
-        if($this->document_list != '[]'){
+        if($this->document_list != '[]') {
             $this->document = $this->document_list[0];
         }
         if (auth()->user())
@@ -122,7 +122,7 @@ class Events extends Component {
                 $this->validate(array_slice(Event::$rules, 0, 5), Event::$message);
             $record = Event::findOrFail($this->selected_id);
 
-            if ($this->map){
+            if ($this->map) {
                 $this->validate(
                     ['map' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'], Event::$message);
                 $image = $this->map->storePublicly('public/eventmaps');
@@ -157,7 +157,7 @@ class Events extends Component {
     public function destroy($id) {
         $record = Event::findOrFail($id);
         if (file_exists(storage_path('app').'/'.$record->map))
-            if(unlink(storage_path('app').'/'.$record->map)){
+            if(unlink(storage_path('app').'/'.$record->map)) {
                 $record->delete();
                 session()->flash('message', 'Event successfully deleted.');
             }
