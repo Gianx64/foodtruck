@@ -57,6 +57,8 @@ class FoodtruckApply extends Component {
         ], Application::$message);
 
         $count = 0;
+        if($this->documents[0] == "")
+            $count++;
         foreach($this->documents as $document)
             foreach($this->approved as $approved)
                 if($document == $approved)
