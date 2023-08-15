@@ -83,8 +83,8 @@ class Users extends Component {
             'password' => Hash::make($this-> password)
             ]);
 
-            $this->resetInput();
             $this->dispatchBrowserEvent('closeModal');
+            $this->resetInput();
             session()->flash('message', 'User successfully updated.');
         }
     }
@@ -100,8 +100,8 @@ class Users extends Component {
     public function updateRole() {
         User::find($this->selected_id)->roles()->sync($this->roles_selected);
 
-        $this->resetInput();
         $this->dispatchBrowserEvent('closeModal');
+        $this->resetInput();
         session()->flash('message', 'User successfully updated.');
     }
 

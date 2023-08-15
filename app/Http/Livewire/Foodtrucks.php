@@ -62,6 +62,7 @@ class Foodtrucks extends Component {
         ]);
 
         $this->dispatchBrowserEvent('closeModal');
+        $this->resetInput();
 		session()->flash('message', 'Foodtruck successfully created.');
     }
 
@@ -91,6 +92,7 @@ class Foodtrucks extends Component {
         ]);
 
         $this->dispatchBrowserEvent('closeModal');
+        $this->resetInput();
         session()->flash('message', 'Foodtruck successfully updated.');
     }
 

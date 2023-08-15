@@ -19,7 +19,7 @@
 				<form>
                     <div class="form-group">
                         <label for="name">Name:</label>
-                        <input wire:model.defer="name" type="text" class="form-control" id="name" placeholder="Name">
+                        <input wire:model.defer="name" type="text" class="form-control" id="name" placeholder="Name" autocomplete="on" autofocus>
                         @error('name') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
@@ -34,7 +34,7 @@
                     </div>
                     <div class="form-group">
                         <label for="address">Address:</label>
-                        <input wire:model.defer="address" type="text" class="form-control" id="address" placeholder="Address">
+                        <input wire:model.defer="address" type="text" class="form-control" id="address" placeholder="Address" autocomplete="on">
                         @error('address') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
@@ -97,7 +97,7 @@
 					<input type="hidden" wire:model.defer="selected_id">
                     <div class="form-group">
                         <label for="name">Name:</label>
-                        <input wire:model.defer="name" type="text" class="form-control" id="name" placeholder="Name" autofocus>
+                        <input wire:model.defer="name" type="text" class="form-control" id="name" placeholder="Name" autocomplete="on" autofocus>
                         @error('name') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
@@ -107,12 +107,12 @@
                     </div>
                     <div class="form-group">
                         <label for="date">Date:</label>
-                        <input wire:model.defer="date" type="date" class="form-control" id="date">
+                        <input wire:model.defer="date" type="datetime-local" class="form-control" id="date">
                         @error('date') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
                         <label for="address">Address:</label>
-                        <input wire:model.defer="address" type="text" class="form-control" id="address" placeholder="Address">
+                        <input wire:model.defer="address" type="text" class="form-control" id="address" placeholder="Address" autocomplete="on">
                         @error('address') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">

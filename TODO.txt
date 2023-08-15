@@ -45,7 +45,7 @@ Implementar correos
 	Confirmaciones por correo (conexion, documentos, aplicaciones a eventos, seleccionado o rechazado para evento)
 
 Por Hacer
-Limpiar postulaciones cuando ya pasó un evento
+Limpiar postulaciones el día del evento
 Editor de correos para user update
 
 Document modal se cierra solo al apretar approve

@@ -74,8 +74,8 @@ class Documents extends Component {
 
             Mail::to(User::findOrFail(Foodtruck::where('id', $this->foodtruck_id)->first()->user_id)->email)->send(new DocumentApproved);
     
-            $this->resetInput();
             $this->dispatchBrowserEvent('closeModal');
+            $this->resetInput();
             session()->flash('message', 'Document successfully approved.');
         }
         else

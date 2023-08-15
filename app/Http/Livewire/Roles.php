@@ -42,8 +42,8 @@ class Roles extends Component {
         $record = Role::create([ 'name' => $this-> name ]);
         $record->permissions()->sync($this->permissions_selected);
         
-        $this->resetInput();
         $this->dispatchBrowserEvent('closeModal');
+        $this->resetInput();
         session()->flash('message', 'Role successfully created.');
     }
 
@@ -70,8 +70,8 @@ class Roles extends Component {
             $record->update([ 'name' => $this-> name ]);
             $record->permissions()->sync($this->permissions_selected);
 
-            $this->resetInput();
             $this->dispatchBrowserEvent('closeModal');
+            $this->resetInput();
             session()->flash('message', 'Role successfully updated.');
         }
     }

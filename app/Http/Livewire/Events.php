@@ -94,8 +94,8 @@ class Events extends Component {
             'map' => $image
         ]);
         
-        $this->resetInput();
         $this->dispatchBrowserEvent('closeModal');
+        $this->resetInput();
         session()->flash('message', 'Event successfully created.');
     }
 
@@ -150,8 +150,8 @@ class Events extends Component {
             session()->flash('message', 'Event successfully updated.');
         }
 
-        $this->resetInput();
         $this->dispatchBrowserEvent('closeModal');
+        $this->resetInput();
     }
 
     public function destroy($id) {
