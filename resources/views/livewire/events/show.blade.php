@@ -101,7 +101,7 @@
 										</table>
 									@endif
 								@endif
-								@if($event->date > date("Y-m-d"))
+								@if(strtotime(substr($event->date, 0, 10)) > strtotime(date("Y-m-d H:i:s")))
 									@auth
 										@can('foodtrucks.create')
 											@if($hasfoodtruck)
@@ -125,7 +125,7 @@
 										@endif
 									@endif
 								@else
-									<p>This event is already over, keep checking other events!</p>
+									<p>Applications for this event are now closed, keep checking other events!</p>
 								@endif
 							</div>
 						</div>
