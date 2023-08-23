@@ -1,4 +1,23 @@
-Hecho
+No olvidar:
+actualizar .env (APP_URL)
+
+sudo chown -R gian: /Applications/XAMPP/htdocs/foodtruck
+find /Applications/XAMPP/htdocs/foodtruck -type d -exec chmod 755 {} \;
+sudo chmod -R 777 /Applications/XAMPP/htdocs/foodtruck/storage
+sudo chmod -R 775 /Applications/XAMPP/htdocs/foodtruck/bootstrap/cache
+
+npm i
+php composer update
+php artisan storage:link
+npm run dev
+
+revisar la consola del navegador (F12)
+
+Notas:
+cambiar vendor/livewire/livewire/src/TemporaryUploadedFile.php, line 23:
+$tmpFile = fopen(Storage::path($this->path),'r');
+
+Hecho:
 Actualizacion de perfil
 	Hacer que tome variables de Livewire
 Actualización de roles
@@ -44,7 +63,8 @@ Asignar rol de Foodtrucker a usuarios verificados
 Implementar correos
 	Confirmaciones por correo (conexion, documentos, aplicaciones a eventos, seleccionado o rechazado para evento)
 
-Por Hacer
+Por Hacer:
+Hacer que cargue css antes que html
 Limpiar postulaciones el día del evento
 Editor de correos para user update
 
