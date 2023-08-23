@@ -30,7 +30,7 @@ class Event extends Model {
         'slots' => 'required|integer|min:1|max:99',
         'documents' => 'array',
         'documents.*' => 'exists:documentnames,name',
-        'map' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        'map' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:8192'
     ];
 
     static $message = [
