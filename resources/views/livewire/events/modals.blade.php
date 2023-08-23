@@ -62,7 +62,9 @@
                     </div>
                     <div class="form-group">
                         <label for="description">(Optional) Description:</label>
-                        <input wire:model.defer="description" type="text" class="form-control" id="description" placeholder="Description">
+                        <textarea wire:model.defer="description" cols=55 type="text" id="description" name="description"
+                        placeholder="Event description (extra details, warnings, links, etc.)"></textarea>
+                        <!--input wire:model.defer="description" type="text" class="form-control" id="description" placeholder="Description"-->
                         @error('description') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
@@ -140,7 +142,8 @@
                     </div>
                     <div class="form-group">
                         <label for="description">(Optional) Description:</label>
-                        <input wire:model.defer="description" type="text" class="form-control" id="description" placeholder="Description">
+                        <textarea wire:model.defer="description" cols=55 type="text" id="description" name="description"
+                        placeholder="Event description (extra details, warnings, links, etc.)"></textarea>
                         @error('description') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
