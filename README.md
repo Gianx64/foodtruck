@@ -22,17 +22,26 @@ cambiar vendor/livewire/livewire/src/TemporaryUploadedFile.php, line 23:
 $tmpFile = fopen(Storage::path($this->path),'r');
 </p>
 <h2>Por Hacer:</h2><p>
-Hacer que cargue CSS antes que HTML
+Hacer que cargue css antes que html
+
 Limpiar postulaciones el día del evento
+
 Editor de correos para user update
 
-Cambiar mensajes de error en app/Http/Livewire/Applications.php
+Document modal se cierra solo al apretar approve
+
 Eliminar names de foodtrucks cuando son eliminados de la tabla
+
 Cuenta para foodtrucks:
+
 	El cambio de tipo de comida expira ciertos documentos e invalida las aplicaciones a eventos
+
 Implementar correos
+
 	Lista de foodtrucks para contactar masivamente (por zona)
+
 	Recordatorios por correo (evento en una semana, cantidad de notificaciones, modificable)
+
 Fechas calendarizables en eventos
 
 Ver como portarlo a celulares
