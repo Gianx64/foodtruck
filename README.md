@@ -1,19 +1,31 @@
 <h2>No olvidar:</h2><p>
 actualizar vite.config.js (host)
+
 actualizar .env (APP_URL)
-    APP_URL=http://200.50.49.21 (Public IP)
-    APP_URL=http://10.2.139.30 (Local IP)
 
-sudo chown -R gian: /Applications/XAMPP/htdocs/foodtruck
-find /Applications/XAMPP/htdocs/foodtruck -type d -exec chmod 755 {} \;
-sudo chmod -R 777 /Applications/XAMPP/htdocs/foodtruck/storage
-sudo chmod -R 775 /Applications/XAMPP/htdocs/foodtruck/bootstrap/cache
+APP_URL=http://200.50.49.21 (Public IP)
 
-npm i
-php composer update
-php artisan storage:link
-npm run dev (local)
-npm run dev -- --host (network)
+APP_URL=http://10.2.139.30 (Local IP)
+
+
+    sudo chown -R gian: /Applications/XAMPP/htdocs/foodtruck
+
+    find /Applications/XAMPP/htdocs/foodtruck -type d -exec chmod 755 {} \;
+
+    sudo chmod -R 777 /Applications/XAMPP/htdocs/foodtruck/storage
+
+    sudo chmod -R 775 /Applications/XAMPP/htdocs/foodtruck/bootstrap/cache
+
+
+    npm i
+
+    php composer update
+
+    php artisan storage:link
+
+    npm run dev (local)
+
+    npm run dev -- --host (network)
 
 revisar la consola del navegador (F12)
 </p>
@@ -39,7 +51,6 @@ Cuenta para foodtrucks:
 Implementar correos
 
 	Lista de foodtrucks para contactar masivamente (por zona)
-
 	Recordatorios por correo (evento en una semana, cantidad de notificaciones, modificable)
 
 Fechas calendarizables en eventos
