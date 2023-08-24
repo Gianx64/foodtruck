@@ -52,7 +52,7 @@ class DocumentApply extends Component {
         ->where('document_name', $this-> document_name)->get()) == '[]') {
             $this->validate([
                 'document_name' => 'required|string|exists:documentnames,name',
-                'file' => 'required|mimes:pdf',
+                'file' => 'required|mimes:pdf,jpeg,png,jpg,gif,svg',
                 'foodtruck_id' => 'required|integer',
                 'expires' => 'required|date'
             ], Document::$message);
