@@ -1,4 +1,4 @@
-<p>No olvidar:</p>
+<h2>No olvidar:</h2><p>
 actualizar vite.config.js (host)
 actualizar .env (APP_URL)
     APP_URL=http://200.50.49.21 (Public IP)
@@ -16,12 +16,12 @@ npm run dev (local)
 npm run dev -- --host (network)
 
 revisar la consola del navegador (F12)
-
-<p>Notas:</p>
+</p>
+<h2>Notas:</h2><p>
 cambiar vendor/livewire/livewire/src/TemporaryUploadedFile.php, line 23:
 $tmpFile = fopen(Storage::path($this->path),'r');
-
-<p>Por Hacer:</p>
+</p>
+<h2>Por Hacer:</h2><p>
 Hacer que cargue css antes que html
 Limpiar postulaciones el día del evento
 Editor de correos para user update
@@ -36,8 +36,8 @@ Implementar correos
 Fechas calendarizables en eventos
 
 Ver como portarlo a celulares
-
-<p>Hecho:</p>
+</p>
+<h2>Hecho:</h2>
 <ul>
     <li>Implementar correos
         <ul>
