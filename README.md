@@ -6,31 +6,23 @@ actualizar .env (APP_URL)
 APP_URL=http://200.50.49.21 (Public IP)
 
 APP_URL=http://10.2.139.30 (Local IP)
-
-
-    sudo chown -R gian: /Applications/XAMPP/htdocs/foodtruck
-
-    find /Applications/XAMPP/htdocs/foodtruck -type d -exec chmod 755 {} \;
-
-    sudo chmod -R 777 /Applications/XAMPP/htdocs/foodtruck/storage
-
-    sudo chmod -R 775 /Applications/XAMPP/htdocs/foodtruck/bootstrap/cache
-
-
-    npm i
-
-    php composer update
-
-    php artisan storage:link
-
-    npm run dev (local)
-
-    npm run dev -- --host (network)
-
-revisar la consola del navegador (F12)
 </p>
+
+<p> sudo chown -R gian: /Applications/XAMPP/htdocs/foodtruck</p>
+<p> find /Applications/XAMPP/htdocs/foodtruck -type d -exec chmod 755 {} \;</p>
+<p> sudo chmod -R 777 /Applications/XAMPP/htdocs/foodtruck/storage</p>
+<p> sudo chmod -R 775 /Applications/XAMPP/htdocs/foodtruck/bootstrap/cache</p>
+
+<p> npm i</p>
+<p> php composer update</p>
+<p> php artisan storage:link</p>
+<p> npm run dev (local)</p>
+<p> npm run dev -- --host (network)</p>
+
+<p>revisar la consola del navegador (F12)</p>
 <h2>Notas:</h2><p>
 cambiar vendor/livewire/livewire/src/TemporaryUploadedFile.php, line 23:
+
 $tmpFile = fopen(Storage::path($this->path),'r');
 </p>
 <h2>Por Hacer:</h2><p>
