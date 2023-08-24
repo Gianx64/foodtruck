@@ -87,6 +87,7 @@ class Applications extends Component {
         else
             session()->flash('message', "There's no room for more foodtrucks in this event.");
         $this->dispatchBrowserEvent('closeModal');
+        $this->resetInput();
     }
 
     public function destroy($id) {
