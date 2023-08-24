@@ -69,23 +69,28 @@ class Applications extends Component {
         $user = DB::table('users')->where('id', $foodtruck-> user_id)->first();
         $this->owner = $user-> email;
     }
-
+//TODO: cambiar mensajes de error
     public function update() {
         if (DB::table('foodtrucks_applications')->where('event_id', $this->event_id)->where('approved', 1)
             ->count() < DB::table('events')->where('id', $this->event_id)->first()->slots) {
-//            if (DB::table('foodtrucks_applications')->where('event_id', $this->event_id)
-//                ->where('approved', 1)->where('food', $this->food)->first() === null) {
+            if (DB::table('foodtrucks_applications')->where('event_id', $this->event_id)
+                ->where('approved', 1)->where('food', implode(', ',$this->foods))->first() === null) {
                 $record = Application::findOrFail($this-> selected_id);
                 $record->update(['approved' => 1]);
 
                 Mail::to(User::findOrFail(Foodtruck::where('id', $this->foodtruck_id)->first()->user_id)->email)->send(new ApplicationApproved);
 
+                //$this->dispatchBrowserEvent('closeModal');
+                //$this->resetInput();
                 session()->flash('message', 'Foodtruck successfully approved.');
             }
-//            else
-//                session()->flash('message', "There's already a foodtruck with this food in this event.");
+            else
+                session()->flash('message', "There's already a foodtruck with this food in this event.");
+                //$this->validate(['foods' => 'integer'], ['foods.integer' => "There's already a foodtruck with this food in this event."]);
+        }
         else
             session()->flash('message', "There's no room for more foodtrucks in this event.");
+            //$this->validate(['event_id' => 'string'], ['event_id.string' => "There's no room for more foodtrucks in this event."]);
         $this->dispatchBrowserEvent('closeModal');
         $this->resetInput();
     }
