@@ -10,14 +10,21 @@ APP_URL=http://10.2.139.30 (Local IP)
 
 <p>
     sudo chown -R gian: /Applications/XAMPP/htdocs/foodtruck</p><p>
+
     find /Applications/XAMPP/htdocs/foodtruck -type d -exec chmod 755 {} \;</p><p>
+
     sudo chmod -R 777 /Applications/XAMPP/htdocs/foodtruck/storage</p><p>
+
     sudo chmod -R 775 /Applications/XAMPP/htdocs/foodtruck/bootstrap/cache</p>
 <p>
     npm i</p><p>
+
     php composer update</p><p>
+
     php artisan storage:link</p><p>
+
     npm run dev (local)</p><p>
+
     npm run dev -- --host (network)</p>
 
 <p>revisar la consola del navegador (F12)</p>
