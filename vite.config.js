@@ -5,7 +5,9 @@ import path from 'path'
 
 export default defineConfig({
     server: {
-        host: '10.2.139.30'
+      hmr: {
+        host: '200.50.49.21',
+      }
     },
     plugins: [
         laravel([
