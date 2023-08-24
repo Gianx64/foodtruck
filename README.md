@@ -26,7 +26,7 @@ Hacer que cargue CSS antes que HTML
 Limpiar postulaciones el día del evento
 Editor de correos para user update
 
-Document modal se cierra solo al apretar approve
+Cambiar mensajes de error en app/Http/Livewire/Applications.php
 Eliminar names de foodtrucks cuando son eliminados de la tabla
 Cuenta para foodtrucks:
 	El cambio de tipo de comida expira ciertos documentos e invalida las aplicaciones a eventos
