@@ -1,66 +1,122 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<p>No olvidar:</p>
+actualizar vite.config.js (host)
+actualizar .env (APP_URL)
+    APP_URL=http://200.50.49.21 (Public IP)
+    APP_URL=http://10.2.139.30 (Local IP)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+sudo chown -R gian: /Applications/XAMPP/htdocs/foodtruck
+find /Applications/XAMPP/htdocs/foodtruck -type d -exec chmod 755 {} \;
+sudo chmod -R 777 /Applications/XAMPP/htdocs/foodtruck/storage
+sudo chmod -R 775 /Applications/XAMPP/htdocs/foodtruck/bootstrap/cache
 
-## About Laravel
+npm i
+php composer update
+php artisan storage:link
+npm run dev (local)
+npm run dev -- --host (network)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+revisar la consola del navegador (F12)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<p>Notas:</p>
+cambiar vendor/livewire/livewire/src/TemporaryUploadedFile.php, line 23:
+$tmpFile = fopen(Storage::path($this->path),'r');
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+<p>Por Hacer:</p>
+Hacer que cargue css antes que html
+Limpiar postulaciones el día del evento
+Editor de correos para user update
 
-## Learning Laravel
+Document modal se cierra solo al apretar approve
+Eliminar names de foodtrucks cuando son eliminados de la tabla
+Cuenta para foodtrucks:
+	El cambio de tipo de comida expira ciertos documentos e invalida las aplicaciones a eventos
+Implementar correos
+	Lista de foodtrucks para contactar masivamente (por zona)
+	Recordatorios por correo (evento en una semana, cantidad de notificaciones, modificable)
+Fechas calendarizables en eventos
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Ver como portarlo a celulares
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<p>Hecho:</p>
+<ul>
+    <li>Implementar correos
+        <ul>
+            <li>Confirmaciones por correo (conexion, documentos, aplicaciones a eventos, seleccionado o rechazado para evento)</li>
+        </ul>
+    </li>
+    <li>Asignar rol de Foodtrucker a usuarios verificados</li>
+    <li>Documentos de foodtrucks
+        <ul>
+            <li>Documentación requerida por evento (variable)</li>
+        </ul>
+    </li>
+    <li>Cuenta para foodtrucks:
+        <ul>
+            <li>Implementar múltiples tipos de comida por foodtruck</li>
+        </ul>
+    </li>
+    <li>Actualizar HomeController y home.blade</li>
+    <li>Documentos de foodtrucks
+        <ul>
+            <li>Módulo para aprovar o rechazar documentos de foodtrucks</li>
+        </ul>
+    </li>
+    <li>404 para eventos no existentes</li>
+    <li>Cuenta para foodtrucks:
+        <ul>
+            <li>Crear y editar foodtruck propio</li>
+            <li>Cambiar método de aplicación a eventos</li>
+            <li>Vista con login para ver cuántos foodtrucks están pendientes además de los aceptados</li>
+            <li>Implementar múltiples foodtrucks por persona</li>
+        </ul>
+    </li>
+    <li>Más links clickeables (ID, nombres)</li>
+    <li>Mostrar cupos por eventos</li>
+    <li>Subida de documentos legales para aplicación de foodtrucks
+        <ul>
+            <li>Crear Livewire Component</li>
+            <li>Definir reglas en el Model Foodtruck</li>
+            <li>Habilitar subida de archivo en el blade</li>
+            <li>Manejar el archivo en el Livewire Component</li>
+        </ul>
+    </li>
+    <li>Limitar postulaciones de foodtrucks
+        <ul>
+            <li>Cuando se llega al límite de foodtrucks por evento (vista manager)</li>
+            <li>Cuando ya hay un tipo de comida en el evento (vista manager)</li>
+            <li>Cuando el evento ya sucedió</li>
+        </ul>
+    </li>
+    <li>Limitar foodtrucks por tipo de comida</li>
+    <li>Limitar cupos por eventos</li>
+    <li>Alargar lista de tipos de comidas
+        <ul>
+            <li>Posiblemente generar CRUD</li>
+        </ul>
+    </li>
+    <li>Soporte de imágenes para eventos
+        <ul>
+            <li>Definir reglas en el Model Event</li>
+            <li>Habilitar subida de archivo en el blade</li>
+            <li>Manejar el archivo en el Livewire Component</li>
+            <li>Mostrar imágenes en páginas de eventos</li>
+        </ul>
+    </li>
+    <li>Actualización de foodtrucks
+        <ul>
+            <li>Generar CRUD</li>
+            <li>Adaptar funciones</li>
+        </ul>
+    </li>
+    <li>Actualización de roles
+        <ul>
+            <li>Generar CRUD</li>
+            <li>Adaptar funciones</li>
+        </ul>
+    </li>
+    <li>Actualizacion de perfil
+        <ul>
+            <li>Hacer que tome variables de Livewire</li>
+        </ul>
+    </li>
+</ul>
