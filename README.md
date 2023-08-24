@@ -22,7 +22,7 @@ cambiar vendor/livewire/livewire/src/TemporaryUploadedFile.php, line 23:
 $tmpFile = fopen(Storage::path($this->path),'r');
 </p>
 <h2>Por Hacer:</h2><p>
-Hacer que cargue css antes que html
+Hacer que cargue CSS antes que HTML
 Limpiar postulaciones el día del evento
 Editor de correos para user update
 
