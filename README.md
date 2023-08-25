@@ -38,7 +38,8 @@ Revisar la consola del navegador (F12)
 cambiar vendor/livewire/livewire/src/TemporaryUploadedFile.php, line 23:
 
 ```
-$tmpFile = fopen(Storage::path($this->path),'r');```
+$tmpFile = fopen(Storage::path($this->path),'r');
+```
 
 ## Por Hacer:
 - Hacer que cargue css antes que html
