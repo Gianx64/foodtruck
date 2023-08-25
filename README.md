@@ -4,12 +4,12 @@ actualizar .env (APP_URL)
     APP_URL=http://200.50.49.21 (Public IP)  
     APP_URL=http://10.2.139.30 (Local IP)  
 
-`
+```
 sudo chown -R gian: /Applications/XAMPP/htdocs/foodtruck
-`
-``
+```
+```
 find /Applications/XAMPP/htdocs/foodtruck -type d -exec chmod 755 {} \;
-``
+```
 ```
 sudo chmod -R 777 /Applications/XAMPP/htdocs/foodtruck/storage
 ```
@@ -37,7 +37,8 @@ Revisar la consola del navegador (F12)
 ## Notas:
 cambiar vendor/livewire/livewire/src/TemporaryUploadedFile.php, line 23:
 
-```$tmpFile = fopen(Storage::path($this->path),'r');
+```
+$tmpFile = fopen(Storage::path($this->path),'r');
 ```
 
 ## Por Hacer:
