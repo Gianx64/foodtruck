@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Your application for an event was approved!</h1>
-    <p>Mark the event day on your calendar.</p>
-</body>
-</html>
+@component('mail::message')
+ 
+Your foodtruck {{$foodtruck_name}} (plate: {{$plate}}) has been approved for the {{$event_name}} event!
+The event date is {{$event_date}}, mark your calendar!
+ 
+@component('mail::button', ['url' => $url])
+View Event
+@endcomponent
+ 
+Thanks,<br>
+{{ config('app.name') }}
+@endcomponent

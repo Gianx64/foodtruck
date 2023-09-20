@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Your document was approved!</h1>
-    <p>You can now try applying for events.</p>
-</body>
-</html>
+@component('mail::message')
+ 
+The document "{{$document_name}}" for your foodtruck {{$foodtruck_name}} (plate: {{$plate}}) has been approved!
+You may be able to apply for new events!
+ 
+@component('mail::button', ['url' => $url])
+View Events
+@endcomponent
+ 
+Thanks,<br>
+{{ config('app.name') }}
+@endcomponent

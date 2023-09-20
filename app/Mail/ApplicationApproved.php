@@ -2,52 +2,41 @@
 
 namespace App\Mail;
 
+use App\Models\Event;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
-use Illuminate\Mail\Mailables\Content;
-use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
 class ApplicationApproved extends Mailable
 {
     use Queueable, SerializesModels;
+    
+    public $event_id, $event_name, $event_date, $plate, $foodtruck_name, $foods;
 
     /**
      * Create a new message instance.
-     */
-    public function __construct()
-    {
-        //
-    }
-
-    /**
-     * Get the message envelope.
-     */
-    public function envelope(): Envelope
-    {
-        return new Envelope(
-            subject: 'Application Approved',
-        );
-    }
-
-    /**
-     * Get the message content definition.
-     */
-    public function content(): Content
-    {
-        return new Content(
-            view: 'emails.applicationApproved',
-        );
-    }
-
-    /**
-     * Get the attachments for the message.
      *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
+     * @return void
      */
-    public function attachments(): array
+    public function __construct($event_id, $plate, $foodtruck_name, $foods)
     {
-        return [];
+        $this->event_id = $event_id;
+        $record = Event::findOrFail($event_id);
+        $this->event_name = $record-> name;
+        $this->event_date = $record-> date;
+        $this->plate = $plate;
+        $this->foodtruck_name = $foodtruck_name;
+        $this->foods = $foods;
+    }
+
+    /**
+     * Build the message.
+     *
+     * @return $this
+     */
+    public function build()
+    {
+        return $this->markdown('emails.applicationApproved', ['url' => env('APP_URL').'/event/{{$this->event_id}}']);
     }
 }

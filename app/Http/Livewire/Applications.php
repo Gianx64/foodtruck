@@ -15,7 +15,7 @@ class Applications extends Component {
     use WithPagination;
 
     protected $paginationTheme = 'bootstrap';
-    public $keyWord, $selected_id, $event_id, $event_name, $foodtruck_id, $foodtruck_name, $plate, $owner, $foods = [], $documents = [], $approved = [], $links = [], $description;
+    public $keyWord, $selected_id, $event_id, $event_name, $foodtruck_id, $plate, $foodtruck_name, $owner, $foods = [], $documents = [], $approved = [], $links = [], $description;
 
     public function render() {
         $keyWord = '%'.$this->keyWord.'%';
@@ -78,7 +78,7 @@ class Applications extends Component {
                 $record = Application::findOrFail($this-> selected_id);
                 $record->update(['approved' => 1]);
 
-                Mail::to(User::findOrFail(Foodtruck::where('id', $this->foodtruck_id)->first()->user_id)->email)->send(new ApplicationApproved);
+                Mail::to(User::findOrFail(Foodtruck::where('id', $this->foodtruck_id)->first()->user_id)->email)->send(new ApplicationApproved($this->event_id, $this->plate, $this->foodtruck_name, implode(', ',$this->foods)));
 
                 session()->flash('message', 'Foodtruck successfully approved.');
             }

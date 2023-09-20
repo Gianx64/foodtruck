@@ -72,7 +72,7 @@ class Documents extends Component {
             $record = Document::findOrFail($this->selected_id);
             $record->update(['approved' => 1]);
 
-            Mail::to(User::findOrFail(Foodtruck::where('id', $this->foodtruck_id)->first()->user_id)->email)->send(new DocumentApproved);
+            Mail::to(User::findOrFail(Foodtruck::where('id', $this->foodtruck_id)->first()->user_id)->email)->send(new DocumentApproved($this->plate, $this->foodtruck_name, $this->document_name));
     
             $this->dispatchBrowserEvent('closeModal');
             $this->resetInput();
