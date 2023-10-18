@@ -49,11 +49,15 @@
                         <div class="form-group col">
                             <label for="documents">Required documents:</label>
                             @if($documents != '[]' && $documents != null)
-                                <ul>
-                                    @foreach($documents as $document)
-                                        <li>{{$document}}</li>
-                                    @endforeach
-                                </ul>
+                                @if($documents[0] != "")
+                                    <ul>
+                                        @foreach($documents as $document)
+                                            <li>{{$document}}</li>
+                                        @endforeach
+                                    </ul>
+                                @else
+                                    <p>No documents required.</p>
+                                @endif
                             @endif
                             @error('documents') <span class="error text-danger">{{ $message }}</span> @enderror
                         </div>

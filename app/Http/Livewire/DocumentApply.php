@@ -50,9 +50,10 @@ class DocumentApply extends Component {
     public function store() {
         if(strval(Document::where('foodtruck_id', $this->foodtruck_id)->where('approved', 0)
         ->where('document_name', $this-> document_name)->get()) == '[]') {
+            //hardcoded
             $this->validate([
                 'document_name' => 'required|string|exists:documentnames,name',
-                'file' => 'required|mimes:pdf',
+                'file' => 'required|mimes:jpeg,png,jpg,gif,svg,pdf',
                 'foodtruck_id' => 'required|integer',
                 'expires' => 'required|date'
             ], Document::$message);

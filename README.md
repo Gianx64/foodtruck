@@ -1,20 +1,19 @@
 ## No olvidar:
-actualizar vite.config.js (host)  
 actualizar .env (APP_URL)  
     APP_URL=http://200.50.49.21 (Public IP)  
     APP_URL=http://10.2.139.30 (Local IP)  
 
 ```
-sudo chown -R gian: /Applications/XAMPP/htdocs/foodtruck
+sudo chown -R gian: /Applications/XAMPP/htdocs/foodtruck8
 ```
 ```
-find /Applications/XAMPP/htdocs/foodtruck -type d -exec chmod 755 {} \;
+find /Applications/XAMPP/htdocs/foodtruck8 -type d -exec chmod 755 {} \;
 ```
 ```
-sudo chmod -R 777 /Applications/XAMPP/htdocs/foodtruck/storage
+sudo chmod -R 777 /Applications/XAMPP/htdocs/foodtruck8/storage
 ```
 ```
-sudo chmod -R 775 /Applications/XAMPP/htdocs/foodtruck/bootstrap/cache
+sudo chmod -R 775 /Applications/XAMPP/htdocs/foodtruck8/bootstrap/cache
 ```
 
 ```
@@ -42,9 +41,8 @@ $tmpFile = fopen(Storage::path($this->path),'r');
 ```
 
 ## Por Hacer:
-- Adaptar a Laravel 8
-    - routes/web.php auth:sanctum does not exist
-    - permissions no funcionan
+- Agregar motivo de rechazo en Applications y Documents
+- Fechas calendarizables en eventos
 - Hacer que cargue css antes que html
 - Limpiar postulaciones el día del evento
 - Editor de correos para user update
@@ -55,10 +53,12 @@ $tmpFile = fopen(Storage::path($this->path),'r');
 - Implementar correos
 	- Lista de foodtrucks para contactar masivamente (por zona)
 	- Recordatorios por correo (evento en una semana, cantidad de notificaciones, modificable)
-- Fechas calendarizables en eventos
 - Ver como portarlo a celulares
 
 ## Hecho:
+- Adaptar a Laravel 8
+    - routes/web.php auth:sanctum does not exist
+    - permissions no funcionan
 - Implementar correos
     - Confirmaciones por correo (conexion, documentos, aplicaciones a eventos, seleccionado o rechazado para evento)
 - Asignar rol de Foodtrucker a usuarios verificados
