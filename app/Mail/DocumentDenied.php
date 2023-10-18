@@ -7,11 +7,9 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class DocumentApproved extends Mailable
+class DocumentDenied extends Mailable
 {
     use Queueable, SerializesModels;
-    
-    public $plate, $foodtruck_name, $document_name;
 
     /**
      * Create a new message instance.
@@ -32,6 +30,6 @@ class DocumentApproved extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.documentApproved', ['url' => env('APP_URL').'/events']);
+        return $this->markdown('emails.documentDenied', ['url' => env('APP_URL').'/profile']);
     }
 }

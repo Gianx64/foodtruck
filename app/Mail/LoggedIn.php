@@ -7,22 +7,20 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class DocumentApproved extends Mailable
+class LoggedIn extends Mailable
 {
     use Queueable, SerializesModels;
-    
-    public $plate, $foodtruck_name, $document_name;
+
+    public $address;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($plate, $foodtruck_name, $document_name)
+    public function __construct($address)
     {
-        $this->plate = $plate;
-        $this->foodtruck_name = $foodtruck_name;
-        $this->document_name = $document_name;
+        $this->address = $address;
     }
 
     /**
@@ -32,6 +30,6 @@ class DocumentApproved extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.documentApproved', ['url' => env('APP_URL').'/events']);
+        return $this->view('emails.loggedIn');
     }
 }

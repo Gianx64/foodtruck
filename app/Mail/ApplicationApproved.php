@@ -37,6 +37,6 @@ class ApplicationApproved extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.applicationApproved', ['url' => env('APP_URL').'/event/{{$this->event_id}}']);
+        return $this->markdown('emails.applicationApproved', ['url' => env('APP_URL').'/events/'.strval($this->event_id)]);
     }
 }
