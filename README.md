@@ -4,16 +4,16 @@ actualizar .env (APP_URL)
     APP_URL=http://10.2.139.30 (Local IP)  
 
 ```
-sudo chown -R gian: /Applications/XAMPP/htdocs/foodtruck8
+sudo chown -R gian: /var/www/foodtruck8
 ```
 ```
-find /Applications/XAMPP/htdocs/foodtruck8 -type d -exec chmod 755 {} \;
+sudo find /var/www/foodtruck8 -type d -exec chmod 755 {} \;
 ```
 ```
-sudo chmod -R 777 /Applications/XAMPP/htdocs/foodtruck8/storage
+sudo chmod -R 777 /var/www/foodtruck8/storage
 ```
 ```
-sudo chmod -R 775 /Applications/XAMPP/htdocs/foodtruck8/bootstrap/cache
+sudo chmod -R 775 /var/www/foodtruck8/bootstrap/cache
 ```
 
 ```
